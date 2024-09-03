@@ -1,0 +1,15 @@
+M:\Github Repos\Chirp\bin\Debug\net8.0\Chirp.exe
+M:\Github Repos\Chirp\bin\Debug\net8.0\Chirp.deps.json
+M:\Github Repos\Chirp\bin\Debug\net8.0\Chirp.runtimeconfig.json
+M:\Github Repos\Chirp\bin\Debug\net8.0\Chirp.dll
+M:\Github Repos\Chirp\bin\Debug\net8.0\Chirp.pdb
+M:\Github Repos\Chirp\obj\Debug\net8.0\Chirp.GeneratedMSBuildEditorConfig.editorconfig
+M:\Github Repos\Chirp\obj\Debug\net8.0\Chirp.AssemblyInfoInputs.cache
+M:\Github Repos\Chirp\obj\Debug\net8.0\Chirp.AssemblyInfo.cs
+M:\Github Repos\Chirp\obj\Debug\net8.0\Chirp.csproj.CoreCompileInputs.cache
+M:\Github Repos\Chirp\obj\Debug\net8.0\Chirp.sourcelink.json
+M:\Github Repos\Chirp\obj\Debug\net8.0\Chirp.dll
+M:\Github Repos\Chirp\obj\Debug\net8.0\refint\Chirp.dll
+M:\Github Repos\Chirp\obj\Debug\net8.0\Chirp.pdb
+M:\Github Repos\Chirp\obj\Debug\net8.0\Chirp.genruntimeconfig.cache
+M:\Github Repos\Chirp\obj\Debug\net8.0\ref\Chirp.dll
