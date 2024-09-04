@@ -8,9 +8,7 @@ namespace Chirp
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hi, welcome to Chirp!");
-            Console.WriteLine("Available commands are <chirp, read, close>");
-
+            WelcomeMessage();
             // Ensure that the application continues running until the user exits
             while (true)
             {
@@ -22,6 +20,12 @@ namespace Chirp
                     Start(inputArgs);
                 }
             }
+        }
+
+        private static void WelcomeMessage()
+        {
+            Console.WriteLine("Welcome to Chirp!");
+            Console.WriteLine("Available commands are <chirp, read, close>");
         }
 
         static void Start(string[] args)
