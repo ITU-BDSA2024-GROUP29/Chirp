@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "M:\\Github Repos\\Chirp\\Chirp.csproj",
+      "projectUniqueName": "C:\\Users\\magnu\\OneDrive\\Skrivebord\\ITU\\1st_year_map\\Chirp\\Chirp.csproj",
       "projectName": "Chirp",
-      "projectPath": "M:\\Github Repos\\Chirp\\Chirp.csproj",
+      "projectPath": "C:\\Users\\magnu\\OneDrive\\Skrivebord\\ITU\\1st_year_map\\Chirp\\Chirp.csproj",
       "packagesPath": "C:\\Users\\magnu\\.nuget\\packages\\",
-      "outputPath": "M:\\Github Repos\\Chirp\\obj\\",
+      "outputPath": "C:\\Users\\magnu\\OneDrive\\Skrivebord\\ITU\\1st_year_map\\Chirp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\magnu\\AppData\\Roaming\\NuGet\\NuGet.Config"

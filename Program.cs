@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace Chirp
 {
@@ -38,6 +35,16 @@ namespace Chirp
                     Console.WriteLine("Closing the application...");
                     Thread.Sleep(2000);
                     Environment.Exit(0);
+                    break;
+
+                case "clear":
+                    Console.Write("Clearing consle");
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Thread.Sleep(200);
+                        Console.Write(".");
+                    }
+                    Console.Clear();
                     break;
                 case "chirp":
                     if (args.Length > 1)
@@ -120,7 +127,7 @@ namespace Chirp
 
             if (!match.Success)
             {
-                Console.WriteLine("Match failure");
+                throw new NoMatchRegexException("failiure to match regex of the input message");
             }
 
             string author = match.Groups["author"].Value;
