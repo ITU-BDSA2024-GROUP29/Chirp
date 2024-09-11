@@ -40,12 +40,10 @@ jobs:
 
       - name: Zip Build Output
         run: |
-          echo "Contents of bin/Debug/net8.0:"
-          ls -R bin/Debug/net8.0
           if [ $RUNNER_OS = 'Linux' ] || [ $RUNNER_OS = 'macOS' ]; then
-            zip -r output/build-${RUNNER_OS}.zip bin/Debug/net8.0 || true
+            zip -r output/${RUNNER_OS}/build.zip bin/Debug/net8.0 || true
           elif [ $RUNNER_OS = 'Windows' ]; then
-            powershell -Command "Compress-Archive -Path bin/Debug/net8.0 -DestinationPath output/build-${RUNNER_OS}.zip" || true
+            powershell -Command "Compress-Archive -Path bin/Debug/net8.0 -DestinationPath output/${RUNNER_OS}/build.zip" || true
           fi
         shell: bash
 
@@ -53,4 +51,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-output-${{ matrix.os }}
-          path: output/build-${{ matrix.os }}.zip
+          path: output/${{ matrix.os }}/build.zip
