@@ -1,6 +1,3 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: .NET
 
 on:
@@ -8,6 +5,7 @@ on:
     branches: [$default-branch]
   pull_request:
     branches: [$default-branch]
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   build:
@@ -34,27 +32,27 @@ jobs:
       - name: Test
         run: dotnet test --no-build --verbosity normal
 
-      - name: List Build Output
-        run: |
-          ls -R bin/Debug/net8.0 || echo "No files found."
-
       - name: Zip Folder
         run: |
           zip -r ${{ github.event.repository.name }}.zip . -x "*.git/*" ".github/*" "*.xml" "*.json"
 
-    - name: Zip Build Output
-      run: |
-        mkdir -p output
-        if [ $RUNNER_OS = 'Linux' ] || [ $RUNNER_OS = 'macOS' ]; then
-          echo "Zipping for $RUNNER_OS"
-          zip -r output/build.zip bin/Debug/net8.0 || echo "Zip command failed."
-        elif [ $RUNNER_OS = 'Windows' ]; then
-          echo "Zipping for $RUNNER_OS"
-          powershell -Command "Compress-Archive -Path bin/Debug/net8.0 -DestinationPath output/build.zip" || echo "Zip command failed."
-        fi
-        
-    - name: Upload Project Zip
-      uses: actions/upload-artifact@v3
-      with:
-        name: Chirp-zip
-        path: ${{ github.event.repository.name }}.zip
+      - name: Zip Build Output
+        run: |
+          mkdir -p output
+          if [ $RUNNER_OS = 'Linux' ] || [ $RUNNER_OS = 'macOS' ]; then
+            zip -r output/build.zip bin/Debug/net8.0
+          elif [ $RUNNER_OS = 'Windows' ]; then
+            powershell -Command "Compress-Archive -Path bin/Debug/net8.0 -DestinationPath output/build.zip"
+          fi
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-output
+          path: output/build.zip
+
+      - name: Upload Project Zip
+        uses: actions/upload-artifact@v3
+        with:
+          name: project-zip
+          path: ${{ github.event.repository.name }}.zip
