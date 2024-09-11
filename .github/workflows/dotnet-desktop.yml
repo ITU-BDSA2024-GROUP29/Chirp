@@ -10,7 +10,6 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -36,17 +35,16 @@ jobs:
         run: |
           mkdir -p output
           if [ $RUNNER_OS = 'Linux' ] || [ $RUNNER_OS = 'macOS' ]; then
-            zip -r output/build.zip bin/Debug/net8.0
+            zip -r output/build-${RUNNER_OS}.zip bin/Debug/net8.0
           elif [ $RUNNER_OS = 'Windows' ]; then
-            powershell -Command "Compress-Archive -Path bin/Debug/net8.0 -DestinationPath output/build.zip"
+            powershell -Command "Compress-Archive -Path bin/Debug/net8.0 -DestinationPath output/build-${RUNNER_OS}.zip"
           fi
-        shell: bash
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
         with:
           name: build-output
-          path: output/build.zip
+          path: output/
 
       - name: Upload Project Zip
         uses: actions/upload-artifact@v3
@@ -70,22 +68,22 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "6.0.x" # SDK Version to use.
+          dotnet-version: '6.0.x' # SDK Version to use.
           source-url: https://nuget.pkg.github.com/<owner>/index.json
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build the project
         run: |
-          dotnet build Chisp.sln --configuration Release
+          dotnet build --configuration Release Chirp.sln
         shell: bash
 
       - name: Create the package
         run: |
-          dotnet pack Chisp.sln --configuration Release
+          dotnet pack --configuration Release Chirp.sln
         shell: bash
 
       - name: Publish the package to GitHub Packages
         run: |
-          dotnet nuget push Chrip/bin/Release/*.nupkg --source https://nuget.pkg.github.com/<owner>/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push Chirp/bin/Release/*.nupkg --source https://nuget.pkg.github.com/<owner>/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
         shell: bash
