@@ -2,6 +2,8 @@
 using Chirp;
 using SimpleDB;
 using DocoptNet;
+using System.Runtime.InteropServices;
+using Microsoft.VisualBasic.FileIO;
 
 const string usage = @"Chirp CLI version.
 
@@ -18,18 +20,24 @@ Options:
 ";
 var arguments = new Docopt().Apply(usage, args, version: "1.0", exit: true)!;
 
-if (arguments["read"].IsTrue) {
+if (arguments["read"].IsTrue)
+{
     //Console.WriteLine(("test"));
     Controller.PrintChirps();
-} else if (arguments["cheep"].IsTrue) {
-    Controller.Chirp(arguments["<message>"].ToString(),Controller.getunixTime());
-} else if (arguments["clear"].IsTrue) {  //move to a method?
+}
+else if (arguments["cheep"].IsTrue)
+{
+    Controller.Chirp(arguments["<message>"].ToString(), Controller.getunixTime());
+}
+else if (arguments["clear"].IsTrue)
+{  //move to a method?
     Console.Write("Clearing console");
     for (int i = 0; i < 5; i++)
     {
         Thread.Sleep(200);
         Console.Write(".");
     }
+
     Console.Clear();
 }
 
@@ -55,13 +63,13 @@ namespace Chirp
                 }
             }
         }
-        
+
         //if arguments["read"].istrue
 
         static void Start(string[] args)
         {
 
-            
+
             /*
             if (args.Length == 0) return;
 
