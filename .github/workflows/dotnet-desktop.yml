@@ -35,6 +35,8 @@ jobs:
       - name: Zip Build Output
         run: |
           mkdir -p output
+          echo "Contents of bin/Debug/net8.0:"
+          ls -R bin/Debug/net8.0
           if [ $RUNNER_OS = 'Linux' ] || [ $RUNNER_OS = 'macOS' ]; then
             zip -r output/build-${RUNNER_OS}.zip bin/Debug/net8.0
           elif [ $RUNNER_OS = 'Windows' ]; then
@@ -45,8 +47,8 @@ jobs:
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: build-output
-          path: output/build.zip
+          name: build-output-${{ matrix.os }}
+          path: output/build-${{ matrix.os }}.zip
 
       - name: Upload Project Zip
         uses: actions/upload-artifact@v3
