@@ -32,8 +32,11 @@ jobs:
       - name: Test
         run: dotnet test --no-build --verbosity normal
 
-      - name: Create Output Directory
-        run: mkdir -p output
+      - name: Create OS-Specific Output Directory
+        run: |
+          mkdir -p output/${RUNNER_OS}
+          echo "Contents of bin/Debug/net8.0:"
+          ls -R bin/Debug/net8.0
 
       - name: Zip Build Output
         run: |
