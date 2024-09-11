@@ -39,6 +39,12 @@ jobs:
           dotnet pack --configuration Release Chirp.sln
         shell: bash
 
+      - name: List Release Directory
+        run: |
+          echo "Listing contents of Release directory:"
+          ls -R Chirp/bin/Release || echo "Release directory does not exist"
+        shell: bash
+
       - name: Publish the package to GitHub Packages
         run: |
           dotnet nuget push Chirp/bin/Release/*.nupkg --source https://nuget.pkg.github.com/ITU-BDSA2024-GROUP29/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
