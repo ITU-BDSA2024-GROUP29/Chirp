@@ -1,4 +1,4 @@
-name: .NET Release
+name: .NET
 
 on:
   push:
@@ -41,25 +41,14 @@ jobs:
           fi
         shell: bash
 
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/github-script@v6
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v3
         with:
-          script: |
-            const { data: release } = await github.rest.repos.createRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag_name: `v${{ github.run_number }}`,
-              name: `Release v${{ github.run_number }}`,
-              draft: false,
-              prerelease: false
-            });
-            return { upload_url: release.upload_url };
+          name: build-output
+          path: output/
 
-      - name: Upload Release Assets
-        uses: actions/upload-release-asset@v1
+      - name: Upload Project Zip
+        uses: actions/upload-artifact@v3
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./output/build-${RUNNER_OS}.zip
-          asset_name: build-${RUNNER_OS}.zip
-          asset_content_type: application/zip
+          name: project-zip
+          path: ${{ github.event.repository.name }}.zip
