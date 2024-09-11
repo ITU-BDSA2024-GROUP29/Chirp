@@ -32,10 +32,6 @@ jobs:
       - name: Test
         run: dotnet test --no-build --verbosity normal
 
-      - name: Zip Folder
-        run: |
-          zip -r ${{ github.event.repository.name }}.zip . -x "*.git/*" ".github/*" "*.xml" "*.json"
-
       - name: Zip Build Output
         run: |
           mkdir -p output
