@@ -34,11 +34,10 @@ jobs:
 
       - name: Zip Build Output
         run: |
-          mkdir -p output
           if [ $RUNNER_OS = 'Linux' ] || [ $RUNNER_OS = 'macOS' ]; then
-            zip -r output/build.zip bin/Debug/net8.0
+            zip -r output/build-${RUNNER_OS}.zip bin/Debug/net8.0
           elif [ $RUNNER_OS = 'Windows' ]; then
-            powershell -Command "Compress-Archive -Path bin/Debug/net8.0 -DestinationPath output/build.zip"
+            powershell -Command "Compress-Archive -Path bin/Debug/net8.0 -DestinationPath output/build-${RUNNER_OS}.zip"
           fi
         shell: bash
 
