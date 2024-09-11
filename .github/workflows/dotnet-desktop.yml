@@ -77,12 +77,12 @@ jobs:
 
       - name: Build the project
         run: |
-          dotnet build --configuration Release Chisp.sln
+          dotnet build Chisp.sln --configuration Release
         shell: bash
 
       - name: Create the package
         run: |
-          dotnet pack --configuration Release Chisp.sln
+          dotnet pack Chisp.sln --configuration Release
         shell: bash
 
       - name: Publish the package to GitHub Packages
