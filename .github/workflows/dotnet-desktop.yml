@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches: [$default-branch]
   pull_request:
-    branches: [ $default-branch ]
+    branches: [$default-branch]
 
 jobs:
   build:
@@ -18,19 +18,43 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
+
+      - name: List Build Output
+        run: |
+          ls -R bin/Debug/net8.0 || echo "No files found."
+
+      - name: Zip Folder
+        run: |
+          zip -r ${{ github.event.repository.name }}.zip . -x "*.git/*" ".github/*" "*.xml" "*.json"
+
+    - name: Zip Build Output
+      run: |
+        mkdir -p output
+        if [ $RUNNER_OS = 'Linux' ] || [ $RUNNER_OS = 'macOS' ]; then
+          echo "Zipping for $RUNNER_OS"
+          zip -r output/build.zip bin/Debug/net8.0 || echo "Zip command failed."
+        elif [ $RUNNER_OS = 'Windows' ]; then
+          echo "Zipping for $RUNNER_OS"
+          powershell -Command "Compress-Archive -Path bin/Debug/net8.0 -DestinationPath output/build.zip" || echo "Zip command failed."
+        fi
+        
+    - name: Upload Project Zip
+      uses: actions/upload-artifact@v3
       with:
-        dotnet-version: 8.0.x
-
-    - name: Restore dependencies
-      run: dotnet restore
-
-    - name: Build
-      run: dotnet build --no-restore
-
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
-      
+        name: Chirp-zip
+        path: ${{ github.event.repository.name }}.zip
