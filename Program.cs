@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Chirp;
 using SimpleDB;
 using DocoptNet;
 
@@ -7,6 +8,7 @@ const string usage = @"Chirp CLI version.
 Usage: 
     chirp read <limit>
     chirp cheep <message>
+    chirp clear
     chirp (-h | --help)
     chirp --version
 
@@ -16,18 +18,33 @@ Options:
 ";
 var arguments = new Docopt().Apply(usage, args, version: "1.0", exit: true)!;
 
+if (arguments["read"].IsTrue) {
+    //Console.WriteLine(("test"));
+    Controller.PrintChirps();
+} else if (arguments["cheep"].IsTrue) {
+    Controller.Chirp(arguments["<message>"].ToString(),Controller.getunixTime());
+} else if (arguments["clear"].IsTrue) {  //move to a method?
+    Console.Write("Clearing console");
+    for (int i = 0; i < 5; i++)
+    {
+        Thread.Sleep(200);
+        Console.Write(".");
+    }
+    Console.Clear();
+}
+
+
 namespace Chirp
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             Console.WriteLine("Hi, welcome to Chirp!");
             Console.WriteLine("Available commands are <chirp, read, close>");
 
             // Ensure that the application continues running until the user exits
-            while (true)
+            while (true) //delete?
             {
                 Console.Write("Enter a command: ");
                 string input = Console.ReadLine();
@@ -38,9 +55,14 @@ namespace Chirp
                 }
             }
         }
+        
+        //if arguments["read"].istrue
 
         static void Start(string[] args)
         {
+
+            
+            /*
             if (args.Length == 0) return;
 
             long unixTime = ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds();
@@ -85,7 +107,7 @@ namespace Chirp
                 default:
                     Console.WriteLine("Unknown command. Please use 'chirp','read' or 'close'.");
                     break;
-            }
+            }*/
         }
 
         /**
