@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - "v*" # Trigger the workflow on new version tags
+  pull_request:
+    branches: [$default-branch]
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   build:
