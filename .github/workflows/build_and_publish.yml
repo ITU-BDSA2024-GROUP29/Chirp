@@ -1,0 +1,92 @@
+name: Build and Release .NET Project
+
+on:
+  push:
+    tags:
+      - "v*" # Trigger the workflow on new version tags
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "7.x"
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Build project
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Publish for Ubuntu
+        run: dotnet publish --configuration Release --runtime linux-x64 --self-contained -o ./publish/ubuntu
+
+      - name: Publish for Windows
+        run: dotnet publish --configuration Release --runtime win-x64 --self-contained -o ./publish/windows
+
+      - name: Publish for macOS
+        run: dotnet publish --configuration Release --runtime osx-x64 --self-contained -o ./publish/macos
+
+      - name: Zip Ubuntu build
+        run: zip -r ubuntu-build.zip ./publish/ubuntu
+
+      - name: Zip Windows build
+        run: zip -r windows-build.zip ./publish/windows
+
+      - name: Zip macOS build
+        run: zip -r macos-build.zip ./publish/macos
+
+      - name: Upload zipped artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ubuntu-build
+          path: ubuntu-build.zip
+
+      - name: Upload zipped Windows build
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-build
+          path: windows-build.zip
+
+      - name: Upload zipped macOS build
+        uses: actions/upload-artifact@v3
+        with:
+          name: macos-build
+          path: macos-build.zip
+
+  create-release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Download Ubuntu build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ubuntu-build
+
+      - name: Download Windows build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: windows-build
+
+      - name: Download macOS build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: macos-build
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ubuntu-build.zip
+            windows-build.zip
+            macos-build.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
