@@ -16,7 +16,7 @@ public class CSVDatabase<T>  : IDatabaseRepository<T> where T : class
         var constructor = typeof(T).GetConstructors().First();
 
         // Skip the header line and iterate over the rest
-        foreach (var line in lines.Skip(1))
+        foreach (var line in lines.Skip(0))
         {
             var values = line.Split(',');
 
@@ -30,6 +30,15 @@ public class CSVDatabase<T>  : IDatabaseRepository<T> where T : class
             yield return record;
         }
     }
+
+    public static CSVDatabase<T> GetDatabase() {
+        if (database == null) {
+            database = new CSVDatabase<T>();
+        }
+        return database;
+    }
+
+    private static CSVDatabase<T> database = null;
 
     public void Store(T record)
     {

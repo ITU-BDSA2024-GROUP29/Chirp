@@ -9,11 +9,11 @@
 
   <ItemGroup>
     <PackageReference Include="docopt.net" Version="0.8.1" />
+    <PackageReference Include="xunit" Version="2.9.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="src\" />
-    <Folder Include="test\" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,11 @@
 
 using System.Text.RegularExpressions;
 
-namespace Cheep.Utils;
+namespace Chirp.ChirpUtils;
 
 public static class Utils
 {
-    static string FormatFromFileToConsole(string line)
+    public static string FormatFromFileToConsole(string line)
     {
         var regex = new Regex("^(?<author>[\\w_-]+),\"(?<message>.+)\",(?<timeStamp>\\d+)$");
         var match = regex.Match(line);
@@ -22,9 +22,15 @@ public static class Utils
         return $"@{author} | {timestamp}: {message}";
     }
 
-    static string ConvertUnixTimeToDate(long unixTime)
+    public static string ConvertUnixTimeToDate(long unixTime)
     {
         DateTime dateTime = DateTimeOffset.FromUnixTimeSeconds(unixTime).LocalDateTime;
         return dateTime.ToString("yyyy-MM-dd HH:mm:ss");
     }
+
+    public static long GetUnixTime() {
+        return ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds();
+    }
+    
+    
 }

@@ -1,7 +1,10 @@
 using System.Text.RegularExpressions;
-using ;
+
 using static Chirp.Program;
-using Cheep.Utils;
+using Chirp.ChirpUtils;
+using Chirp;
+using SimpleDB;
+
 
 class UserInterface{
 
@@ -9,16 +12,17 @@ class UserInterface{
         *   Every printstatement function
         *   Regex matcher, Time formater and general printstatement.
         **/
-        public static void PrintChirps(IEnumerable<Cheep> cheeps)
+        public static void PrintChirps()
         {
             // Prints all chirps from the CSV file
-            var chirps = File.ReadLines("./Data/chirp_cli_db.csv").Skip(1);
+            //var chirps = File.ReadLines("./Data/chirp_cli_db.csv").Skip(1);
+            var chirps = CSVDatabase<Cheep>.GetDatabase().Read();
 
             foreach (var chirp in chirps)
             {
-                if (string.IsNullOrEmpty(chirp))
+                if (string.IsNullOrEmpty(chirp.ToString()))
                     continue;
-                Console.WriteLine(FormatFromFileToConsole(chirp));
+                Console.WriteLine(chirp.author + " " + chirp.message + " " + Utils.ConvertUnixTimeToDate(chirp.Timestamp));
             }
         }
 
@@ -37,6 +41,15 @@ class UserInterface{
                 Console.Write(".");
             }
             Console.Clear();
+        }
+        
+        public static void Chirp(Cheep cheep)
+        {
+            // Write message with relevant information
+            // string formattedMessage = CreateMessage(unixTime, message);
+            UserInterface.PrintChirps();
+            CSVDatabase<Cheep>.GetDatabase().Store(cheep);
+            // StoreChirp(message, unixTime);
         }
 
 
