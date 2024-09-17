@@ -9,6 +9,10 @@ public class CSVDatabase<T>  : IDatabaseRepository<T> where T : class
     public static string filePath = "./Data/chirp_cli_db.csv";
     public IEnumerable<T> Read(int? limit = null)
     {
+        if (!File.Exists(filePath))
+        {
+            File.Create(filePath);
+        }
         var lines = File.ReadLines(filePath);
 
         // Get the properties of T
