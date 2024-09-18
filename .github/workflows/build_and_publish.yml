@@ -27,7 +27,7 @@ jobs:
         run: dotnet clean
 
       - name: Build project
-        run: dotnet build --configuration Release --no-restore 
+        run: dotnet build --configuration Release --no-restore
 
       - name: Publish for Ubuntu
         run: dotnet publish --configuration Release --runtime linux-x64 --self-contained --no-build -o ./publish/ubuntu
@@ -39,7 +39,7 @@ jobs:
         run: dotnet publish --configuration Release --runtime osx-x64 --self-contained --no-build -o ./publish/macos
 
       - name: Clean up unnecessary files in Ubuntu build
-      run: rm -rf ./publish/ubuntu/{obj,bin}
+        run: rm -rf ./publish/ubuntu/{obj,bin}
 
       - name: Clean up unnecessary files in Windows build
         run: rm -rf ./publish/windows/{obj,bin}
@@ -56,19 +56,19 @@ jobs:
       - name: Zip macOS build
         run: zip -r macos-build.zip ./publish/macos
 
-      - name: Upload zipped artifacts
+      - name: Upload zipped Ubuntu build artifact
         uses: actions/upload-artifact@v3
         with:
           name: ubuntu-build
           path: ubuntu-build.zip
 
-      - name: Upload zipped Windows build
+      - name: Upload zipped Windows build artifact
         uses: actions/upload-artifact@v3
         with:
           name: windows-build
           path: windows-build.zip
 
-      - name: Upload zipped macOS build
+      - name: Upload zipped macOS build artifact
         uses: actions/upload-artifact@v3
         with:
           name: macos-build
