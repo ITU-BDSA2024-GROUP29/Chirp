@@ -23,9 +23,6 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
 
-      - name: Clean workspace
-        run: dotnet clean
-
       - name: Build project
         run: dotnet build --configuration Release --no-restore
 
