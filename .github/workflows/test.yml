@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           dotnet restore
-          dotnet add package xunit --version 2.9.1
+          dotnet add package xunit --version 2.9.0
         
       - name: Build
         run: dotnet build
