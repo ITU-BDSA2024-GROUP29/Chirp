@@ -26,7 +26,7 @@ var arguments = new Docopt().Apply(usage, args, version: "1.0", exit: true)!;
 if (arguments["read"].IsTrue)
 {
     //Console.WriteLine(("test"));
-    UserInterface.PrintChirps( );
+    UserInterface.PrintChirps(int.Parse(arguments["<limit>"].ToString()));
 }
 else if (arguments["cheep"].IsTrue)
 {

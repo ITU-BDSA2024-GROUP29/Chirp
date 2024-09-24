@@ -1,81 +1,48 @@
-
-using System.Reflection;
-using System.Text;
-using System.Text.Json;
 using SimpleDB;
+using CsvHelper;
+using System.Globalization;
+using Chirp;
+using System.Collections.Generic;
+using System.Linq;
 
-public class CSVDatabase<T>  : IDatabaseRepository<T> where T : class
+
+public record Cheep(String Author, String Message, long TimeStamp);
+public class CSVDatabase<T> : IDatabaseRepository<T>
 {
-    public static string filePath = "./Data/chirp_cli_db.csv";
-    public IEnumerable<T> Read(int? limit = null)
-    {
-        if (!File.Exists(filePath))
-        {
-            File.Create(filePath);
-        }
-        var lines = File.ReadLines(filePath);
+    public CSVDatabase(){
 
-        // Get the properties of T
-        var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-        var constructor = typeof(T).GetConstructors().First();
-
-        // Skip the header line and iterate over the rest
-        foreach (var line in lines.Skip(0))
-        {
-            var values = line.Split(',');
-
-            // Convert values to appropriate types and pass them to the constructor
-            var parameters = properties.Select((prop, index) =>
-                Convert.ChangeType(values[index], prop.PropertyType)).ToArray();
-
-            // Create a new instance of T using the constructor
-            T record = (T)constructor.Invoke(parameters);
-
-            yield return record;
-        }
     }
-
-    public static CSVDatabase<T> GetDatabase() {
-        if (database == null) {
-            database = new CSVDatabase<T>();
-        }
-        return database;
-    }
-
-    private static CSVDatabase<T> database = null;
-
-    public void Store(T record)
-    {
-        StringBuilder csv = new StringBuilder();
-
-        var properties = typeof(T).GetProperties();
-        if (!File.Exists(filePath)) {
-            File.Create(filePath);
-            // Add the header row
-            foreach (var prop in properties)
-            {
-                csv.Append(prop.Name + ",");
+     public IEnumerable<T> Read(int? limit){
+        List<Cheep> ListCheep = new List<Cheep>();
+        int i = 0;
+        using (var reader = new StreamReader("Data/cheeps.csv"))
+        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+        {
+            var cheeps = csv.GetRecords<Cheep>();
+            cheeps = cheeps.Reverse();
+            foreach(Cheep cheep in cheeps){
+                ListCheep.Add(cheep);
+                i++;
+                if(i == limit){
+                    break;
+                }
             }
-            csv.Length--; // Remove the last comma
-            csv.AppendLine();
         }
-
-            // Get the properties of the type T
-
-
-        foreach (var prop in properties)
+        return ListCheep.Cast<T>();
+     }
+    public void Store(T record){
+        using (var Stream = File.Open("Data/cheeps.csv",FileMode.Append))
+        using (var writer = new StreamWriter(Stream))
+        using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
         {
-            var value = prop.GetValue(record)?.ToString();
-            csv.Append(value + ",");
+            csv.WriteRecord(record);
+            writer.WriteLine();
         }
-        csv.Length--; // Remove the last comma
-        csv.AppendLine();
+        Console.WriteLine();
+        Console.WriteLine("Cheep was succesfully sent!");
+    }
 
-
-        // Stores new messages in CSV file
-        using (StreamWriter sw = File.AppendText(filePath))
-        {
-            sw.WriteLine(csv);
-        }
+    public static CSVDatabase<Cheep> GetDatabase(){
+        return new CSVDatabase<Cheep>();
     }
 }

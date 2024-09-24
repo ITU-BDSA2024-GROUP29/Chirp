@@ -12,26 +12,20 @@ class UserInterface{
         *   Every printstatement function
         *   Regex matcher, Time formater and general printstatement.
         **/
-        public static void PrintChirps()
+        public static void PrintChirps(int limit)
         {
             // Prints all chirps from the CSV file
             //var chirps = File.ReadLines("./Data/chirp_cli_db.csv").Skip(1);
-            var chirps = CSVDatabase<Cheep>.GetDatabase().Read();
-
-            foreach (var chirp in chirps)
+            var chirps = CSVDatabase<Cheep>.GetDatabase().Read(limit);
+            
+            foreach (Cheep cheep in chirps)
             {
-                if (string.IsNullOrEmpty(chirp.ToString()))
+                if (string.IsNullOrEmpty(cheep.ToString()))
                     continue;
-                Console.WriteLine(chirp.author + " " + chirp.message + " " + Utils.ConvertUnixTimeToDate(chirp.Timestamp));
+                Console.WriteLine(cheep.Author + "@ " + cheep.Message + ": " + Utils.ConvertUnixTimeToDate(cheep.TimeStamp));
             }
         }
 
-
-        public static void close(){
-            Console.WriteLine("Closing the application...");
-            Thread.Sleep(2000);
-            Environment.Exit(0);
-        }
 
         public static void clear(){
             Console.Write("Clearing consle");
@@ -47,7 +41,6 @@ class UserInterface{
         {
             // Write message with relevant information
             // string formattedMessage = CreateMessage(unixTime, message);
-            UserInterface.PrintChirps();
             CSVDatabase<Cheep>.GetDatabase().Store(cheep);
             // StoreChirp(message, unixTime);
         }
