@@ -23,7 +23,7 @@ public class CSVDatabase<T> : IDatabaseRepository<T>
             foreach(Cheep cheep in cheeps){
                 ListCheep.Add(cheep);
                 i++;
-                if(i == limit){
+                if(i == limit && i != 0){       //limit = 0 is for print all Cheeps
                     break;
                 }
             }
