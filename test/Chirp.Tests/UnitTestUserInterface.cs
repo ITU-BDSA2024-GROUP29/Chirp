@@ -25,6 +25,10 @@ public class UnitTestUserInterface {
 
         var arrStr = "";
         var chirps = CSVDatabase<Cheep>.GetDatabase().Read(0);
+        foreach (Cheep c in chirps) {
+            arrStr = c.Author + "," + c.Message + "," + c.TimeStamp;
+        }
+        Assert.Equal("UnitTester,unittest,1727253543",arrStr);
         
         //int Counter = 0;
         //arrStr = Console.ReadLine();
