@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using Chirp;
 using Microsoft.VisualBasic.FileIO;
 
+const string FilePath = "Data/cheeps.csv";
+
 const string usage = @"Chirp CLI version.
 
 Usage: 
@@ -26,11 +28,11 @@ var arguments = new Docopt().Apply(usage, args, version: "1.0", exit: true)!;
 if (arguments["read"].IsTrue)
 {
     //Console.WriteLine(("test"));
-    UserInterface.PrintChirps(int.Parse(arguments["<limit>"].ToString()));
+    UserInterface.PrintChirps(int.Parse(arguments["<limit>"].ToString()),FilePath);
 }
 else if (arguments["cheep"].IsTrue)
 {
-    UserInterface.Chirp(new Cheep(Environment.UserName.Replace(' ','_'), arguments["<message>"].ToString(), Utils.GetUnixTime()));
+    UserInterface.Chirp(new Cheep(Environment.UserName.Replace(' ','_'), arguments["<message>"].ToString(), Utils.GetUnixTime()),FilePath);
 }
 else if (arguments["clear"].IsTrue)
 {  //move to a method?
@@ -48,7 +50,7 @@ namespace Chirp {
     class Program {
 
 
-        private static IDatabaseRepository<Cheep> Database = new CSVDatabase<Cheep>();
+        private static IDatabaseRepository<Cheep> Database = new CSVDatabase<Cheep>("eyy");
 
         static void Main(string[] args) {
             Console.WriteLine("Hi, welcome to Chirp!");
