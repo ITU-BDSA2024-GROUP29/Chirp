@@ -10,4 +10,8 @@
     <Folder Include="test\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.9.2" />
+  </ItemGroup>
+
 </Project>
