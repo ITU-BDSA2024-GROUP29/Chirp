@@ -1,4 +1,7 @@
-namespace Chirp.Razor.test.ChirpRazor.Tests;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.Testing;
+
+namespace Chirp.Razor.test;
 using Xunit;
 using ChirpRazor;
 
@@ -7,7 +10,7 @@ public class TestAPI : IClassFixture<WebApplicationFactory<Program>>
     private readonly WebApplicationFactory<Program> _fixture;
     private readonly HttpClient _client;
 
-    public TestAPI(WebApplicationFactory<Program> fixture)
+    public TestAPI(WebApplicationFactory<Program> fixture) //changed from public to private
     {
         _fixture = fixture;
         _client = _fixture.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = true, HandleCookies = true });
