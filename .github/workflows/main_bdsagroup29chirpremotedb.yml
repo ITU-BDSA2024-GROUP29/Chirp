@@ -22,10 +22,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
-    
+        run: dotnet build src/Chirp.Razor --configuration Release
+
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish src/Chirp.Razor  -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -48,8 +48,8 @@ jobs:
         with:
           name: .net-app
 
-    
-      
+
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -65,4 +65,3 @@ jobs:
           slot-name: 'Production'
           package: .
           startup-command: 'dotnet Chirp.Razor.dll'
-          
