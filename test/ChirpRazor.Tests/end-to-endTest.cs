@@ -1,15 +1,14 @@
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Testing;
+
 
 namespace Chirp.Razor.test;
 using Xunit;
-using ChirpRazor;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 public class TestAPI : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly WebApplicationFactory<Program> _fixture;
     private readonly HttpClient _client;
-/**
     public TestAPI(WebApplicationFactory<Program> fixture) //changed from public to private
     {
         _fixture = fixture;
@@ -39,5 +38,5 @@ public class TestAPI : IClassFixture<WebApplicationFactory<Program>>
         Assert.Contains("Chirp!", content);
         Assert.Contains($"{author}'s Timeline", content);
     }
-    */
+
 }
