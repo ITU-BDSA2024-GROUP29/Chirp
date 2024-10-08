@@ -1,3 +1,5 @@
+using Chirp.Razor.DomainModel;
+
 public record CheepViewModel(string Author, string Message, string Timestamp);
 
 public interface ICheepService
@@ -15,8 +17,7 @@ public class CheepService : ICheepService
             new CheepViewModel("Adrian", "Hej, velkommen til kurset.", UnixTimeStampToDateTimeString(1690895308)),
         };
 
-    public List<CheepViewModel> GetCheeps()
-    {
+    public List<CheepViewModel> GetCheeps() {
         return _cheeps;
     }
 
