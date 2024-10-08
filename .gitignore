@@ -15,7 +15,6 @@ project.lock.json
 *.user
 *.userosscache
 *.sln.docstates
-*.sln
 
 # Build results
 [Dd]ebug/
@@ -34,4 +33,3 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
-
