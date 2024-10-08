@@ -1,4 +1,8 @@
+namespace Chirp
+{
 public class Program {
+
+
     public static void Main(String[] args) {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -26,4 +30,5 @@ public class Program {
 
         app.Run();
     }
+}
 }

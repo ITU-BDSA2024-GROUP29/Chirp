@@ -1,14 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
+  <!-- <StartupObject>Chirp.Program</StartupObject> -->
 
 
   <PropertyGroup>
+  <StartupObject>Chirp.Program</StartupObject>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0" />
