@@ -17,6 +17,10 @@ public class CheepService : ICheepService
             new CheepViewModel("Adrian", "Hej, velkommen til kurset.", UnixTimeStampToDateTimeString(1690895308)),
         };
 
+    public void newCheep(Cheep cheep) {
+        
+    }
+
     public List<CheepViewModel> GetCheeps() {
         return _cheeps;
     }

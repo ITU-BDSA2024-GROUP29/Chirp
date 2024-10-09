@@ -1,4 +1,6 @@
+using Chirp.Razor.CheepRepository;
 using Chirp.Razor.DomainModel;
+using Chirp.Razor.CheepRepository;
 using Microsoft.EntityFrameworkCore;
 
 namespace Chirp.Razor {
@@ -6,17 +8,18 @@ namespace Chirp.Razor {
         public static void Main(String[] args) {
             var builder = WebApplication.CreateBuilder(args);
 
-// Load database connection via configuration
+            // Load database connection via configuration
             string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<CheepDBContext>(options => options.UseSqlite(connectionString));
 
-// Add services to the container.
+            // Add services to the container.
             builder.Services.AddRazorPages();
             builder.Services.AddSingleton<ICheepService, CheepService>();
+            builder.Services.AddScoped<ICheepRepository, CheepRepository.CheepRepository>();
 
             var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment()) {
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
