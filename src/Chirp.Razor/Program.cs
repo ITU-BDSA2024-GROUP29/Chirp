@@ -12,12 +12,12 @@ namespace Chirp.Razor {
             builder.Services.AddDbContext<ChirpDBContext>(options => options.UseSqlite(connectionString));
             
             ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
-            DbInitializer.SeedDatabase(serviceProvider.GetService(ChirpDBContext));
+            //DbInitializer.SeedDatabase(serviceProvider.GetService(ChirpDBContext));
             
             // Add services to the container.
             builder.Services.AddRazorPages();
-            builder.Services.AddSingleton<ICheepService, CheepService>();
             builder.Services.AddScoped<ICheepRepository, CheepRepository.CheepRepository>();
+            builder.Services.AddScoped<ICheepService, CheepService>();
 
             var app = builder.Build();
 
@@ -27,7 +27,7 @@ namespace Chirp.Razor {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

@@ -1,3 +1,4 @@
+using Chirp.Razor.CheepRepository;
 using Chirp.Razor.DomainModel;
 
 public record CheepViewModel(string Author, string Message, string Timestamp);
@@ -9,7 +10,12 @@ public interface ICheepService
 }
 
 public class CheepService : ICheepService
-{
+{          
+    ICheepRepository repository;
+    public CheepService(ICheepRepository repository) {
+        this.repository = repository;
+        this.repository.ReadCheeps("");
+    }
     // These would normally be loaded from a database for example
     private static readonly List<CheepViewModel> _cheeps = new()
         {
