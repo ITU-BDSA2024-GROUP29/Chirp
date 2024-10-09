@@ -26,6 +26,7 @@
 
 
   <ItemGroup>
+    <Folder Include="CheepRepository\" />
     <Folder Include="Data\" />
     <Folder Include="DomainModel\" />
     <Folder Include="Migrations\" />
