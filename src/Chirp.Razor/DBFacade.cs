@@ -17,7 +17,7 @@ public class ChatRepository
             //where Cheep.User.Name == "Adrian"
             //select new { Cheep.Text, Cheep.User };
         // Execute the query and store the results
-        //var result = await query.ToListAsync();
+        //var result = await query.ToListAsync(); 
     }
     
 }
