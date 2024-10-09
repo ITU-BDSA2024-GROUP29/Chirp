@@ -4,8 +4,8 @@ namespace Chirp.Razor.DomainModel;
 
 public class ChatRepository 
 {
-    private readonly CheepDBContext _dbContext;
-    public ChatRepository(CheepDBContext dbContext)
+    private readonly ChirpDBContext _dbContext;
+    public ChatRepository(ChirpDBContext dbContext)
     {
         _dbContext = dbContext;
     }

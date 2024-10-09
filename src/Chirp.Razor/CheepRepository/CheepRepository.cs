@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Chirp.Razor.CheepRepository;
 
 public class CheepRepository : ICheepRepository {
-    private readonly CheepDBContext _dbContext;
-    public CheepRepository(CheepDBContext dbContext) {
+    private readonly ChirpDBContext _dbContext;
+    public CheepRepository(ChirpDBContext dbContext) {
         _dbContext = dbContext;
     }
 
