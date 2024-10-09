@@ -6,6 +6,8 @@ namespace Chirp.Razor.CheepRepository;
 public class CheepRepository : ICheepRepository {
     private readonly ChirpDBContext _dbContext;
     public CheepRepository(ChirpDBContext dbContext) {
+        DbInitializer.SeedDatabase(dbContext);
+        Console.WriteLine("HER!");
         _dbContext = dbContext;
     }
 

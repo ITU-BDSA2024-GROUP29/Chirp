@@ -1,6 +1,5 @@
 using Chirp.Razor.CheepRepository;
 using Chirp.Razor.DomainModel;
-using Chirp.Razor.CheepRepository;
 using Microsoft.EntityFrameworkCore;
 
 namespace Chirp.Razor {
@@ -11,7 +10,10 @@ namespace Chirp.Razor {
             // Load database connection via configuration
             string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<ChirpDBContext>(options => options.UseSqlite(connectionString));
-
+            
+            ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
+            DbInitializer.SeedDatabase(serviceProvider.GetService(ChirpDBContext));
+            
             // Add services to the container.
             builder.Services.AddRazorPages();
             builder.Services.AddSingleton<ICheepService, CheepService>();
