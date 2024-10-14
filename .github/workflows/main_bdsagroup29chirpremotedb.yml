@@ -28,7 +28,7 @@ jobs:
         run: rm src/Chirp.Razor/Migrations/*
 
       - name: Remove cheep.db
-        run: src/Chirp.Razor/Data/Cheep.db
+        run: rm src/Chirp.Razor/Data/Cheep.db
 
       - name: add migrations folder
         run: dotnet ef migrations add InitialDBSchema
