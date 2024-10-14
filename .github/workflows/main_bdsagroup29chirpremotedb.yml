@@ -28,7 +28,7 @@ jobs:
         run: rm src/Chirp.Razor/Data/Cheep.db
 
       - name: installing packages
-        run: dotnet restore --configfile .\src\Chirp.Razor\Chirp.Razor.csproj
+        run: dotnet restore --configfile ./src/Chirp.Razor/Chirp.Razor.csproj
 
       # - name: add migrations folder
       #   run: dotnet ef migrations add InitialDBSchema
