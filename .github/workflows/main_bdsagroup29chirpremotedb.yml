@@ -24,14 +24,14 @@ jobs:
       - name: Build with dotnet
         run: dotnet build ./src/Chirp.Razor/Chirp.Razor.csproj --configuration Release
 
-      - name: Remove Migrations
-        run: rm src/Chirp.Razor/Migrations/*
+      # - name: Remove Migrations
+      #   run: rm src/Chirp.Razor/Migrations/*
 
       - name: Remove cheep.db
         run: rm src/Chirp.Razor/Data/Cheep.db
 
-      - name: add migrations folder
-        run: dotnet ef migrations add InitialDBSchema
+      # - name: add migrations folder
+      #   run: dotnet ef migrations add InitialDBSchema
 
       - name: add db
         run: dotnet ef database update
