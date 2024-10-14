@@ -31,8 +31,8 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
-.db-shm
-.db-wal
+*.db-shm
+*.db-wal
 
 # Visual Studio 2015
 .vs/
