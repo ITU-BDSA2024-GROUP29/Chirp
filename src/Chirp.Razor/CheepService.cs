@@ -20,6 +20,7 @@ public class CheepService : ICheepService
 
     private  List<CheepViewModel> loadDB() {
         List<Cheep> loader =  repository.ReadCheeps("").Result;
+        loader = loader.OrderBy(x=>x.TimeStamp).ToList();
         List<CheepViewModel> result = new List<CheepViewModel>();
         foreach (Cheep cheep in loader) {
             result.Add(new CheepViewModel(cheep.Author.Name,cheep.Text,cheep.TimeStamp.ToString()));
