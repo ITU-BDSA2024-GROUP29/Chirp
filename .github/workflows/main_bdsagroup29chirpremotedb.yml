@@ -21,9 +21,6 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: Build with dotnet
-        run: dotnet build ./src/Chirp.Razor/Chirp.Razor.csproj --configuration Release
-
       # - name: Remove Migrations
       #   run: rm src/Chirp.Razor/Migrations/*
 
@@ -35,6 +32,9 @@ jobs:
 
       - name: add db
         run: dotnet ef database update
+
+      - name: Build with dotnet
+        run: dotnet build ./src/Chirp.Razor/Chirp.Razor.csproj --configuration Release
 
       - name: dotnet publish
         run: dotnet publish ./src/Chirp.Razor/Chirp.Razor.csproj  -c Release -o ${{env.DOTNET_ROOT}}/myapp
