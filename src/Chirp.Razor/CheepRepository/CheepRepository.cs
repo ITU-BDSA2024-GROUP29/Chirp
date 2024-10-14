@@ -27,6 +27,7 @@ public class CheepRepository : ICheepRepository {
     }
 
     public async Task UpdateCheep(Cheep alteredcheep) {
+        var query = _dbContext.Cheeps.Select(cheep => cheep.Author == alteredcheep.Author ? cheep : alteredcheep);
         
     }
     

@@ -34,8 +34,8 @@ public class CheepService : ICheepService
         
         
         
-    public void newCheep(Cheep cheep) {
-        
+    public void NewCheep(Cheep cheep) {
+        repository.CreateCheep(cheep);
     }
 
     public List<CheepViewModel> GetCheeps() {
