@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Chirp.Razor.CheepRepository;
 using Chirp.Razor.DomainModel;
 
@@ -11,18 +12,28 @@ public interface ICheepService
 
 public class CheepService : ICheepService
 {          
-    ICheepRepository repository;
+    private ICheepRepository repository;
     public CheepService(ICheepRepository repository) {
         this.repository = repository;
         this.repository.ReadCheeps("");
+        _cheeps = loadDB();
     }
-    // These would normally be loaded from a database for example
-    private static readonly List<CheepViewModel> _cheeps = new()
-        {
-            new CheepViewModel("Helge", "Hello, BDSA students!", UnixTimeStampToDateTimeString(1690892208)),
-            new CheepViewModel("Adrian", "Hej, velkommen til kurset.", UnixTimeStampToDateTimeString(1690895308)),
-        };
 
+    private List<CheepViewModel> loadDB() {
+        List<Cheep> loader = this.repository.ReadCheeps("").Result;
+        List<CheepViewModel> result = new List<CheepViewModel>();
+        foreach (Cheep cheep in loader) {
+            result.Add(new CheepViewModel(cheep.Author.ToString(),cheep.Text,cheep.TimeStamp.ToString()));
+        }
+        
+        return result;
+    }
+    
+    // These would normally be loaded from a database for example
+    private readonly List<CheepViewModel> _cheeps;
+        
+        
+        
     public void newCheep(Cheep cheep) {
         
     }
