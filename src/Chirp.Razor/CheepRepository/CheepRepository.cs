@@ -18,7 +18,9 @@ public class CheepRepository : ICheepRepository {
 
     public async Task<List<Cheep>> ReadCheeps(String userName) {
         // Formulate the query - will be translated to SQL by EF Core
-        var query = _dbContext.Cheeps.Select(message => message);
+        //.Include(blog => blog.Posts)
+        var query = _dbContext.Cheeps.Include(cheep => cheep.Author);
+        
         // Execute the query
         var result = await query.ToListAsync();
         return result;
