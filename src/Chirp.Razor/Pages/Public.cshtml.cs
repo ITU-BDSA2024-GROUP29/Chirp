@@ -11,12 +11,12 @@ public class PublicModel : PageModel
     public PublicModel(ICheepService service)
     {
         _service = service;
-        service.GetCheeps();
+        service.GetCheepsAsync();
     }
 
-    public ActionResult OnGet()
+    public async Task<ActionResult> OnGet()
     {
-        Cheeps = _service.GetCheeps();
+        Cheeps = await _service.GetCheepsAsync();
         return Page();
     }
 }
