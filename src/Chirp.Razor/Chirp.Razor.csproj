@@ -30,5 +30,11 @@
     <Folder Include="DomainModel\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Cheep.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 
 </Project>
