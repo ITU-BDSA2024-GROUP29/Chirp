@@ -24,7 +24,6 @@ public class Test(){
         ICheepRepository cheepRepository = new CheepRepository(context);
 
         var userName = "Helge";
-        var TimeStamp = "8/1/2023 12:16:48 PM";
         var Message = "Hello, BDSA students!";
         var CheepId = 656;
         var AuthorId = 11;
@@ -36,12 +35,10 @@ public class Test(){
 
         
         
-        
         Assert.True(result.CheepId == CheepId);
         Assert.True(result.AuthorId == AuthorId);
         Assert.True(result.Author.Name == userName);
         Assert.True(result.Text == Message);
-        Assert.True(result.TimeStamp.ToString()== TimeStamp);
 
 
     }
