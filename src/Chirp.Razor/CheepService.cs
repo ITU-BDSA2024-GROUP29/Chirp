@@ -1,59 +1,89 @@
 using System.Runtime.CompilerServices;
 using Chirp.Razor.CheepRepository;
 using Chirp.Razor.DomainModel;
+using Chirp.Razor.Pages;
 
 public record CheepViewModel(string Author, string Message, string Timestamp);
 
 public interface ICheepService
 {
-    public List<CheepViewModel> GetCheeps();
-    public List<CheepViewModel> GetCheepsFromAuthor(string author);
+    Task<List<CheepViewModel>> GetCheepsAsync();
+    Task<List<CheepViewModel>> GetCheepsFromAuthorAsync(string author);
+    Task<List<CheepViewModel>> GetPaginatedCheepsAsync(int pageNumber, int pageSize = 10);
+    Task<int> GetTotalCheepCount();
 }
 
 public class CheepService : ICheepService
-{          
-    private ICheepRepository repository;
-    public CheepService(ICheepRepository repository) {
+{
+    private readonly ICheepRepository repository;
+    private static CheepService _instance;
+    private List<CheepViewModel> _cheeps;
+
+    public CheepService(ICheepRepository repository) 
+    {
         this.repository = repository;
-        _cheeps = loadDB();
+        _cheeps = new List<CheepViewModel>(); 
+        _ = LoadDB();
     }
 
-    private  List<CheepViewModel> loadDB() {
-        List<Cheep> loader =  repository.ReadCheeps("").Result;
-        loader = loader.OrderBy(x=>x.TimeStamp).ToList();
-        List<CheepViewModel> result = new List<CheepViewModel>();
-        foreach (Cheep cheep in loader) {
-            result.Add(new CheepViewModel(cheep.Author.Name,cheep.Text,cheep.TimeStamp.ToString()));
+    public static CheepService GetInstance(ICheepRepository repository)
+    {
+        if (_instance == null)
+        {
+            _instance = new CheepService(repository);
         }
-        
-        return result;
-    }
-    
-    // These would normally be loaded from a database for example
-    private readonly List<CheepViewModel> _cheeps;
-        
-        
-        
-    public void newCheep(Cheep cheep) {
-        
+        return _instance;
     }
 
-    public List<CheepViewModel> GetCheeps() {
+    private async Task LoadDB()
+    {
+        List<Cheep> loader = await repository.ReadCheeps("");
+        loader = loader.OrderBy(x => x.TimeStamp).ToList();
+        _cheeps = loader.Select(cheep =>
+            new CheepViewModel(cheep.Author.Name, cheep.Text, cheep.TimeStamp.ToString())
+        ).ToList();
+    }
+
+    public Task<int> GetTotalCheepCount()
+    {
+        return Task.FromResult(_cheeps.Count);
+    }
+
+    public async Task<List<CheepViewModel>> GetCheepsAsync() 
+    {
+        await Task.CompletedTask;
         return _cheeps;
     }
 
-    public List<CheepViewModel> GetCheepsFromAuthor(string author)
+    public async Task<List<CheepViewModel>> GetCheepsFromAuthorAsync(string author)
     {
-        // filter by the provided author name
+        await Task.CompletedTask;
         return _cheeps.Where(x => x.Author == author).ToList();
     }
 
-    private static string UnixTimeStampToDateTimeString(double unixTimeStamp)
+    public async Task<List<CheepViewModel>> GetPaginatedCheepsAsync(int pageNumber, int pageSize = 20)
     {
-        // Unix timestamp is seconds past epoch
-        DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-        dateTime = dateTime.AddSeconds(unixTimeStamp);
-        return dateTime.ToString("MM/dd/yy H:mm:ss");
+        await Task.CompletedTask;
+        return GetPaginatedCheeps(pageNumber, pageSize);
     }
 
+    public List<CheepViewModel> GetPaginatedCheeps(int pageNumber, int pageSize)
+    {
+        if (pageNumber < 1)
+        {
+            pageNumber = 1; // Default to page 1 if the input is less than 1
+        }
+
+        // Calculate the start index
+        int startIndex = (pageNumber - 1) * pageSize;
+
+        if (startIndex >= _cheeps.Count)
+        {
+            return new List<CheepViewModel>();
+        }
+
+        // Use LINQ to skip and take for pagination
+        return _cheeps.Skip(startIndex).Take(pageSize).ToList();
+    }
 }
+
