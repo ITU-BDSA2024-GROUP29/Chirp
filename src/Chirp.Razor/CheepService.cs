@@ -37,7 +37,7 @@ public class CheepService : ICheepService
 
     private async Task LoadDB()
     {
-        List<Cheep> loader = await repository.ReadCheeps("");
+        List<Cheep> loader = await repository.ReadCheeps();
         loader = loader.OrderBy(x => x.TimeStamp).ToList();
         _cheeps = loader.Select(cheep =>
             new CheepViewModel(cheep.Author.Name, cheep.Text, cheep.TimeStamp.ToString())

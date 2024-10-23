@@ -7,7 +7,6 @@ public class CheepRepository : ICheepRepository {
     private readonly ChirpDBContext _dbContext;
     public CheepRepository(ChirpDBContext dbContext) {
         DbInitializer.SeedDatabase(dbContext);
-        Console.WriteLine("HER!");
         _dbContext = dbContext;
     }
 
@@ -16,7 +15,7 @@ public class CheepRepository : ICheepRepository {
         await _dbContext.SaveChangesAsync(); // persist the changes in the database
     }
 
-    public async Task<List<Cheep>> ReadCheeps(String userName) {
+    public async Task<List<Cheep>> ReadCheeps() {
         // Formulate the query - will be translated to SQL by EF Core
         //.Include(blog => blog.Posts)
         var query = _dbContext.Cheeps.Include(cheep => cheep.Author);
