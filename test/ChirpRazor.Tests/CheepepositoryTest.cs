@@ -25,17 +25,17 @@ public class Test(){
 
         var userName = "Helge";
         var Message = "Hello, BDSA students!";
-        var TimeStamp = "01-08-2023 12:16:48"
+        var TimeStamp = "01-08-2023 12:16:48";
         var CheepId = 656;
         var AuthorId = 11;
 
 
         var list = cheepRepository.ReadCheeps().Result;
-        
+
         var result = list[list.Count - 2];
 
-        
-        
+
+
         Assert.True(result.CheepId == CheepId);
         Assert.True(result.AuthorId == AuthorId);
         Assert.True(result.Author.Name == userName);
