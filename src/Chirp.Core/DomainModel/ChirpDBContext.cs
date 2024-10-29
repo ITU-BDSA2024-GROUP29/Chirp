@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace  Chirp.Core.DomainModel ;
 
 public class ChirpDBContext : DbContext {
