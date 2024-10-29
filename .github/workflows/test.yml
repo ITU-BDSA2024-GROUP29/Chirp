@@ -25,7 +25,7 @@ jobs:
         run: |
           dotnet restore ./src/Chirp.Razor/Chirp.Razor.csproj
           dotnet restore ./test/ChirpRazor.Tests/ChirpRazor.Tests.csproj
-          dotnet add ./test/ChirpRazor.Tests/ChirpRazor.Tests.csproj package xunit --version 2.9.0
+          dotnet add ./test/ChirpRazor.Tests/ChirpRazor.Tests.csproj package xunit --version 2.9.2
 
       - name: dotnet test
         run: dotnet test ./test/ChirpRazor.Tests/ChirpRazor.Tests.csproj
