@@ -67,5 +67,25 @@ public class Test(){
 
 
     }
+
+    [Fact]
+    public async Task testCheepRepositoryPagnationAsync()
+    {
+    
+        //Arange
+        using var connection = new SqliteConnection("Filename=:memory:");
+        await connection.OpenAsync();
+        var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
+
+        using var context = new ChirpDBContext(builder.Options);
+        await context.Database.EnsureCreatedAsync();
+
+        CheepRepository cheepRepository = new CheepRepository(context);
+
+
+            var list = cheepRepository.GetPaginatedCheeps(3).Result;
+
+            Assert.True(list.Count == 32);
+    }
 }
 }
