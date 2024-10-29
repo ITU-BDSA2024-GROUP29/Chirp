@@ -87,5 +87,26 @@ public class Test(){
 
             Assert.True(list.Count == 32);
     }
+
+
+    [Fact]
+    public async Task testCheepRepositoryGetCheepCount(){
+         //Arange
+        using var connection = new SqliteConnection("Filename=:memory:");
+        await connection.OpenAsync();
+        var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
+
+        using var context = new ChirpDBContext(builder.Options);
+        await context.Database.EnsureCreatedAsync();
+
+        CheepRepository cheepRepository = new CheepRepository(context);
+
+        var list = cheepRepository.ReadCheeps().Result;
+
+
+        Assert.True(list.Count == cheepRepository.GetTotalCheepCount().Result);
+         
+        
+    }
 }
 }
