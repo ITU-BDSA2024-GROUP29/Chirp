@@ -2,10 +2,11 @@ name: Build and Test .NET Project
 
 on:
   push:
-    tags:
-      - "v*" # Trigger the workflow on new version tags
+    branches:
+      - main
   pull_request:
-    branches: [$default-branch]
+    branches:
+      - main
   workflow_dispatch: # Allows manual triggering
 
 jobs:
@@ -22,11 +23,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          dotnet restore
-          dotnet add package xunit --version 2.9.0
-        
-      - name: Build
-        run: dotnet build
+          dotnet restore ./src/Chirp.Razor/Chirp.Razor.csproj
+          dotnet restore ./test/ChirpRazor.Tests/ChirpRazor.Tests.csproj
+          dotnet add ./test/ChirpRazor.Tests/ChirpRazor.Tests.csproj package xunit --version 2.9.0
 
-      - name: Test with the dotnet CLI
-        run: dotnet test
+      - name: dotnet test
+        run: dotnet test ./test/ChirpRazor.Tests/ChirpRazor.Tests.csproj
