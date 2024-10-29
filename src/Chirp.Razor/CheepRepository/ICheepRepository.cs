@@ -7,6 +7,7 @@ public interface ICheepRepository {
     Task<List<Cheep>> ReadCheeps();
     Task<List<Cheep>> GetPaginatedCheeps(int pageNumber, int pageSize);
     //Task UpdateCheep(Cheep alteredcheep);
+    Task<List<Cheep>> GetTotalCheepsFromAuthorCount(String authorname);
 
     
 }

@@ -41,8 +41,7 @@ public class CheepRepository : ICheepRepository {
         return await _dbContext.Cheeps.CountAsync();
     }
 
-<<<<<<< Updated upstream
-=======
+
     // Get the total number of cheeps sent from a specified author
     public async Task<List<Cheep>> GetTotalCheepsFromAuthorCount(String authorname)
     {//DbContext db = var entityTypes = db.Model.getEn
@@ -50,8 +49,6 @@ public class CheepRepository : ICheepRepository {
     }
 
     
-
->>>>>>> Stashed changes
     // Update an existing cheep
     public async Task UpdateCheepAsync(Cheep alteredCheep) {
         _dbContext.Cheeps.Update(alteredCheep);

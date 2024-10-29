@@ -108,5 +108,51 @@ public class Test(){
          
         
     }
+
+    public async Task testCheepRepositoryGetCheepByAuthor(){
+           //Arange
+        using var connection = new SqliteConnection("Filename=:memory:");
+        await connection.OpenAsync();
+        var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
+
+        using var context = new ChirpDBContext(builder.Options);
+        await context.Database.EnsureCreatedAsync();
+
+        CheepRepository cheepRepository = new CheepRepository(context);
+
+        var userName = "Adrian";
+        var Message = "Hej, velkommen til kurset.";
+        var TimeStamp = "01-08-2023 13:08:28";
+        var CheepId = 657;
+        var AuthorId = 12;
+
+
+        var list = cheepRepository.GetTotalCheepsFromAuthorCount("Adrian").Result;
+
+        var result = list[0];
+
+
+         //Test
+        Assert.True(result.CheepId == CheepId);
+        Assert.True(result.AuthorId == AuthorId);
+        Assert.True(result.Author.Name == userName);
+        Assert.True(result.Text == Message);
+        Assert.True(result.TimeStamp.ToString("dd-MM-yyyy HH:mm:ss")== TimeStamp);
+    }
+
+
+    [Fact]
+    public async Task testCheepRepositoryCreatCheepIntegrationTest(){
+              //Arange
+        using var connection = new SqliteConnection("Filename=:memory:");
+        await connection.OpenAsync();
+        var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
+
+        using var context = new ChirpDBContext(builder.Options);
+        await context.Database.EnsureCreatedAsync();
+
+        CheepRepository cheepRepository = new CheepRepository(context);
+
+    }
 }
 }
