@@ -66,6 +66,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -86,7 +87,8 @@ jobs:
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
-        with:
+        with: |
+          tag: ${{ github.ref }}  # Use the tag that triggered the workflow
           files: |
             ubuntu-build.zip
             windows-build.zip
