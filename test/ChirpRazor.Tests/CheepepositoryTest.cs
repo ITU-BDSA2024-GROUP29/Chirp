@@ -1,4 +1,5 @@
-namespace Chirp.Razor.test.ChirpRazor.Tests;
+namespace Chirp.Razor.test.ChirpRazor.Tests{
+
 
 using System.Threading.Tasks;
 using Chirp.Razor.CheepRepository;
@@ -11,8 +12,12 @@ using Xunit;
 
 public class Test(){
 
-    [Fact]
-    public async Task testCheepRepository(){
+   public ICheepRepository CheepRepository;
+
+
+   
+    [Fact] 
+    public async Task canInitializeCheepRepository(){
         //Arange
         using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
@@ -21,7 +26,25 @@ public class Test(){
         using var context = new ChirpDBContext(builder.Options);
         await context.Database.EnsureCreatedAsync();
 
-        ICheepRepository cheepRepository = new CheepRepository(context);
+        CheepRepository cheepRepository = new CheepRepository(context);
+        //Test
+        Assert.NotNull(cheepRepository);
+
+        this.CheepRepository = cheepRepository;
+
+    }
+
+    [Fact]
+    public async Task testCheepRepositoryAsync(){
+         //Arange
+        using var connection = new SqliteConnection("Filename=:memory:");
+        await connection.OpenAsync();
+        var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
+
+        using var context = new ChirpDBContext(builder.Options);
+        await context.Database.EnsureCreatedAsync();
+
+        CheepRepository cheepRepository = new CheepRepository(context);
 
         var userName = "Helge";
         var Message = "Hello, BDSA students!";
@@ -44,4 +67,5 @@ public class Test(){
 
 
     }
+}
 }
