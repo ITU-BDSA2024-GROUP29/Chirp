@@ -12,7 +12,6 @@ namespace Chirp.Razor {
             builder.Services.AddDbContext<ChirpDBContext>(options => options.UseSqlite(connectionString));
 
             ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
-            //DbInitializer.SeedDatabase(serviceProvider.GetService(ChirpDBContext));
 
             // Add services to the container.
             builder.Services.AddRazorPages();

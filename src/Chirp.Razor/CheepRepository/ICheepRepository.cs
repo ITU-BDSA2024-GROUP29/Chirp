@@ -1,5 +1,3 @@
-using Chirp.Razor.DomainModel;
-
 namespace Chirp.Razor.CheepRepository;
 
 public interface ICheepRepository {

@@ -1,7 +1,4 @@
-using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
-
-namespace  Chirp.Razor.DomainModel;
+namespace  Chirp.Core.DomainModel;
     
 
 

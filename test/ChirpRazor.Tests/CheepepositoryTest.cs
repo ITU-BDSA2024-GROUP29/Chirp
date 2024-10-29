@@ -2,7 +2,6 @@ namespace Chirp.Razor.test.ChirpRazor.Tests;
 
 using System.Threading.Tasks;
 using Chirp.Razor.CheepRepository;
-using Chirp.Razor.DomainModel;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Xunit;

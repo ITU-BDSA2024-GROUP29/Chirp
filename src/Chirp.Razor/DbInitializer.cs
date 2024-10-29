@@ -1,5 +1,4 @@
 using System;
-using Chirp.Razor.DomainModel;
 
 public static class DbInitializer
 {

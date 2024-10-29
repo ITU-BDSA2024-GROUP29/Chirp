@@ -1,4 +1,3 @@
-using Chirp.Razor.DomainModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Chirp.Razor.CheepRepository;

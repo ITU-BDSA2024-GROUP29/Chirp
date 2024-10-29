@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net$(NETCoreAppMaximumVersion)</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Public.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Shared\_Layout.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\UserTimeline.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\style.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\favicon\favicon.ico" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icon1.png" />
+    <_ContentIncludedByDefault Remove="Chirp.Services\Pages\Public.cshtml" />
+    <_ContentIncludedByDefault Remove="Chirp.Services\Pages\Shared\_Layout.cshtml" />
+    <_ContentIncludedByDefault Remove="Chirp.Services\Pages\UserTimeline.cshtml" />
+    <_ContentIncludedByDefault Remove="Chirp.Services\Properties\launchSettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Chirp.Repository\" />
+    <Folder Include="Chirp.Services\" />
+  </ItemGroup>
+
+</Project>
