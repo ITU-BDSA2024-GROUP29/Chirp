@@ -109,6 +109,8 @@ public class Test(){
         
     }
 
+    //This is a test where we make sure that we get the cheeps when specefied only by an author
+    [Fact]
     public async Task testCheepRepositoryGetCheepByAuthor(){
            //Arange
         using var connection = new SqliteConnection("Filename=:memory:");
@@ -140,6 +142,8 @@ public class Test(){
         Assert.True(result.TimeStamp.ToString("dd-MM-yyyy HH:mm:ss")== TimeStamp);
     }
 
+
+    //this is an integration test, which is resposible for testing both add cheeps and read cheeps, this also servers as the only test for add cheeps to the database
      [Fact]
     public async Task testCheepRepositoryCreatCheepIntegrationTest(){
               //Arange
