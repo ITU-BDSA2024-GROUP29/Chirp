@@ -1,4 +1,5 @@
-namespace Chirp.Razor.test.ChirpRazor.Tests;
+namespace Chirp.Razor.test.ChirpRazor.Tests{
+
 
 using System.Threading.Tasks;
 using Chirp.Razor.CheepRepository;
@@ -11,8 +12,9 @@ using Xunit;
 
 public class Test(){
 
-    [Fact]
-    public async Task testCheepRepository(){
+    //This test makes sure our method for putting the database into memory works
+    [Fact] 
+    public async Task canInitializeCheepRepository(){
         //Arange
         using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
@@ -21,7 +23,25 @@ public class Test(){
         using var context = new ChirpDBContext(builder.Options);
         await context.Database.EnsureCreatedAsync();
 
-        ICheepRepository cheepRepository = new CheepRepository(context);
+        CheepRepository cheepRepository = new CheepRepository(context);
+
+        //Test
+        Assert.NotNull(cheepRepository);
+
+    }
+
+    //This test makes sure we are getting actuall data output from our database
+    [Fact]
+    public async Task testCheepRepositoryReadCheeps(){
+         //Arange
+        using var connection = new SqliteConnection("Filename=:memory:");
+        await connection.OpenAsync();
+        var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
+
+        using var context = new ChirpDBContext(builder.Options);
+        await context.Database.EnsureCreatedAsync();
+
+        CheepRepository cheepRepository = new CheepRepository(context);
 
         var userName = "Helge";
         var Message = "Hello, BDSA students!";
@@ -35,7 +55,7 @@ public class Test(){
         var result = list[list.Count - 2];
 
 
-
+         //Test
         Assert.True(result.CheepId == CheepId);
         Assert.True(result.AuthorId == AuthorId);
         Assert.True(result.Author.Name == userName);
@@ -44,4 +64,49 @@ public class Test(){
 
 
     }
+
+
+    //this test makes sure our pagnation function works as intended
+    [Fact]
+    public async Task testCheepRepositoryPagnationAsync()
+    {
+    
+        //Arange
+        using var connection = new SqliteConnection("Filename=:memory:");
+        await connection.OpenAsync();
+        var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
+
+        using var context = new ChirpDBContext(builder.Options);
+        await context.Database.EnsureCreatedAsync();
+
+        CheepRepository cheepRepository = new CheepRepository(context);
+
+
+            var list = cheepRepository.GetPaginatedCheeps(3).Result;
+
+             //Test
+            Assert.True(list.Count == 32);
+    }
+
+    //This test makes sure our cheepcount method for calculating the amount of pages returns the correct value
+    [Fact]
+    public async Task testCheepRepositoryGetCheepCount(){
+         //Arange
+        using var connection = new SqliteConnection("Filename=:memory:");
+        await connection.OpenAsync();
+        var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
+
+        using var context = new ChirpDBContext(builder.Options);
+        await context.Database.EnsureCreatedAsync();
+
+        CheepRepository cheepRepository = new CheepRepository(context);
+
+        var list = cheepRepository.ReadCheeps().Result;
+
+        //Test
+        Assert.True(list.Count == cheepRepository.GetTotalCheepCount().Result);
+         
+        
+    }
+}
 }
