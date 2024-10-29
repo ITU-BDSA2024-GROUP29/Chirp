@@ -47,7 +47,6 @@ public class CheepRepository : ICheepRepository {
         return await _dbContext.Cheeps.Where(a => a.Author.Name == authorname).ToListAsync();
     }
 
-    
 
     // Update an existing cheep
     public async Task UpdateCheepAsync(Cheep alteredCheep) {
