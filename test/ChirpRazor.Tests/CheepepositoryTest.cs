@@ -12,10 +12,7 @@ using Xunit;
 
 public class Test(){
 
-   public ICheepRepository CheepRepository;
-
-
-   
+    //This test makes sure our method for putting the database into memory works
     [Fact] 
     public async Task canInitializeCheepRepository(){
         //Arange
@@ -27,15 +24,15 @@ public class Test(){
         await context.Database.EnsureCreatedAsync();
 
         CheepRepository cheepRepository = new CheepRepository(context);
+
         //Test
         Assert.NotNull(cheepRepository);
 
-        this.CheepRepository = cheepRepository;
-
     }
 
+    //This test makes sure we are getting actuall data output from our database
     [Fact]
-    public async Task testCheepRepositoryAsync(){
+    public async Task testCheepRepositoryReadCheeps(){
          //Arange
         using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
@@ -58,7 +55,7 @@ public class Test(){
         var result = list[list.Count - 2];
 
 
-
+         //Test
         Assert.True(result.CheepId == CheepId);
         Assert.True(result.AuthorId == AuthorId);
         Assert.True(result.Author.Name == userName);
@@ -68,6 +65,8 @@ public class Test(){
 
     }
 
+
+    //this test makes sure our pagnation function works as intended
     [Fact]
     public async Task testCheepRepositoryPagnationAsync()
     {
@@ -85,10 +84,11 @@ public class Test(){
 
             var list = cheepRepository.GetPaginatedCheeps(3).Result;
 
+             //Test
             Assert.True(list.Count == 32);
     }
 
-
+    //This test makes sure our cheepcount method for calculating the amount of pages returns the correct value
     [Fact]
     public async Task testCheepRepositoryGetCheepCount(){
          //Arange
@@ -103,7 +103,7 @@ public class Test(){
 
         var list = cheepRepository.ReadCheeps().Result;
 
-
+        //Test
         Assert.True(list.Count == cheepRepository.GetTotalCheepCount().Result);
          
         
