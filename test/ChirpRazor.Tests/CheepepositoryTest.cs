@@ -140,8 +140,7 @@ public class Test(){
         Assert.True(result.TimeStamp.ToString("dd-MM-yyyy HH:mm:ss")== TimeStamp);
     }
 
-
-    [Fact]
+     [Fact]
     public async Task testCheepRepositoryCreatCheepIntegrationTest(){
               //Arange
         using var connection = new SqliteConnection("Filename=:memory:");
@@ -152,7 +151,35 @@ public class Test(){
         await context.Database.EnsureCreatedAsync();
 
         CheepRepository cheepRepository = new CheepRepository(context);
+        Author author = new Author();
+        author.AuthorId = 9999;
+        author.Email = "test@test.com";
+        author.Name = "Test";
+        Cheep cheep = new Cheep();
+        cheep.Author = author;
+        cheep.AuthorId = author.AuthorId;
+        cheep.CheepId = 9999;
+        cheep.Text = "This is a Test Cheep";
+        DateTime time = new DateTime(2000,04,30);
+        cheep.TimeStamp = time;
 
+         _ = cheepRepository.CreateCheepAsync(cheep);
+
+        var list = cheepRepository.ReadCheeps().Result;
+
+        var cheepFromDb = list[list.Count-1]; 
+
+        
+        //test
+        Assert.True(cheepFromDb.Author == cheep.Author);
+        Assert.True(cheepFromDb.AuthorId == cheep.AuthorId);
+        Assert.True(cheepFromDb.CheepId == cheep.CheepId);
+        Assert.True(cheepFromDb.Text == cheep.Text);
+        Assert.True(cheepFromDb.TimeStamp == cheep.TimeStamp);
+        
+
+        
     }
+
 }
 }
