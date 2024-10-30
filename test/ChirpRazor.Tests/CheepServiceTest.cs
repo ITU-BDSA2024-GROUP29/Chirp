@@ -69,7 +69,7 @@ public class CheepServiceTest(){
 
         var userName = "Helge";
         var Message = "Hello, BDSA students!";
-        var TimeStamp = "01-08-2023 12:16:48";
+        var TimeStamp = "01/08/2023 12:16:48";
 
         Assert.Equal(userName,list[list.Count-1].Author);
         Assert.Equal(Message,list[list.Count-1].Message);
@@ -95,7 +95,7 @@ public class CheepServiceTest(){
 
         var userName = "Helge";
         var Message = "Hello, BDSA students!";
-        var TimeStamp = "01-08-2023 12:16:48";
+        var TimeStamp = "01/08/2023 12:16:48";
 
         Assert.Equal(userName,list[0].Author);
         Assert.Equal(Message,list[0].Message);
@@ -127,7 +127,7 @@ public class CheepServiceTest(){
 
         var userName = "Helge";
         var Message = "Hello, BDSA students!";
-        var TimeStamp = "01-08-2023 12:16:48";
+        var TimeStamp = "01/08/2023 12:16:48";
 
         Assert.Equal(userName,list[list.Count-1].Author);
         Assert.Equal(Message,list[list.Count-1].Message);
