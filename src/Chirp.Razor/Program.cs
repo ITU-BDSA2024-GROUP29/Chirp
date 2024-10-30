@@ -1,3 +1,5 @@
+using Chirp.Core.DomainModel;
+using Chirp.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,8 +15,7 @@ namespace Chirp.Razor {
             
             // Add services to the container.
             builder.Services.AddRazorPages();
-            //builder.Services.AddScoped<ICheepRepository, CheepRepository.CheepRepository>();
-
+            builder.Services.AddScoped<ICheepRepository, CheepRepository>();
             builder.Services.AddScoped<ICheepService, CheepService>();
             builder.Services.BuildServiceProvider();
             //builder.Services.AddDbContext<ChirpDBContext>();

@@ -5,5 +5,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <ProjectReference Include="../Chirp.Repository/Chirp.Repository.csproj" />
+  </ItemGroup>
+
 
 </Project>
