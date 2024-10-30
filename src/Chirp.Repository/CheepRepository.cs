@@ -1,6 +1,9 @@
-namespace Chirp.Infrastructure.Chirp.Repository;
-using Microsoft.EntityFrameworkCore;
+
 using Chirp.Core.DomainModel;
+using Microsoft.EntityFrameworkCore;
+
+namespace Chirp.Repository;
+
 
 public class CheepRepository : ICheepRepository {
     private readonly ChirpDBContext _dbContext;

@@ -1,5 +1,7 @@
-namespace Chirp.Infrastructure.Chirp.Repository;
-using Microsoft.EntityFrameworkCore;
+using Chirp.Core.DomainModel;
+
+namespace Chirp.Repository;
+
 
 public interface ICheepRepository {
     Task CreateCheepAsync(Cheep newCheep);

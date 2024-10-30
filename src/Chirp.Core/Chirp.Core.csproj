@@ -12,6 +12,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0-rc.2.24474.1" />
+	<Folder Include="./DomainModel"/>
   </ItemGroup>
+  
+  
 
 </Project>

@@ -11,8 +11,8 @@
     <Folder Include="DomainModel\"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../../Chirp.Core/Chirp.Core.csproj" />
-    <Name
+    <ProjectReference Include="../Chirp.Core/Chirp.Core.csproj" />
+    
   </ItemGroup>
 
 </Project>
