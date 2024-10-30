@@ -38,7 +38,7 @@ public class Test(){
 
         using var context = new ChirpDBContext(builder.Options);
         await context.Database.EnsureCreatedAsync();
-
+        DbInitializer.SeedDatabase(context);
         CheepRepository cheepRepository = new CheepRepository(context);
 
         var userName = "Helge";
@@ -98,7 +98,7 @@ public class Test(){
 
         using var context = new ChirpDBContext(builder.Options);
         await context.Database.EnsureCreatedAsync();
-
+        DbInitializer.SeedDatabase(context);
         CheepRepository cheepRepository = new CheepRepository(context);
 
         var list = cheepRepository.ReadCheeps().Result;
