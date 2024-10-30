@@ -1,6 +1,7 @@
-using Chirp.Razor.DomainModel;
+using Chirp.Core.DomainModel;
 
-namespace Chirp.Razor.CheepRepository;
+namespace Chirp.Repository;
+
 
 public interface ICheepRepository {
     Task CreateCheepAsync(Cheep newCheep);

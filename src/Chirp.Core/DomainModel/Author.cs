@@ -1,5 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-namespace  Chirp.Razor.DomainModel ;
+namespace  Chirp.Core.DomainModel ;
 
 public class Author {
     public int AuthorId {get; set;}
