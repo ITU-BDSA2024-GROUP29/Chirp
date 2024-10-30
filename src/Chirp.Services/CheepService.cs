@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
-using Chirp.Razor.CheepRepository;
-using Chirp.Razor.DomainModel;
-using Chirp.Razor.Pages;
+using Chirp.Core.DomainModel;
+using Chirp.Repository;
+
 
 public record CheepViewModel(string Author, string Message, string Timestamp)
 {
