@@ -73,10 +73,12 @@ public class Test(){
         using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
         var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
-
+        
         using var context = new ChirpDBContext(builder.Options);
+        
         await context.Database.EnsureCreatedAsync();
-
+        
+        DbInitializer.SeedDatabase(context);
         CheepRepository cheepRepository = new CheepRepository(context);
 
 
