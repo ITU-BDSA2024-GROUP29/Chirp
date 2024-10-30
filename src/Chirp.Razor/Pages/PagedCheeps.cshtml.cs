@@ -21,7 +21,7 @@ namespace Chirp.Razor.Pages
 
         public async Task<IActionResult> OnGetAsync(int pageNumber)
         {
-            const int PageSize = 10; // Number of cheeps per page
+            const int PageSize = 32; // Number of cheeps per page
 
             // Set the current page (ensure it's at least 1)
             CurrentPage = pageNumber < 1 ? 1 : pageNumber;
