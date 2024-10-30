@@ -1,4 +1,4 @@
-using Chirp.Razor.CheepRepository;
+using Chirp.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;

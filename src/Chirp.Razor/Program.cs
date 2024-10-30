@@ -1,5 +1,6 @@
 using Chirp.Core.DomainModel;
 using Chirp.Repository;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Chirp.Razor {
@@ -8,7 +9,9 @@ namespace Chirp.Razor {
         public static void Main(String[] args) {
             var builder = WebApplication.CreateBuilder(args);
 
-            
+            // Load database connection via configuration
+            //string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            //builder.Services.AddDbContext<ChirpDBContext>(options => options.UseSqlite(connectionString));
 
             ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
             
@@ -16,12 +19,12 @@ namespace Chirp.Razor {
             builder.Services.AddRazorPages();
             builder.Services.AddScoped<ICheepRepository, CheepRepository>();
             builder.Services.AddScoped<ICheepService, CheepService>();
-            builder.Services.BuildServiceProvider();
 
             // Build
             var app = builder.Build();
             //_ = app.Services.GetService<IServiceCollection>(); //delete??
 
+            
             using (var serviceScope = app.Services.CreateScope()) {
                 var services = serviceScope.ServiceProvider;
                 var context = services.GetRequiredService<ChirpDBContext>();
