@@ -1,18 +1,17 @@
-namespace Chirp.Razor.test.ChirpRazor.Tests{
+namespace Chirp.Razor.test{
 
 
 using System.Threading.Tasks;
-using Chirp.Razor.CheepRepository;
-using Microsoft.Data.Sqlite;
+    using Chirp.Core.DomainModel;
+    using Chirp.Repository;
+    using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
-
-
 
 public class Test(){
 
     //This test makes sure our method for putting the database into memory works
-    [Fact] 
+    [Fact]
     public async Task canInitializeCheepRepository(){
         //Arange
         using var connection = new SqliteConnection("Filename=:memory:");
@@ -69,7 +68,7 @@ public class Test(){
     [Fact]
     public async Task testCheepRepositoryPagnationAsync()
     {
-    
+
         //Arange
         using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
@@ -104,8 +103,8 @@ public class Test(){
 
         //Test
         Assert.True(list.Count == cheepRepository.GetTotalCheepCount().Result);
-         
-        
+
+
     }
 
     //This is a test where we make sure that we get the cheeps when specefied only by an author
@@ -170,18 +169,18 @@ public class Test(){
 
         var list = cheepRepository.ReadCheeps().Result;
 
-        var cheepFromDb = list[list.Count-1]; 
+        var cheepFromDb = list[list.Count-1];
 
-        
+
         //test
         Assert.True(cheepFromDb.Author == cheep.Author);
         Assert.True(cheepFromDb.AuthorId == cheep.AuthorId);
         Assert.True(cheepFromDb.CheepId == cheep.CheepId);
         Assert.True(cheepFromDb.Text == cheep.Text);
         Assert.True(cheepFromDb.TimeStamp == cheep.TimeStamp);
-        
 
-        
+
+
     }
 
 }
