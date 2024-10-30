@@ -3,10 +3,17 @@ using Chirp.Razor.CheepRepository;
 using Chirp.Razor.DomainModel;
 using Chirp.Razor.Pages;
 
-public record CheepViewModel(string Author, string Message, string Timestamp);
+public record CheepViewModel(string Author, string Message, string Timestamp)
+{
+    public static implicit operator CheepViewModel(Type v)
+    {
+        throw new NotImplementedException();
+    }
+}
 
 public interface ICheepService
 {
+    ICheepRepository GetCheepRepository();
     Task<List<CheepViewModel>> GetCheepsAsync();
     Task<List<CheepViewModel>> GetCheepsFromAuthorAsync(string author);
     Task<List<CheepViewModel>> GetPaginatedCheepsAsync(int pageNumber, int pageSize = 10);
@@ -26,6 +33,10 @@ public class CheepService : ICheepService
         _ = LoadDB();
     }
 
+    public ICheepRepository GetCheepRepository(){
+        return repository;
+    }
+
     public static CheepService GetInstance(ICheepRepository repository)
     {
         if (_instance == null)
@@ -41,7 +52,7 @@ public class CheepService : ICheepService
         loader = loader.OrderBy(x => x.TimeStamp).ToList();
         _cheeps = loader.Select(cheep =>
             new CheepViewModel(cheep.Author.Name, cheep.Text, cheep.TimeStamp.ToString())
-        ).ToList();
+        ).Reverse().ToList();
     }
 
     public Task<int> GetTotalCheepCount()
@@ -84,7 +95,7 @@ public class CheepService : ICheepService
 
         
         // Use LINQ to skip and reverse take for pagination
-        return _cheeps.Skip(startIndex).Take(pageSize).Reverse().ToList();
+        return _cheeps.Skip(startIndex).Take(pageSize).ToList();
 
     }
 }
