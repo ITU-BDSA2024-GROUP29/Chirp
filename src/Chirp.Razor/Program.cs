@@ -1,3 +1,4 @@
+using Chirp.Core;
 using Chirp.Core.DomainModel;
 using Chirp.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -10,19 +11,18 @@ namespace Chirp.Razor {
             var builder = WebApplication.CreateBuilder(args);
 
             // Load database connection via configuration
-            //string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-            //builder.Services.AddDbContext<ChirpDBContext>(options => options.UseSqlite(connectionString));
-
-            ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
+            string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.AddDbContext<ChirpDBContext>(options => options.UseSqlite(connectionString));
             
             // Add services to the container.
+            builder.Services.Core();
             builder.Services.AddRazorPages();
             builder.Services.AddScoped<ICheepRepository, CheepRepository>();
             builder.Services.AddScoped<ICheepService, CheepService>();
 
             // Build
             var app = builder.Build();
-            //_ = app.Services.GetService<IServiceCollection>(); //delete??
+            _ = app.Services.GetService<IServiceCollection>(); //delete??
 
             
             using (var serviceScope = app.Services.CreateScope()) {

@@ -28,11 +28,6 @@
 
     <ProjectReference Include="../Chirp.Services/Chirp.Services.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Update="Cheep.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
 
 
 </Project>

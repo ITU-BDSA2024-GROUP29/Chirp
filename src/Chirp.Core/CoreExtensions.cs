@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 public static class CoreExtensions {
     public static IServiceCollection Core(this IServiceCollection services) {
         services.AddDbContext<ChirpDBContext>( o =>
-            o.UseSqlite("DefaultConnection"));
+            o.UseSqlite("Data Source=./Cheep.db"));
         return services;
     }
 }
