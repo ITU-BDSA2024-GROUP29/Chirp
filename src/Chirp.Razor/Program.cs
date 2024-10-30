@@ -1,7 +1,6 @@
 using Chirp.Core.DomainModel;
 using Chirp.Repository;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+
 
 namespace Chirp.Razor {
     
@@ -18,7 +17,6 @@ namespace Chirp.Razor {
             builder.Services.AddScoped<ICheepRepository, CheepRepository>();
             builder.Services.AddScoped<ICheepService, CheepService>();
             builder.Services.BuildServiceProvider();
-            //builder.Services.AddDbContext<ChirpDBContext>();
 
             // Build
             var app = builder.Build();
