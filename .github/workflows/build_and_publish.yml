@@ -24,16 +24,16 @@ jobs:
         run: dotnet restore
 
       - name: Build project
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ./src/Chirp.Razor/Chirp.Razor.csproj --configuration Release --no-restore
 
       - name: Publish for Ubuntu
-        run: dotnet publish --configuration Release --runtime linux-x64 --self-contained -o ./publish/ubuntu
+        run: dotnet publish ./src/Chirp.Razor/Chirp.Razor.csproj --configuration Release --runtime linux-x64 --self-contained -o ./publish/ubuntu
 
       - name: Publish for Windows
-        run: dotnet publish --configuration Release --runtime win-x64 --self-contained -o ./publish/windows
+        run: dotnet publish ./src/Chirp.Razor/Chirp.Razor.csproj --configuration Release --runtime win-x64 --self-contained -o ./publish/windows
 
       - name: Publish for macOS
-        run: dotnet publish --configuration Release --runtime osx-x64 --self-contained -o ./publish/macos
+        run: dotnet publish ./src/Chirp.Razor/Chirp.Razor.csproj --configuration Release --runtime osx-x64 --self-contained -o ./publish/macos
 
       - name: Zip Ubuntu build
         run: zip -r ubuntu-build.zip ./publish/ubuntu
@@ -66,6 +66,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -86,7 +87,8 @@ jobs:
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
-        with:
+        with: |
+          tag: ${{ github.ref }}  # Use the tag that triggered the workflow
           files: |
             ubuntu-build.zip
             windows-build.zip

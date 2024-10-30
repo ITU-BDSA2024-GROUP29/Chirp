@@ -14,9 +14,10 @@ public class PublicModel : PageModel
         service.GetCheepsAsync();
     }
 
-    public async Task<ActionResult> OnGet()
+    public IActionResult OnGet()
     {
-        Cheeps = await _service.GetCheepsAsync();
-        return Page();
+        return Redirect("/cheeps/page/1");
     }
+
+
 }
