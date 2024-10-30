@@ -7,15 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Public.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\Shared\_Layout.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\UserTimeline.cshtml" />
-    <_ContentIncludedByDefault Remove="wwwroot\css\style.css" />
-    <_ContentIncludedByDefault Remove="wwwroot\favicon\favicon.ico" />
-    <_ContentIncludedByDefault Remove="wwwroot\images\icon1.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0-rc.2.24474.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
