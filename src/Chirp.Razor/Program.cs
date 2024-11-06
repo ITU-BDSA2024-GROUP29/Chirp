@@ -22,6 +22,10 @@ namespace Chirp.Razor {
             builder.Services.AddScoped<ICheepRepository, CheepRepository>();
             builder.Services.AddScoped<ICheepService, CheepService>();
 
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => 
+            options.SignIn.RequireConfirmedAccount = true) 
+            .AddEntityFrameworkStores<ChirpDBContext>(); 
+
             // builder.Services.AddAuthentication(options =>
             // {
             //     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;

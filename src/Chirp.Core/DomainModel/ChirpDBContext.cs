@@ -1,8 +1,9 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace  Chirp.Core.DomainModel;
 
-public class ChirpDBContext : DbContext {
+public class ChirpDBContext : IdentityDbContext<ApplicationUser> {
     public DbSet<Cheep> Cheeps { get; set; }
     public DbSet<Author> Authors { get; set; }
 
