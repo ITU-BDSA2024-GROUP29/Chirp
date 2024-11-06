@@ -10,9 +10,10 @@ using Xunit;
 
 public class Test(){
 
+
     //This test makes sure our method for putting the database into memory works
     [Fact]
-    public async Task canInitializeCheepRepository(){
+    public async Task Test_CheepRepsositoryDependencyInjection_NotNull(){
         //Arange
         using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
@@ -25,12 +26,13 @@ public class Test(){
 
         //Test
         Assert.NotNull(cheepRepository);
+        connection.Dispose();
 
     }
 
     //This test makes sure we are getting actuall data output from our database
     [Fact]
-    public async Task testCheepRepositoryReadCheeps(){
+    public async Task Test_CheepRepositoryReadCheeps_IdenticalCheep(){
          //Arange
         using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
@@ -60,13 +62,13 @@ public class Test(){
         Assert.True(result.Text == Message);
         Assert.True(result.TimeStamp.ToString("dd-MM-yyyy HH:mm:ss")== TimeStamp);
 
-
+        connection.Dispose();
     }
 
 
     //this test makes sure our pagnation function works as intended
     [Fact]
-    public async Task testCheepRepositoryPagnationAsync()
+    public async Task Test_CheepRepositoryPagnationAsync_32Cheeps()
     {
 
         //Arange
@@ -90,7 +92,7 @@ public class Test(){
 
     //This test makes sure our cheepcount method for calculating the amount of pages returns the correct value
     [Fact]
-    public async Task testCheepRepositoryGetCheepCount(){
+    public async Task Test_CheepRepositoryGetCheepCount(){
          //Arange
         using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
@@ -106,12 +108,12 @@ public class Test(){
         //Test
         Assert.True(list.Count == cheepRepository.GetTotalCheepCount().Result);
 
-
+        connection.Dispose();
     }
 
     //This is a test where we make sure that we get the cheeps when specefied only by an author
     [Fact]
-    public async Task testCheepRepositoryGetCheepByAuthor(){
+    public async Task Test_CheepRepositoryGetCheepByAuthor_IdenticalCheep(){
            //Arange
         using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
@@ -140,12 +142,14 @@ public class Test(){
         Assert.True(result.Author.Name == userName);
         Assert.True(result.Text == Message);
         Assert.True(result.TimeStamp.ToString("dd-MM-yyyy HH:mm:ss")== TimeStamp);
+
+        connection.Dispose();
     }
 
 
     //this is an integration test, which is resposible for testing both add cheeps and read cheeps, this also servers as the only test for add cheeps to the database
      [Fact]
-    public async Task testCheepRepositoryCreatCheepIntegrationTest(){
+    public async Task Test_CheepRepositoryCreatCheepIntegration_IdenticalCheep(){
               //Arange
         using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
@@ -181,8 +185,7 @@ public class Test(){
         Assert.True(cheepFromDb.Text == cheep.Text);
         Assert.True(cheepFromDb.TimeStamp == cheep.TimeStamp);
 
-
-
+        connection.Dispose();
     }
 
 }

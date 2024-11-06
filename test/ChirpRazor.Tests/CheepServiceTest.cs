@@ -7,7 +7,7 @@ namespace Chirp.Razor.test.ChirpRazor.Tests
 {
     public class CheepServiceTest(){
     [Fact]
-    public async Task DbLoaderTest(){
+    public async Task Test_CheepServiceDependencyInjection_NotNull_NotEmpty(){
         using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
         var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
@@ -26,9 +26,11 @@ namespace Chirp.Razor.test.ChirpRazor.Tests
         Assert.False(list.Count == 0);
 
         Assert.Same(cheepRepository, service.GetCheepRepository());
+
+        connection.Dispose();
     }
 [Fact]
-    public async Task CheepCountTest(){
+    public async Task Test_CheepCount_Equal(){
         using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
         var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
@@ -46,10 +48,12 @@ namespace Chirp.Razor.test.ChirpRazor.Tests
 
         
         Assert.Equal(service.GetTotalCheepCount().Result, list.Count);
+
+        connection.Dispose();
     }
 
         [Fact]
-    public async Task GetCheepstest(){
+    public async Task Test_GetCheeps_IdenticalCheep(){
         using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
         var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
@@ -72,11 +76,11 @@ namespace Chirp.Razor.test.ChirpRazor.Tests
         Assert.Equal(userName,list[list.Count-1].Author);
         Assert.Equal(Message,list[list.Count-1].Message);
         
-        
+        connection.Dispose();
     }
 
     [Fact]
-    public async Task getCheepsByAuthorTest(){
+    public async Task Test_getCheepsByAuthor_IdenticalCheep(){
          using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
         var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
@@ -99,10 +103,10 @@ namespace Chirp.Razor.test.ChirpRazor.Tests
         Assert.Equal(userName,list[0].Author);
         Assert.Equal(Message,list[0].Message);
         
-
+        connection.Dispose();
     }
  [Fact]
-    public async Task PaginatedPageTest(){
+    public async Task Test_PaginatedPage_32Cheeps(){
          using var connection = new SqliteConnection("Filename=:memory:");
         await connection.OpenAsync();
         var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
@@ -135,6 +139,8 @@ namespace Chirp.Razor.test.ChirpRazor.Tests
 
         list = service.GetPaginatedCheepsAsync(1,PageSize).Result;
         Assert.Equal(32,list.Count);
+
+        connection.Dispose();
     }
 }
 }
