@@ -1,16 +1,11 @@
-namespace Chirp.Razor.test.ChirpRazor.Tests{
-    using System.Data.Common;
-    using System.Reflection.Metadata;
-    using System.Threading.Tasks;
-using Chirp.Razor.CheepRepository;
-using Chirp.Razor.DomainModel;
+using Chirp.Core.DomainModel;
+using Chirp.Repository;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Xunit;
 
-
-
-public class CheepServiceTest(){
+namespace Chirp.Razor.test.ChirpRazor.Tests
+{
+    public class CheepServiceTest(){
     [Fact]
     public async Task DbLoaderTest(){
         using var connection = new SqliteConnection("Filename=:memory:");
@@ -19,6 +14,7 @@ public class CheepServiceTest(){
 
         using var context = new ChirpDBContext(builder.Options);
         await context.Database.EnsureCreatedAsync();
+        DbInitializer.SeedDatabase(context);
 
         ICheepRepository cheepRepository = new CheepRepository(context);
         
@@ -39,6 +35,7 @@ public class CheepServiceTest(){
 
         using var context = new ChirpDBContext(builder.Options);
         await context.Database.EnsureCreatedAsync();
+        DbInitializer.SeedDatabase(context);
 
         CheepRepository cheepRepository = new CheepRepository(context);
         
@@ -59,6 +56,7 @@ public class CheepServiceTest(){
 
         using var context = new ChirpDBContext(builder.Options);
         await context.Database.EnsureCreatedAsync();
+        DbInitializer.SeedDatabase(context);
 
         CheepRepository cheepRepository = new CheepRepository(context);
         
@@ -85,6 +83,7 @@ public class CheepServiceTest(){
 
         using var context = new ChirpDBContext(builder.Options);
         await context.Database.EnsureCreatedAsync();
+        DbInitializer.SeedDatabase(context);
 
         CheepRepository cheepRepository = new CheepRepository(context);
         
@@ -110,6 +109,7 @@ public class CheepServiceTest(){
 
         using var context = new ChirpDBContext(builder.Options);
         await context.Database.EnsureCreatedAsync();
+        DbInitializer.SeedDatabase(context);
 
         CheepRepository cheepRepository = new CheepRepository(context);
         
