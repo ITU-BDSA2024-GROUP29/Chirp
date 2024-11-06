@@ -6,10 +6,13 @@ using AspNet.Security.OAuth.GitHub;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 
-namespace Chirp.Razor {
+namespace Chirp.Razor
+{
 
-    class Program {
-        public static void Main(String[] args) {
+    class Program
+    {
+        public static void Main(String[] args)
+        {
             var builder = WebApplication.CreateBuilder(args);
 
             // Load database connection via configuration
@@ -47,17 +50,19 @@ namespace Chirp.Razor {
 
 
 
-            using (var serviceScope = app.Services.CreateScope()) {
+            using (var serviceScope = app.Services.CreateScope())
+            {
                 var services = serviceScope.ServiceProvider;
                 var context = services.GetRequiredService<ChirpDBContext>();
                 DbInitializer.SeedDatabase(context);
             }
 
             // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment()) {
+            if (!app.Environment.IsDevelopment())
+            {
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                // app.UseHsts();
             }
             // else if(app.Environment.IsProduction()) {
             //     app.UseHsts(); // Send HSTS headers, but only in production
