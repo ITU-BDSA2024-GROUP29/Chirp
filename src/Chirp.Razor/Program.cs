@@ -37,8 +37,14 @@ namespace Chirp.Razor {
             // });
 
             // Build
+            // Once you are sure everything works, you might want to increase this value to up to 1 or 2 years
+            builder.Services.AddHsts(options => options.MaxAge = TimeSpan.FromHours(1));
             var app = builder.Build();
             _ = app.Services.GetService<IServiceCollection>(); //delete??
+
+
+
+
 
 
             using (var serviceScope = app.Services.CreateScope()) {
@@ -52,6 +58,8 @@ namespace Chirp.Razor {
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+            } else if(app.Environment.IsProduction()) {
+                app.UseHsts(); // Send HSTS headers, but only in production
             }
 
             app.UseHttpsRedirection();
