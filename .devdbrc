@@ -6,5 +6,9 @@
   {
     "type": "sqlite",
     "path": "c:\\Users\\vikto\\Documents\\GitHub\\BDSA2024Group29Chirp\\Chirp\\src\\Chirp.Razor\\Cheep.db"
+  },
+  {
+    "type": "sqlite",
+    "path": "/home/sweatyfish/Desktop/BDSA/Coding/Chirp/src/Chirp.Razor/Cheep.db"
   }
 ]

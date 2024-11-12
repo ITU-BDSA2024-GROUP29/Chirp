@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers 
     <title>@ViewData["Title"]</title>
-    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
     <link rel="icon" type="image/png" href="/favicon/favicon.ico">
 </head>
 <body>
@@ -30,6 +31,8 @@
                 
             }
         </div>
+
+    <partial name="_LoginPartial.cshtml" />
 
     <div class=body>
             @RenderBody()
