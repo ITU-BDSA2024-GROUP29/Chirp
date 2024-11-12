@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chirp.Core.Migrations
 {
     [DbContext(typeof(ChirpDBContext))]
-    [Migration("20241112141411_InitialDBSchema")]
+    [Migration("20241112143124_InitialDBSchema")]
     partial class InitialDBSchema
     {
         /// <inheritdoc />
@@ -30,6 +30,11 @@ namespace Chirp.Core.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(21)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -82,25 +87,10 @@ namespace Chirp.Core.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
 
-            modelBuilder.Entity("Chirp.Core.DomainModel.Author", b =>
-                {
-                    b.Property<int>("AuthorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.HasDiscriminator().HasValue("ApplicationUser");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("AuthorId");
-
-                    b.ToTable("Authors");
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Chirp.Core.DomainModel.Cheep", b =>
@@ -112,6 +102,9 @@ namespace Chirp.Core.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("AuthorId1")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -121,7 +114,7 @@ namespace Chirp.Core.Migrations
 
                     b.HasKey("CheepId");
 
-                    b.HasIndex("AuthorId");
+                    b.HasIndex("AuthorId1");
 
                     b.ToTable("Cheeps");
                 });
@@ -258,13 +251,25 @@ namespace Chirp.Core.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Chirp.Core.DomainModel.Author", b =>
+                {
+                    b.HasBaseType("Chirp.Core.DomainModel.ApplicationUser");
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasDiscriminator().HasValue("Author");
+                });
+
             modelBuilder.Entity("Chirp.Core.DomainModel.Cheep", b =>
                 {
                     b.HasOne("Chirp.Core.DomainModel.Author", "Author")
                         .WithMany("Cheeps")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorId1");
 
                     b.Navigation("Author");
                 });
