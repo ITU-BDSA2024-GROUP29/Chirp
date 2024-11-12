@@ -16,8 +16,13 @@ namespace Chirp.Razor
             var builder = WebApplication.CreateBuilder(args);
 
             // Load database connection via configuration
-            string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-            builder.Services.AddDbContext<ChirpDBContext>(options => options.UseSqlite(connectionString));
+            builder.Services.AddDbContext<ChirpDBContext>(options =>
+                options.UseSqlite(builder.Configuration
+                .GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => 
+            options.SignIn.RequireConfirmedAccount = false) 
+            .AddEntityFrameworkStores<ChirpDBContext>(); 
 
             // Add services to the container.
             builder.Services.Core();
@@ -25,9 +30,6 @@ namespace Chirp.Razor
             builder.Services.AddScoped<ICheepRepository, CheepRepository>();
             builder.Services.AddScoped<ICheepService, CheepService>();
 
-            builder.Services.AddDefaultIdentity<ApplicationUser>(options => 
-            options.SignIn.RequireConfirmedAccount = true) 
-            .AddEntityFrameworkStores<ChirpDBContext>(); 
 
             // builder.Services.AddAuthentication(options =>
             // {
@@ -76,6 +78,9 @@ namespace Chirp.Razor
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.MapRazorPages();
 
