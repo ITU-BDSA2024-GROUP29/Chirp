@@ -28,9 +28,6 @@
 
 
   <ItemGroup>
-    <None Update="Cheep.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Folder Include="Data\" />
     <ProjectReference Include="../Chirp.Services/Chirp.Services.csproj" />
     <ProjectReference Include="../Chirp.Core/Chirp.Core.csproj" />
