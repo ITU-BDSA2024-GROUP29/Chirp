@@ -19,6 +19,14 @@ namespace Chirp.Razor
             builder.Services.AddDbContext<ChirpDBContext>(options =>
                 options.UseSqlite(builder.Configuration
                 .GetConnectionString("DefaultConnection")));
+            var environment = builder.Environment.EnvironmentName;
+            
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            if (environment == "Production")
+            {
+                // In Azure, use the writeable directory path for SQLite
+                connectionString = "Data Source=D:\\home\\site\\wwwroot\\ChirpDatabase.db";
+            }
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => 
             options.SignIn.RequireConfirmedAccount = false) 
