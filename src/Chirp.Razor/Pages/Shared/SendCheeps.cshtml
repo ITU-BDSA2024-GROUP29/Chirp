@@ -1,18 +1,15 @@
-@page "/{Cheep}"
-@model Chirp.Razor.Pages.SendCheepsModel
-@{
-    ViewData["Title"] = "Send Cheep!";
-    Layout = "Shared/_Layout";
 
- }
 
 <div class="cheepbox">
     <h3>What's on your mind </h3>
         <form method="post">
+            @* Input box for the message *@
             <input style="float: left" type="text" asp-for="Text">
             <input type="submit" value="Share">
+            Send
         </form>
 </div>
+
 
 
 
