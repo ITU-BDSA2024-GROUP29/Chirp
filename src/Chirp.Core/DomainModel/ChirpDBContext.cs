@@ -11,6 +11,8 @@ public class ChirpDBContext : IdentityDbContext<ApplicationUser> {
         Cheeps = Set<Cheep>();
         Authors = Set<Author>();
     }
-
+    
+    
+    
 }
 
