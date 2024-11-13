@@ -39,6 +39,7 @@ namespace Chirp.Razor
             builder.Services.AddScoped<ICheepRepository, CheepRepository>();
             builder.Services.AddScoped<ICheepService, CheepService>();
 
+            /*
             // Add Authentication with GitHub
             builder.Services.AddAuthentication(options =>
             {
@@ -56,7 +57,7 @@ namespace Chirp.Razor
                     throw new InvalidOperationException("GitHub ClientId or ClientSecret is missing.");
                 }
                 options.CallbackPath = "/signin-github";
-            }); 
+            }); */
 
 
             // Build
