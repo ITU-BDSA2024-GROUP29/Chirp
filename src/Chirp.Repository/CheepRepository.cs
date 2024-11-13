@@ -1,6 +1,8 @@
 
+using System.Runtime.CompilerServices;
 using Chirp.Core.DomainModel;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Chirp.Repository;
 
@@ -61,6 +63,17 @@ public class CheepRepository : ICheepRepository {
     {
         return await GetPaginatedCheeps(pageNumber, pageSize);
     }
+
+    public async Task<Author> GetAuthorByEmail(String Email){
+        return (Author)_dbContext.Authors.Where(a => a.Email.ToLower() == Email.ToLower());
+    }
+
+    public async Task<int> GetTotalAuthorsCount()
+    {
+        return await _dbContext.Authors.CountAsync();
+    }
+
+
 
 
 }
