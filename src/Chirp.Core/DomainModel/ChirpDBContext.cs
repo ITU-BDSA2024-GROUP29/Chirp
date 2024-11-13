@@ -13,4 +13,9 @@ public class ChirpDBContext : IdentityDbContext<ApplicationUser> {
     }
 
 }
+//for the other contributors of this project:
+//if you ever want to make a new migration use:
+//dotnet ef migrations add InitialDBSchema --project Chirp.Core   --startup-project Chirp.Razor
+//from the src folder, followed by:
+//dotnet ef database update --project Chirp.Core   --startup-project Chirp.Razor               
 

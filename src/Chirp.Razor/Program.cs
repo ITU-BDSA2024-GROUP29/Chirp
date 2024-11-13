@@ -20,12 +20,14 @@ namespace Chirp.Razor
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
             // Ensure secrets and environment variables are added
             builder.Configuration.AddUserSecrets<Program>(optional: true);
 
             // Load database connection via configuration
             builder.Services.AddDbContext<ChirpDBContext>(options =>
                 options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ChirpDBContext>();
