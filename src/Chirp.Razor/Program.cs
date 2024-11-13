@@ -66,6 +66,7 @@ namespace Chirp.Razor
             {
                 var services = serviceScope.ServiceProvider;
                 var context = services.GetRequiredService<ChirpDBContext>();
+                context.Database.EnsureCreated();
                 DbInitializer.SeedDatabase(context);
             }
 
