@@ -26,7 +26,12 @@ namespace Chirp.Razor
 
             // Load database connection via configuration
             builder.Services.AddDbContext<ChirpDBContext>(options =>
+<<<<<<< Updated upstream
                 options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+=======
+                options.UseSqlite(builder.Configuration
+                .GetConnectionString("DefaultConnection")));
+>>>>>>> Stashed changes
 
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
