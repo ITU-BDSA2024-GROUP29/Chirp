@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Chirp.Core.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDBSchema : Migration
+    public partial class AddIdentitySchema : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

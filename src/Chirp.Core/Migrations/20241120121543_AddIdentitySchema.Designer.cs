@@ -11,14 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chirp.Core.Migrations
 {
     [DbContext(typeof(ChirpDBContext))]
-    [Migration("20241113091555_InitialDBSchema")]
-    partial class InitialDBSchema
+    [Migration("20241120121543_AddIdentitySchema")]
+    partial class AddIdentitySchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.0-rc.2.24474.1");
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
 
             modelBuilder.Entity("Chirp.Core.DomainModel.ApplicationUser", b =>
                 {
