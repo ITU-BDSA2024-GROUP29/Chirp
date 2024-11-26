@@ -25,6 +25,7 @@ public interface ICheepService
     Task<List<CheepViewModel>> GetCheepsFromAuthorAsync(string author);
     Task<List<CheepViewModel>> GetPaginatedCheepsAsync(int pageNumber, int pageSize = 10);
     Task<int> GetTotalCheepCount();
+    Task<List<CheepViewModel>> GetOwnCheepsAsync(string author);
 }
 
 public class CheepService : ICheepService
@@ -79,19 +80,25 @@ public class CheepService : ICheepService
     }
 
     //get private timeline + cheeps from followed users
-    public async Task<List<CheepViewModel>> GetCheepsFromAuthorAsync(string authorname)
+    public async Task<List<CheepViewModel>> GetCheepsFromAuthorAsync(string author)
     {
+        await Task.CompletedTask;
+        return _cheeps.Where(x => x.Author == author).ToList();
+    }
+
+    public async Task<List<CheepViewModel>> GetOwnCheepsAsync(string authorname) {
         ICheepRepository c = GetCheepRepository();
         await Task.CompletedTask;
         
         List<CheepViewModel> result = new List<CheepViewModel>();
         result.AddRange(_cheeps.Where(cheep => cheep.Author == authorname));
+        result.AddRange(await GetCheepsFromAuthorAsync(authorname));
         
         List<Author> authors = new List<Author>();
         authors = await c.GetFollowedByAuthor(authorname);
 
         foreach (Author author in authors) {
-            result.AddRange(_cheeps.Where(cheep => cheep.Author == author.Name));
+            result.AddRange(await GetCheepsFromAuthorAsync(authorname));
         }
         return result;
     }
