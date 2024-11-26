@@ -10,7 +10,6 @@ namespace Chirp.Repository;
 public class CheepRepository : ICheepRepository {
     private readonly ChirpDBContext _dbContext;
     public CheepRepository(ChirpDBContext dbContext) {
-        //DbInitializer.SeedDatabase(dbContext);
         _dbContext = dbContext;
     }
 
@@ -28,6 +27,12 @@ public class CheepRepository : ICheepRepository {
         var result = await query.ToListAsync();
         return result;
     }
+
+    public async Task<List<Author>> GetAuthors() {
+        var authors = await _dbContext.Authors.ToListAsync();
+        return authors;
+    }
+    
     // Get paginated cheeps for a specific page and page size
     public async Task<List<Cheep>> GetPaginatedCheeps(int pageNumber, int pageSize = 32)
     {
@@ -73,6 +78,11 @@ public class CheepRepository : ICheepRepository {
         return await _dbContext.Authors.CountAsync();
     }
 
+    //should return authors followed by author from input (untested, TODO)
+    public async Task<List<Author>> GetFollowedByAuthor(String Email) {
+        Author author = GetAuthorByEmail(Email);
+        return await _dbContext.Authors.Where(a => author.Follows.Contains(a)).ToListAsync();
+    }
 
 
 

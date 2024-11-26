@@ -30,6 +30,7 @@ namespace Chirp.Core.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
+                    AuthorId1 = table.Column<string>(type: "TEXT", nullable: true),
                     Discriminator = table.Column<string>(type: "TEXT", maxLength: 21, nullable: false),
                     AuthorId = table.Column<int>(type: "INTEGER", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
@@ -51,6 +52,11 @@ namespace Chirp.Core.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_AspNetUsers_AuthorId1",
+                        column: x => x.AuthorId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -210,6 +216,11 @@ namespace Chirp.Core.Migrations
                 name: "EmailIndex",
                 table: "AspNetUsers",
                 column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_AuthorId1",
+                table: "AspNetUsers",
+                column: "AuthorId1");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",

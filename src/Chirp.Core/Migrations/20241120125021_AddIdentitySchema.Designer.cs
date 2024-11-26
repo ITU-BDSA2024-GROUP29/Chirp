@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chirp.Core.Migrations
 {
     [DbContext(typeof(ChirpDBContext))]
-    [Migration("20241120121543_AddIdentitySchema")]
+    [Migration("20241120125021_AddIdentitySchema")]
     partial class AddIdentitySchema
     {
         /// <inheritdoc />
@@ -27,6 +27,9 @@ namespace Chirp.Core.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("AuthorId1")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -78,6 +81,8 @@ namespace Chirp.Core.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AuthorId1");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -265,6 +270,13 @@ namespace Chirp.Core.Migrations
                     b.HasDiscriminator().HasValue("Author");
                 });
 
+            modelBuilder.Entity("Chirp.Core.DomainModel.ApplicationUser", b =>
+                {
+                    b.HasOne("Chirp.Core.DomainModel.Author", null)
+                        .WithMany("Follows")
+                        .HasForeignKey("AuthorId1");
+                });
+
             modelBuilder.Entity("Chirp.Core.DomainModel.Cheep", b =>
                 {
                     b.HasOne("Chirp.Core.DomainModel.Author", "Author")
@@ -328,6 +340,8 @@ namespace Chirp.Core.Migrations
             modelBuilder.Entity("Chirp.Core.DomainModel.Author", b =>
                 {
                     b.Navigation("Cheeps");
+
+                    b.Navigation("Follows");
                 });
 #pragma warning restore 612, 618
         }

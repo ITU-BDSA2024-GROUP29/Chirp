@@ -12,9 +12,11 @@ public interface ICheepRepository {
     Task<List<Cheep>> GetTotalCheepsFromAuthorCount(String authorname);
     Task<Author> GetAuthorByEmail(String Email);
     Task<int> GetTotalAuthorsCount();
+    Task<List<Author>> GetAuthors();
+    Task<List<Author>> GetFollowedByAuthor(String Email);
 
-    
 
 
-    
+
+
 }
