@@ -19,6 +19,13 @@
                         <strong>
                             <a href="/@cheep.Author">@cheep.Author</a>
                         </strong>
+                        <!-- Follow/Unfollow button -->
+                        <form asp-controller="Follow" asp-action="@(cheep.IsFollowedByCurrentUser ? "Unfollow" : "Follow")" method="post" style="display:inline;">
+                        <input type="hidden" name="followedId" value="@cheep.Author" />
+                        <button type="submit" class="btn btn-@(cheep.IsFollowedByCurrentUser ? "danger" : "primary") btn-sm">
+                            @(cheep.IsFollowedByCurrentUser ? "Unfollow" : "Follow")
+                        </button>
+                        </form>
                         @cheep.Message
                         <small>&mdash; @cheep.Timestamp</small>
                     </p>

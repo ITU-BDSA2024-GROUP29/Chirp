@@ -68,6 +68,10 @@ public class CheepService : ICheepService
             new AuthorViewModel(Author.AuthorId, Author.Name, Author.Email, Author.Cheeps,Author.Follows )).ToList();
     }
 
+    public void IsUserFollowing() {
+        throw new NotImplementedException();
+    }
+
     public Task<int> GetTotalCheepCount()
     {
         return Task.FromResult(_cheeps.Count);
