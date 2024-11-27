@@ -1,4 +1,5 @@
 
+
 namespace Chirp.Core.DomainModel ;
 
 public class Author : ApplicationUser{

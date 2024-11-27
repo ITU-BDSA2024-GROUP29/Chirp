@@ -3,10 +3,13 @@
 
 <div class="cheepbox">
     <h3>What's on your mind</h3>
-    <form asp-page-handler="button" method="post">
+    <form  method="post">
         @Html.AntiForgeryToken()
         <input style="float: left" name="Post" placeholder="Type your message..." />
         <button type="submit">Share</button>
     </form>
 </div>
+
+
+
     

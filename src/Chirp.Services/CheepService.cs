@@ -99,5 +99,11 @@ public class CheepService : ICheepService
 
     }
 
+    public Author GetAuthorByName(String authorname) {
+        ICheepRepository c = GetCheepRepository();
+        return c.GetAuthorByName(authorname).Result;
+    }
+    
+
 }
 

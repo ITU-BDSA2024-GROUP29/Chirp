@@ -43,31 +43,41 @@ namespace Chirp.Razor.Pages
         }
 
          public async Task<IActionResult> OnPostAsync(String Post){
+            bool newAuthor = false;
+            
+            var loggedInUserName = User.Identity.Name;
             
             
-            var loggedInUser = User.Identity?.Name ?? "Unknown user";
-            String[] loggedInUserName = loggedInUser.Split('@');
-
-         //   var AuthorLoggedIn = _service.GetAuthorByEmail(loggedInUser);
-           // _service.GetCheepRepository.GetAuthorByEmail(loggedInUser);
-/*          
-            if (AuthorLoggedIn == null){
-                Author author = new Author();
-                author.AuthorId = await _cheepRepositoryService.GetTotalAuthorsCount() + 1;
-                author.Email = loggedInUser;
-                author.Name = loggedInUserName[0];
-            }
-
+            var AuthorLoggedIn = await _cheepService.GetCheepRepository().GetAuthorByName(loggedInUserName);
+            Console.WriteLine("loggedInUserName: " + loggedInUserName);
+            Console.WriteLine("Authorloggedin: " + AuthorLoggedIn);
             Cheep cheep = new Cheep();
-            cheep.Author = AuthorLoggedIn;
-            cheep.AuthorId = AuthorLoggedIn.Id;
-            cheep.CheepId = await _cheepRepositoryService.GetTotalCheepCount() + 1;
+            if (AuthorLoggedIn == default || AuthorLoggedIn == null){
+                newAuthor = true;
+                Author author = new Author();
+                author.AuthorId = await _cheepService.GetCheepRepository().GetTotalAuthorsCount() + 1;
+                author.Email = loggedInUserName + "@chirp.dk";
+                author.Name = loggedInUserName;
+                cheep.Author = author;
+                cheep.AuthorId = author.AuthorId;
+                cheep.CheepId = await _cheepService.GetTotalCheepCount() + 1;
+            }
+            else{
+                
+                cheep.Author = AuthorLoggedIn;
+                cheep.AuthorId = AuthorLoggedIn.AuthorId;
+                cheep.CheepId = await _cheepService.GetTotalCheepCount() + 1;
+            }
+            
+            
 
-            cheep.Text = "message";
+            cheep.Text = Post;
             DateTime time = DateTime.Now;
             cheep.TimeStamp = time;
 
-*/  
+
+/*
+
             Author author = new Author();
                 author.AuthorId = 55;
                 author.Email = "viktoremilandersen@gmail.com";
@@ -75,16 +85,16 @@ namespace Chirp.Razor.Pages
             Cheep cheep = new Cheep();
             cheep.Author = author;
             cheep.AuthorId = author.AuthorId;
-            cheep.CheepId = 999;
+            cheep.CheepId = 998;
             
-            cheep.Text = "plz virk";
+            cheep.Text = "plz virk222";
             DateTime time = DateTime.Now;
             cheep.TimeStamp = time;
 
-            Console.WriteLine("Espresso");
             
+            */
             await _cheepService.GetCheepRepository().CreateCheepAsync(cheep);
-            Console.WriteLine("Feather");
+            
             return Page();
             
         }

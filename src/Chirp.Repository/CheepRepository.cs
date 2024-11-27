@@ -65,12 +65,15 @@ public class CheepRepository : ICheepRepository {
     }
 
     public async Task<Author> GetAuthorByEmail(String Email){
-        return  _dbContext.Authors.Where(a => a.Email.ToLower() == Email.ToLower()).FirstOrDefault();
+        return   _dbContext.Authors.Where(a => a.Email.ToLower() == Email.ToLower()).FirstOrDefault();
     }
     
     public async Task<int> GetTotalAuthorsCount()
     {
         return await _dbContext.Authors.CountAsync();
+    }
+    public async Task<Author> GetAuthorByName(String authorname){
+        return await _dbContext.Authors.Where(a => a.Name.ToLower() == authorname.ToLower()).FirstOrDefaultAsync(); //sometimes give a null reference, not valid longterm
     }
 
 

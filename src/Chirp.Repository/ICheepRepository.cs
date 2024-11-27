@@ -12,6 +12,7 @@ public interface ICheepRepository {
     Task<List<Cheep>> GetTotalCheepsFromAuthorCount(String authorname);
     Task<Author> GetAuthorByEmail(String Email);
     Task<int> GetTotalAuthorsCount();
+    Task<Author> GetAuthorByName(String authorname);
 
     
 
