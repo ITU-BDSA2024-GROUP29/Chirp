@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Chirp.Razor.Pages
 {
     public class CheepsModel : PageModel
-    {private readonly ICheepService _cheepService;
+    {private ICheepService _cheepService;
 
         public CheepsModel(ICheepService cheepService)
         {
@@ -30,49 +30,44 @@ namespace Chirp.Razor.Pages
             return false;
         }
         
-        [HttpPost]
-        public async Task<IActionResult> Follow(string followedId)
+        public async Task<IActionResult> OnPostFollowAsync(string followedId)
         {
-            //var followerId = int.Parse(_userManager.GetUserId(User));
-            //var followedUser = _cheepService.GetAuthorByName(followedId);
 
-            /*
-            if (followedUser != null && !_context.Follows.Any(f => f.FollowerId == followerId && f.FollowedId == followedUser.Id))
+            if (string.IsNullOrEmpty(followedId))
             {
-                var follow = new Follow
-                {
-                    FollowerId = followerId,
-                    FollowedId = followedUser.Id,
-                    FollowDate = DateTime.UtcNow
-                };
-
-                _context.Follows.Add(follow);
-                await _context.SaveChangesAsync();
-            }*/
-            _cheepService.FollowAuthor(followedId, User.Identity.Name);
-            
-
-            return Redirect(Request.Headers["Referer"].ToString());
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Unfollow(string followedId)
-        {
-            var followerId = int.Parse(_userManager.GetUserId(User));
-            var followedUser = await _userManager.FindByNameAsync(followedId);
-
-            if (followedUser != null)
-            {
-                var follow = _context.Follows.FirstOrDefault(f => f.FollowerId == followerId && f.FollowedId == followedUser.Id);
-
-                if (follow != null)
-                {
-                    _context.Follows.Remove(follow);
-                    await _context.SaveChangesAsync();
-                }
+                return BadRequest("Followed ID is required.");
             }
 
-            return Redirect(Request.Headers["Referer"].ToString());
+            // Ensure the user is authenticated
+            if (User.Identity?.IsAuthenticated != true)
+            {
+                return Unauthorized();
+            }
+
+            throw new Exception();
+            Console.WriteLine("Following ID is " + followedId);
+            _cheepService.FollowAuthor(followedId, User.Identity.Name);
+            return Page(); // Refresh the current page
+        }
+        
+        public async Task<IActionResult> OnPostUnfollowAsync(string followedId)
+        {
+
+            if (string.IsNullOrEmpty(followedId))
+            {
+                return BadRequest("Followed ID is required.");
+            }
+
+            // Ensure the user is authenticated
+            if (User.Identity?.IsAuthenticated != true)
+            {
+                return Unauthorized();
+            }
+            
+            //change to unfollow
+            // _cheepService.FollowAuthor(followedId, User.Identity.Name);
+            return RedirectToPage(); // Refresh the current page
+            
         }
         
         

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,10 +8,24 @@ public class ChirpDBContext : IdentityDbContext<ApplicationUser> {
     public DbSet<Cheep> Cheeps { get; set; }
     public DbSet<Author> Authors { get; set; }
 
-    public ChirpDBContext(DbContextOptions<ChirpDBContext> options) : base(options) {
-        Cheeps = Set<Cheep>();
-        Authors = Set<Author>();
+    public ChirpDBContext(DbContextOptions<ChirpDBContext> options) : base(options) { }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder) { 
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Cheep>()
+            .Property(m => m.Text).HasMaxLength(500);
+
+        modelBuilder.Entity<Author>()
+            .HasIndex(c => c.Email)
+            .IsUnique();
+        modelBuilder.Entity<Author>()
+            .HasIndex(c => c.Name)
+            .IsUnique();
+        
+
     }
+
 
 }
 //for the other contributors of this project:

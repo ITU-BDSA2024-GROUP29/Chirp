@@ -109,6 +109,7 @@ namespace Chirp.Core.Migrations
 
                     b.Property<string>("Text")
                         .IsRequired()
+                        .HasMaxLength(500)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("TimeStamp")
@@ -263,6 +264,12 @@ namespace Chirp.Core.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.HasDiscriminator().HasValue("Author");
                 });

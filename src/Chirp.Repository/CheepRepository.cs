@@ -75,8 +75,8 @@ public class CheepRepository : ICheepRepository {
         return await _dbContext.Authors.Where(a => a.Name.ToLower() == authorname.ToLower()).FirstOrDefaultAsync(); //sometimes give a null reference, not valid longterm
     }
 
-    public void AddFollowed(String authorname, String Loggedinauthorname) {
-        
+    public void AddFollowed(Author user, Author loggedinUser) {
+        loggedinUser.Follows.Add(user);
     }
 
     public async Task<int> GetTotalAuthorsCount()

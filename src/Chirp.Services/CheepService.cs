@@ -126,10 +126,12 @@ public class CheepService : ICheepService
         return GetPaginatedCheeps(pageNumber, pageSize);
     }
 
-    public void FollowAuthor(String authorname, String Loggedinauthorname) {
+    public void FollowAuthor(String authorname, String loggedinauthorname) {
+        ICheepRepository c = GetCheepRepository();
+        var a = c.GetAuthorByName(authorname).Result;
+        var b = c.GetAuthorByName(loggedinauthorname).Result;
+        c.AddFollowed(a,b);
         
-        
-        throw new NotImplementedException();
     }
 
     public Author GetAuthorByName(String authorname) {
