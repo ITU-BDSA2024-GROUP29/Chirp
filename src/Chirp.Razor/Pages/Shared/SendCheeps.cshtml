@@ -1,12 +1,12 @@
 
 
+
 <div class="cheepbox">
     <h3>What's on your mind </h3>
-        <form method="post">
-            @* Input box for the message *@
-            <input style="float: left" type="text" asp-for="Text">
-            <input type="submit" value="Share">
-            Send
+        <form  method="post" >
+            @Html.AntiForgeryToken()
+            <input style="float: left" type="post" asp-for="post" placeholder="Type your message..." >
+            <input asp-page-handler="Upload" type="submit" value="Share">
         </form>
 </div>
 

@@ -3,8 +3,9 @@
 using Chirp.Core.DomainModel;
 using Chirp.Repository;
 using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore.Query.Internal;
+
 
 namespace Chirp.Razor.Pages
 {
@@ -17,8 +18,14 @@ namespace Chirp.Razor.Pages
                 _cheepRepositoryService = cheepRepository;
             }
         [HttpPost]
-        public async Task<ActionResult> OnInputAsync(String message)
-        {
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> OnGetAsync(String message){
+        
+        
+        return Page();
+        }
+        public async Task<ActionResult> OnPostAsync(String message){
+
             var loggedInUser = User.Identity?.Name ?? "Unknown user";
             String[] loggedInUserName = loggedInUser.Split('@');
 
