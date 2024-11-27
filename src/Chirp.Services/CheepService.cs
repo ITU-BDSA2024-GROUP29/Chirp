@@ -26,6 +26,7 @@ public interface ICheepService
     Task<List<CheepViewModel>> GetPaginatedCheepsAsync(int pageNumber, int pageSize = 10);
     Task<int> GetTotalCheepCount();
     Task<List<CheepViewModel>> GetOwnCheepsAsync(string author);
+    Task<Boolean> IsUserFollowing(string author, string author2);
 }
 
 public class CheepService : ICheepService
@@ -34,6 +35,7 @@ public class CheepService : ICheepService
     private static CheepService _instance;
     private List<CheepViewModel> _cheeps;
     private List<AuthorViewModel> _authors;
+    
 
     public CheepService(ICheepRepository repository) 
     {
@@ -102,9 +104,18 @@ public class CheepService : ICheepService
         authors = await c.GetFollowedByAuthor(authorname);
 
         foreach (Author author in authors) {
-            result.AddRange(await GetCheepsFromAuthorAsync(authorname));
+            result.AddRange(await GetCheepsFromAuthorAsync(author.Name));
         }
         return result;
+    }
+
+    //does author 1 follow author 2?
+    public async Task<Boolean> IsUserFollowing(string author1, string author2) {
+        ICheepRepository c = GetCheepRepository();
+        await Task.CompletedTask;
+        Author a = await c.GetAuthorByName(author2);
+
+        return c.GetFollowedByAuthor(author1).Result.Contains(a);
     }
     
     public async Task<List<CheepViewModel>> GetPaginatedCheepsAsync(int pageNumber, int pageSize = 20)

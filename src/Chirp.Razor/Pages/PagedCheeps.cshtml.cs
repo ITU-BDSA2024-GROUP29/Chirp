@@ -15,6 +15,27 @@ namespace Chirp.Razor.Pages
             _cheepService = cheepService;
         }
 
+        public Boolean CompareUserName(String username1, String username2) {
+            if (username1.Equals(username2)) {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<Boolean> IsFollowing(String authorname) {
+            if (await _cheepService.IsUserFollowing(User.Identity.Name,authorname))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void FollowAuthor(String authorname) {
+            
+        }
+        
+        
+
         public List<CheepViewModel> Cheeps { get; set; }
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }

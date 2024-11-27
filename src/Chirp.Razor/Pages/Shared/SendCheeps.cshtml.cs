@@ -22,7 +22,7 @@ namespace Chirp.Razor.Pages
             var loggedInUser = User.Identity?.Name ?? "Unknown user";
             String[] loggedInUserName = loggedInUser.Split('@');
 
-            var AuthorLoggedIn = _cheepRepositoryService.GetAuthorByEmail(loggedInUser);
+            var AuthorLoggedIn = _cheepRepositoryService.GetAuthorByName(loggedInUser);
             if (AuthorLoggedIn == null)
             {
                 Author author = new Author();

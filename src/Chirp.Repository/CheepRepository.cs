@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Chirp.Core.DomainModel;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace Chirp.Repository;
 
@@ -69,8 +70,9 @@ public class CheepRepository : ICheepRepository {
         return await GetPaginatedCheeps(pageNumber, pageSize);
     }
 
-    public async Task<Author> GetAuthorByEmail(String Email){
-        return (Author)_dbContext.Authors.Where(a => a.Email.ToLower() == Email.ToLower());
+    public async Task<Author> GetAuthorByName(String authorname){
+       // return await  _dbContext.Authors.Where(a => a.Name )
+        return await _dbContext.Authors.Where(a => a.Name.ToLower() == authorname.ToLower()).FirstOrDefaultAsync(); //sometimes give a null reference, not valid longterm
     }
 
     public async Task<int> GetTotalAuthorsCount()
@@ -79,11 +81,15 @@ public class CheepRepository : ICheepRepository {
     }
 
     //should return authors followed by author from input (untested, TODO)
-    public async Task<List<Author>> GetFollowedByAuthor(String Email) {
-        Author author = GetAuthorByEmail(Email);
+    public async Task<List<Author>> GetFollowedByAuthor(String authorname) {
+        Author author = GetAuthorByName(authorname).Result;
+        if (author == null) {   //remove this when GetAutherByName is completely fixed
+            return new List<Author>();
+        }
         return await _dbContext.Authors.Where(a => author.Follows.Contains(a)).ToListAsync();
     }
 
+    
 
 
 }
