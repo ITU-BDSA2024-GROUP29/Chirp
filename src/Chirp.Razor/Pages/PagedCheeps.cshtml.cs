@@ -29,9 +29,50 @@ namespace Chirp.Razor.Pages
             }
             return false;
         }
+        
+        [HttpPost]
+        public async Task<IActionResult> Follow(string followedId)
+        {
+            //var followerId = int.Parse(_userManager.GetUserId(User));
+            //var followedUser = _cheepService.GetAuthorByName(followedId);
 
-        public void FollowAuthor(String authorname) {
+            /*
+            if (followedUser != null && !_context.Follows.Any(f => f.FollowerId == followerId && f.FollowedId == followedUser.Id))
+            {
+                var follow = new Follow
+                {
+                    FollowerId = followerId,
+                    FollowedId = followedUser.Id,
+                    FollowDate = DateTime.UtcNow
+                };
+
+                _context.Follows.Add(follow);
+                await _context.SaveChangesAsync();
+            }*/
+            _cheepService.FollowAuthor(followedId, User.Identity.Name);
             
+
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Unfollow(string followedId)
+        {
+            var followerId = int.Parse(_userManager.GetUserId(User));
+            var followedUser = await _userManager.FindByNameAsync(followedId);
+
+            if (followedUser != null)
+            {
+                var follow = _context.Follows.FirstOrDefault(f => f.FollowerId == followerId && f.FollowedId == followedUser.Id);
+
+                if (follow != null)
+                {
+                    _context.Follows.Remove(follow);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
+            return Redirect(Request.Headers["Referer"].ToString());
         }
         
         

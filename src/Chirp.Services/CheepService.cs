@@ -27,6 +27,8 @@ public interface ICheepService
     Task<int> GetTotalCheepCount();
     Task<List<CheepViewModel>> GetOwnCheepsAsync(string author);
     Task<Boolean> IsUserFollowing(string author, string author2);
+    Author GetAuthorByName(String authorname);
+    void FollowAuthor(String authorname, String Loggedinauthorname);
 }
 
 public class CheepService : ICheepService
@@ -122,6 +124,17 @@ public class CheepService : ICheepService
     {
         await Task.CompletedTask;
         return GetPaginatedCheeps(pageNumber, pageSize);
+    }
+
+    public void FollowAuthor(String authorname, String Loggedinauthorname) {
+        
+        
+        throw new NotImplementedException();
+    }
+
+    public Author GetAuthorByName(String authorname) {
+        ICheepRepository c = GetCheepRepository();
+        return c.GetFollowedByAuthor(authorname).Result.FirstOrDefault();
     }
 
     public List<CheepViewModel> GetPaginatedCheeps(int pageNumber, int pageSize)
