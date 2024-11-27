@@ -11,4 +11,15 @@ public class Cheep {
     public Author Author { get; set; }
     public System.DateTime TimeStamp { get; set; }
 
+    public CheepDTO toCheepDTO(){
+        return new CheepDTO(
+            this.CheepId,
+            this.Text,
+            this.Author.Name,
+            this.TimeStamp.ToString()
+        );
+    }
+
 }
+
+public record CheepDTO(int CheepId, String Text, String AuthorName, String TimeStamp);

@@ -8,9 +8,15 @@ public class Author : ApplicationUser{
     public String Email { get; set;}
     public ICollection<Cheep> Cheeps { get; set;}
 
-    public static implicit operator Author?(Task<Author>? v)
-    {
-        throw new NotImplementedException();
+        public AuthorDTO toAuthorDTO(){
+        return new AuthorDTO(
+            this.AuthorId,
+            this.Name,
+            this.Email
+        );
     }
 }
+
+public record AuthorDTO(int AuthorId, String Name, String Email);
+
 

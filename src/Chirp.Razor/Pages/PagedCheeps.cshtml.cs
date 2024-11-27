@@ -42,7 +42,7 @@ namespace Chirp.Razor.Pages
             return Page();
         }
 
-         public async Task<IActionResult> OnPostAsync(String Post){
+        public async Task<IActionResult> OnPostAsync(String Post){
             bool newAuthor = false;
             
             var loggedInUserName = User.Identity.Name;
@@ -75,7 +75,6 @@ namespace Chirp.Razor.Pages
             DateTime time = DateTime.Now;
             cheep.TimeStamp = time;
 
-
 /*
 
             Author author = new Author();
@@ -95,8 +94,7 @@ namespace Chirp.Razor.Pages
             */
             await _cheepService.GetCheepRepository().CreateCheepAsync(cheep);
             
-            return Page();
-            
+            return Redirect("/");
         }
 
     }
