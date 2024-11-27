@@ -2,16 +2,11 @@
 
 
 <div class="cheepbox">
-    <h3>What's on your mind </h3>
-        <form  method="post" >
-            @Html.AntiForgeryToken()
-            <input style="float: left" type="post" asp-for="post" placeholder="Type your message..." >
-            <input asp-page-handler="Upload" type="submit" value="Share">
-        </form>
+    <h3>What's on your mind</h3>
+    <form asp-page-handler="button" method="post">
+        @Html.AntiForgeryToken()
+        <input style="float: left" name="Post" placeholder="Type your message..." />
+        <button type="submit">Share</button>
+    </form>
 </div>
-
-
-
-
-
     

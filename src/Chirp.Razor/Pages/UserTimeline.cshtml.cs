@@ -15,7 +15,9 @@ public class UserTimelineModel : PageModel
 
     public async Task <ActionResult> OnGet(string author)
     {
+    
         Cheeps = await _service.GetCheepsFromAuthorAsync(author);
+    
         return Page();
     }
 }

@@ -65,9 +65,9 @@ public class CheepRepository : ICheepRepository {
     }
 
     public async Task<Author> GetAuthorByEmail(String Email){
-        return (Author)_dbContext.Authors.Where(a => a.Email.ToLower() == Email.ToLower());
+        return  _dbContext.Authors.Where(a => a.Email.ToLower() == Email.ToLower()).FirstOrDefault();
     }
-
+    
     public async Task<int> GetTotalAuthorsCount()
     {
         return await _dbContext.Authors.CountAsync();

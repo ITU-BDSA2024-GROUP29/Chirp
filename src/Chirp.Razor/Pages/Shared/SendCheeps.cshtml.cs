@@ -7,31 +7,25 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 
-namespace Chirp.Razor.Pages
-{
+namespace Chirp.Razor.Pages{
     public class SendCheepsModel : PageModel
     {
-        private readonly ICheepRepository _cheepRepositoryService;
+        private readonly ICheepService _service;
         public List<CheepViewModel> Cheeps { get; set; }
-        public SendCheepsModel(ICheepRepository cheepRepository)
-            {
-                _cheepRepositoryService = cheepRepository;
-            }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> OnGetAsync(String message){
-        
-        
-        return Page();
+        public SendCheepsModel(ICheepService service)
+        {
+            _service = service;
         }
-        public async Task<ActionResult> OnPostAsync(String message){
-
+        public async Task<IActionResult> OnPostAsync(String Post){
+            
+            
             var loggedInUser = User.Identity?.Name ?? "Unknown user";
             String[] loggedInUserName = loggedInUser.Split('@');
 
-            var AuthorLoggedIn = _cheepRepositoryService.GetAuthorByEmail(loggedInUser);
-            if (AuthorLoggedIn == null)
-            {
+         //   var AuthorLoggedIn = _service.GetAuthorByEmail(loggedInUser);
+           // _service.GetCheepRepository.GetAuthorByEmail(loggedInUser);
+/*          
+            if (AuthorLoggedIn == null){
                 Author author = new Author();
                 author.AuthorId = await _cheepRepositoryService.GetTotalAuthorsCount() + 1;
                 author.Email = loggedInUser;
@@ -47,9 +41,24 @@ namespace Chirp.Razor.Pages
             DateTime time = DateTime.Now;
             cheep.TimeStamp = time;
 
+*/  
+            Author author = new Author();
+                author.AuthorId = 55;
+                author.Email = "viktoremilandersen@gmail.com";
+                author.Name = "Viktor";
+            Cheep cheep = new Cheep();
+            cheep.Author = author;
+            cheep.AuthorId = author.AuthorId;
+            cheep.CheepId = 999;
+            
+            cheep.Text = "plz virk";
+            DateTime time = DateTime.Now;
+            cheep.TimeStamp = time;
 
-
-            _cheepRepositoryService.CreateCheepAsync(cheep);
+            Console.WriteLine("Espresso");
+            
+            await _service.GetCheepRepository().CreateCheepAsync(cheep);
+            Console.WriteLine("Feather");
             return Page();
 
         }
