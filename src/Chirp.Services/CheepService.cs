@@ -11,7 +11,7 @@ public record CheepViewModel(string Author, string Message, string Timestamp, in
     }
 }
 
-public record AuthorViewModel(int AuthorId, string Name, string Email, ICollection<Cheep> Cheeps, ICollection<ApplicationUser> Follows) {
+public record AuthorViewModel(int AuthorId, string Name, string Email, ICollection<Cheep> Cheeps, ICollection<Author> Follows) {
     public static implicit operator AuthorViewModel(Type v)
     {
         throw new NotImplementedException();
@@ -71,7 +71,7 @@ public class CheepService : ICheepService
         ).Reverse().ToList();
         List<Author> loader_Authors = await repository.GetAuthors();
         _authors = loader_Authors.Select(Author => 
-            new AuthorViewModel(Author.AuthorId, Author.Name, Author.Email, Author.Cheeps,Author.Follows )).ToList();
+            new AuthorViewModel(Author.AuthorId, Author.Name, Author.Email, Author.Cheeps, Author.Follows )).ToList();
     }
 
     public void IsUserFollowing() {

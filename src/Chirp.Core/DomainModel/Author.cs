@@ -6,7 +6,7 @@ public class Author : ApplicationUser{
     public String Name { get; set;}
     public String Email { get; set;}
     public ICollection<Cheep> Cheeps { get; set;}
-    public ICollection<ApplicationUser>? Follows { get; set;}
+    public ICollection<Author>? Follows { get; set;}
 
     public static implicit operator Author?(Task<Author>? v)
     {

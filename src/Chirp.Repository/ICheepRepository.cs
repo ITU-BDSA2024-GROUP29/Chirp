@@ -14,7 +14,7 @@ public interface ICheepRepository {
     Task<int> GetTotalAuthorsCount();
     Task<List<Author>> GetAuthors();
     Task<List<Author>> GetFollowedByAuthor(String authorname);
-    void AddFollowed(Author user, Author loggedinUser);
+    Task AddFollowed(Author user, Author loggedinUser);
     Task<bool> DeleteCheepByID(int cheepID);
 
 

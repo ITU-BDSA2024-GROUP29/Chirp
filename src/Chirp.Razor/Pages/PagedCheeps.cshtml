@@ -1,9 +1,11 @@
 @page "/cheeps/page/{pageNumber:int?}" // Define the route for pagination
 @model Chirp.Razor.Pages.CheepsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "All Cheeps";
     Layout = "Shared/_Layout";
 }
+
 
 <div>
     <h2>All Cheeps</h2>
@@ -25,7 +27,7 @@
                         @if (User.Identity.IsAuthenticated) {
                             <!-- Follow/Unfollow button -->
                             
-                            <form method="post" asp-page-handler="OnPostFollowAsync" style="display:inline;">
+                            <form method="post" asp-page-handler="Follow" style="display:inline;">
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="followedId" value="@cheep.Author"/>
                                 <button type="submit" class="btn btn-@(await Model.IsFollowing(cheep.Author) ? "danger" : "primary") btn-sm">

@@ -81,9 +81,10 @@ public class SharedFuncs : PageModel {
         return false;
     }
     
-    //follow buttons functionality
+    //follow button functionality
     public async Task<IActionResult> OnPostFollowAsync(string followedId) {
         await Task.CompletedTask;
+        
         if (string.IsNullOrEmpty(followedId))
         {
             return BadRequest("Followed ID cannot be empty.");

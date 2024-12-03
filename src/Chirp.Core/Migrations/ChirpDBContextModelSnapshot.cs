@@ -25,9 +25,6 @@ namespace Chirp.Core.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("AuthorId1")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
@@ -78,8 +75,6 @@ namespace Chirp.Core.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AuthorId1");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -261,9 +256,14 @@ namespace Chirp.Core.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("AuthorId1")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.HasIndex("AuthorId1");
 
                     b.HasIndex("Email")
                         .IsUnique();
@@ -272,13 +272,6 @@ namespace Chirp.Core.Migrations
                         .IsUnique();
 
                     b.HasDiscriminator().HasValue("Author");
-                });
-
-            modelBuilder.Entity("Chirp.Core.DomainModel.ApplicationUser", b =>
-                {
-                    b.HasOne("Chirp.Core.DomainModel.Author", null)
-                        .WithMany("Follows")
-                        .HasForeignKey("AuthorId1");
                 });
 
             modelBuilder.Entity("Chirp.Core.DomainModel.Cheep", b =>
@@ -339,6 +332,13 @@ namespace Chirp.Core.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Chirp.Core.DomainModel.Author", b =>
+                {
+                    b.HasOne("Chirp.Core.DomainModel.Author", null)
+                        .WithMany("Follows")
+                        .HasForeignKey("AuthorId1");
                 });
 
             modelBuilder.Entity("Chirp.Core.DomainModel.Author", b =>
