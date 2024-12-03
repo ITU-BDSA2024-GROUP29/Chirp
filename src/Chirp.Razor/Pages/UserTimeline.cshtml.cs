@@ -5,15 +5,21 @@ namespace Chirp.Razor.Pages;
 
 public class UserTimelineModel : SharedFuncs
 {
-    private readonly ICheepService _service;
-    public List<CheepViewModel> Cheeps;
+    
+    private readonly ICheepService _cheepService;
+    public List<CheepViewModel> Cheeps { get; set; } = new();
 
-    public UserTimelineModel(ICheepService service) : base(service) {
-        _service = service;
+    public UserTimelineModel(ICheepService service) : base(service)
+    {
+        _cheepService = service;
     }
 
-    public async Task <ActionResult> OnGet(string author) {
-        Cheeps = await _service.GetOwnCheepsAsync(author);
+    public async Task<IActionResult> OnGetAsync(string author)
+    {
+        // Fetch cheeps for the specified author
+        author = HttpContext.GetRouteValue("author")?.ToString();
+        Console.WriteLine(author +" AUTHOR NAME ");
+        Cheeps = await _cheepService.GetCheepsFromAuthorAsync(author);
         return Page();
     }
 }
