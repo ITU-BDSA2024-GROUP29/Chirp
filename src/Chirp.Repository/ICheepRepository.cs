@@ -10,10 +10,11 @@ public interface ICheepRepository {
     //Task UpdateCheep(Cheep alteredcheep);
     Task<int> GetTotalCheepCount();
     Task<List<Cheep>> GetTotalCheepsFromAuthorCount(String authorname);
-    Task<Author> GetAuthorByEmail(String Email);
+    Task<Author> GetAuthorByName(String authorname);
     Task<int> GetTotalAuthorsCount();
     Task<List<Author>> GetAuthors();
-    Task<List<Author>> GetFollowedByAuthor(String Email);
+    Task<List<Author>> GetFollowedByAuthor(String authorname);
+    void AddFollowed(Author user, Author loggedinUser);
 
 
 

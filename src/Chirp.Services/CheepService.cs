@@ -26,6 +26,9 @@ public interface ICheepService
     Task<List<CheepViewModel>> GetPaginatedCheepsAsync(int pageNumber, int pageSize = 10);
     Task<int> GetTotalCheepCount();
     Task<List<CheepViewModel>> GetOwnCheepsAsync(string author);
+    Task<Boolean> IsUserFollowing(string author, string author2);
+    Author GetAuthorByName(String authorname);
+    void FollowAuthor(String authorname, String Loggedinauthorname);
 }
 
 public class CheepService : ICheepService
@@ -34,6 +37,7 @@ public class CheepService : ICheepService
     private static CheepService _instance;
     private List<CheepViewModel> _cheeps;
     private List<AuthorViewModel> _authors;
+    
 
     public CheepService(ICheepRepository repository) 
     {
@@ -68,6 +72,10 @@ public class CheepService : ICheepService
             new AuthorViewModel(Author.AuthorId, Author.Name, Author.Email, Author.Cheeps,Author.Follows )).ToList();
     }
 
+    public void IsUserFollowing() {
+        throw new NotImplementedException();
+    }
+
     public Task<int> GetTotalCheepCount()
     {
         return Task.FromResult(_cheeps.Count);
@@ -98,15 +106,37 @@ public class CheepService : ICheepService
         authors = await c.GetFollowedByAuthor(authorname);
 
         foreach (Author author in authors) {
-            result.AddRange(await GetCheepsFromAuthorAsync(authorname));
+            result.AddRange(await GetCheepsFromAuthorAsync(author.Name));
         }
         return result;
+    }
+
+    //does author 1 follow author 2?
+    public async Task<Boolean> IsUserFollowing(string author1, string author2) {
+        ICheepRepository c = GetCheepRepository();
+        await Task.CompletedTask;
+        Author a = await c.GetAuthorByName(author2);
+
+        return c.GetFollowedByAuthor(author1).Result.Contains(a);
     }
     
     public async Task<List<CheepViewModel>> GetPaginatedCheepsAsync(int pageNumber, int pageSize = 20)
     {
         await Task.CompletedTask;
         return GetPaginatedCheeps(pageNumber, pageSize);
+    }
+
+    public void FollowAuthor(String authorname, String loggedinauthorname) {
+        ICheepRepository c = GetCheepRepository();
+        var a = c.GetAuthorByName(authorname).Result;
+        var b = c.GetAuthorByName(loggedinauthorname).Result;
+        c.AddFollowed(a,b);
+        
+    }
+
+    public Author GetAuthorByName(String authorname) {
+        ICheepRepository c = GetCheepRepository();
+        return c.GetAuthorByName(authorname).Result;
     }
 
     public List<CheepViewModel> GetPaginatedCheeps(int pageNumber, int pageSize)
