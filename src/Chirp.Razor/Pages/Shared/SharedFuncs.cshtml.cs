@@ -85,9 +85,9 @@ public class SharedFuncs : PageModel {
     public async Task<IActionResult> OnPostFollowAsync(string followedId) {
         await Task.CompletedTask;
         
-        if (string.IsNullOrEmpty(followedId))
+        if (string.IsNullOrEmpty(followedId) || followedId.Equals(User.Identity.Name))
         {
-            return BadRequest("Followed ID cannot be empty.");
+            return BadRequest("Followed ID cannot be empty or your own");
         }
 
         // Ensure the user is authenticated
@@ -99,7 +99,7 @@ public class SharedFuncs : PageModel {
 
         Console.WriteLine("Following ID is " + followedId);
         _cheepService.FollowAuthor(followedId, User.Identity.Name);
-        return Page(); // Refresh the current page
+        return Redirect("/"); // Refresh the current page
     }
     //unfollow functionality
     public async Task<IActionResult> OnPostUnfollowAsync(string followedId)

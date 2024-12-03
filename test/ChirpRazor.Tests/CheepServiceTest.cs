@@ -174,7 +174,7 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
         }
         
         [Fact]
-        public async Task Test_GetFollowAuthor() {
+        public async Task Test_FollowAuthor() {
             using (var connection = new SqliteConnection("Filename=:memory:")) {
                 await connection.OpenAsync();
                 var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
@@ -188,7 +188,7 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
                     ICheepService service = new CheepService(cheepRepository);
 
                     //Jacqualine Gilcoine starts following Luanna Muro
-                    service.FollowAuthor("Luanna Muro", "Jacqualine Gilcoine");
+                    await service.FollowAuthor("Luanna Muro", "Jacqualine Gilcoine");
 
                     Assert.True(await service.IsUserFollowing("Jacqualine Gilcoine","Luanna Muro"));
 

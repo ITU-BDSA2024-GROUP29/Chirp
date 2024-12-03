@@ -76,9 +76,9 @@ public class CheepRepository : ICheepRepository {
     }
 
     public async Task AddFollowed(Author user, Author loggedinUser) {
-        await Task.CompletedTask;
         if (user.Follows == null) user.Follows = new List<Author>();
-        
+        await Task.CompletedTask;
+        if (user.Follows.Contains(user)) return;
         loggedinUser.Follows.Add(user);
     }
 
