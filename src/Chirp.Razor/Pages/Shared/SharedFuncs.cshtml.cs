@@ -13,7 +13,7 @@ public class SharedFuncs : PageModel {
     
     protected readonly ICheepService _cheepService;
     
-    public async Task<IActionResult> OnPost(String Post){
+    public async Task<IActionResult> OnPostCheepAsync(String Post){
             bool newAuthor = false;
             
             var loggedInUserName = User.Identity.Name;
@@ -50,7 +50,7 @@ public class SharedFuncs : PageModel {
         }
 
     // Handler for deleting a cheep
-    public async Task<IActionResult> OnPostDeleteCheepAsync(int cheepID)
+    public async Task<IActionResult> OnPostDelete(int cheepID)
     {
         try
         {
