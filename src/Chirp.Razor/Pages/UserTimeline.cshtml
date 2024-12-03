@@ -1,5 +1,6 @@
 ﻿@page "/{author}"
 @model Chirp.Razor.Pages.UserTimelineModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Chirp!";
     Layout = "Shared/_Layout";
@@ -23,7 +24,7 @@
                     <small>&mdash; @cheep.Timestamp</small>
                     
                     @if(User.Identity.IsAuthenticated){
-                        <form method="post" asp-page-handler="Delete" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this cheep?');">
+                        <form method="post" asp-page-handler="Delete" onsubmit="return confirm('Are you sure you want to delete this cheep?');">
                             @Html.AntiForgeryToken()
                             <input type="hidden" name="cheepID" value="@cheep.CheepId" />
                             <button type="submit" title="Delete Cheep">Delete</button>

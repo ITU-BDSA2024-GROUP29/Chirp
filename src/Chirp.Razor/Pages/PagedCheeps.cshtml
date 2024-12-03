@@ -1,5 +1,6 @@
 @page "/cheeps/page/{pageNumber:int?}" // Define the route for pagination
 @model Chirp.Razor.Pages.CheepsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "All Cheeps";
     Layout = "Shared/_Layout";
