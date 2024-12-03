@@ -16,8 +16,19 @@ namespace Chirp.Razor
             builder.Services.AddDbContext<ChirpDBContext>(options =>
                 options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => 
+                options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ChirpDBContext>();
+
+
+            builder.Services.AddAuthentication()
+                .AddGitHub(o =>
+                {
+                    o.ClientId = builder.Configuration["authentication:github:clientId"];
+                    o.ClientSecret = builder.Configuration["authentication:github:clientSecret"];
+                    o.CallbackPath = "/signin-github";
+                });
+
 
             // Add services to the container.
             builder.Services.Core();
@@ -25,20 +36,6 @@ namespace Chirp.Razor
             builder.Services.AddScoped<ICheepRepository, CheepRepository>();
             builder.Services.AddScoped<ICheepService, CheepService>();
 
-            // Add Authentication with GitHub
-            builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = "GitHub";
-            })
-            .AddCookie()
-            .AddGitHub(o =>
-            {
-                o.ClientId = builder.Configuration["authentication:github:clientId"] ?? Environment.GetEnvironmentVariable("GITHUBCLIENTID");
-                o.ClientSecret = builder.Configuration["authentication:github:clientSecret"] ?? Environment.GetEnvironmentVariable("GITHUBCLIENTSECRET");
-                o.CallbackPath = "/signin-github";
-            });
 
             var app = builder.Build();
 
