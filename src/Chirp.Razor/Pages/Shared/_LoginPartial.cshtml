@@ -5,6 +5,7 @@
 @inject UserManager<ApplicationUser> UserManager 
 
     <ul class="navbar-nav">
+
         @if (User.Identity.IsAuthenticated)
         {
             <div>
