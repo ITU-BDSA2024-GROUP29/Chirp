@@ -3,7 +3,7 @@ using Chirp.Core.DomainModel;
 using Chirp.Repository;
 
 
-public record CheepViewModel(string Author, string Message, string Timestamp)
+public record CheepViewModel(string Author, string Message, string Timestamp, int CheepId)
 {
     public static implicit operator CheepViewModel(Type v)
     {
@@ -29,6 +29,8 @@ public interface ICheepService
     Task<Boolean> IsUserFollowing(string author, string author2);
     Author GetAuthorByName(String authorname);
     void FollowAuthor(String authorname, String Loggedinauthorname);
+    Task<bool> DeleteCheepByID(int cheepID);
+    Task<int>  GetAuthorCount();
 }
 
 public class CheepService : ICheepService
@@ -62,10 +64,10 @@ public class CheepService : ICheepService
 
     private async Task LoadDB()
     {
-        List<Cheep> loader_Cheeps = await repository.ReadCheeps();
-        loader_Cheeps = loader_Cheeps.OrderBy(x => x.TimeStamp).ToList();
-        _cheeps = loader_Cheeps.Select(cheep =>
-            new CheepViewModel(cheep.Author.Name, cheep.Text, cheep.TimeStamp.ToString())
+        List<Cheep> loader = await repository.ReadCheeps();
+        loader = loader.OrderBy(x => x.TimeStamp).ToList();
+        _cheeps = loader.Select(cheep =>
+            new CheepViewModel(cheep.Author.Name, cheep.Text, cheep.TimeStamp.ToString(), cheep.CheepId)
         ).Reverse().ToList();
         List<Author> loader_Authors = await repository.GetAuthors();
         _authors = loader_Authors.Select(Author => 
@@ -92,6 +94,10 @@ public class CheepService : ICheepService
     {
         await Task.CompletedTask;
         return _cheeps.Where(x => x.Author == author).ToList();
+    }
+
+    public async Task<int> GetAuthorCount(){
+        return _authors.Count();
     }
 
     public async Task<List<CheepViewModel>> GetOwnCheepsAsync(string authorname) {
@@ -158,6 +164,11 @@ public class CheepService : ICheepService
         // Use LINQ to skip and reverse take for pagination
         return _cheeps.Skip(startIndex).Take(pageSize).ToList();
 
+    }
+
+    public async Task<bool> DeleteCheepByID(int cheepID)
+    {
+        return await repository.DeleteCheepByID(cheepID);
     }
 
 }

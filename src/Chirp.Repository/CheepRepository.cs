@@ -93,7 +93,21 @@ public class CheepRepository : ICheepRepository {
         return await _dbContext.Authors.Where(a => author.Follows.Contains(a)).ToListAsync();
     }
 
-    
+    public async Task<bool> DeleteCheepByID(int cheepID)
+{
+    var cheep = await _dbContext.Cheeps.Where(c => c.CheepId == cheepID).FirstAsync();
+    if (cheep == null) 
+    {
+        return false; // Cheep not found
+    }
+
+    _dbContext.Cheeps.Remove(cheep);
+    await _dbContext.SaveChangesAsync();
+    return true;
+}
+
+
+
 
 
 }
