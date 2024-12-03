@@ -74,10 +74,6 @@ public class CheepService : ICheepService
             new AuthorViewModel(Author.AuthorId, Author.Name, Author.Email, Author.Cheeps, Author.Follows )).ToList();
     }
 
-    public void IsUserFollowing() {
-        throw new NotImplementedException();
-    }
-
     public Task<int> GetTotalCheepCount()
     {
         return Task.FromResult(_cheeps.Count);
@@ -105,7 +101,7 @@ public class CheepService : ICheepService
         await Task.CompletedTask;
         
         List<CheepViewModel> result = new List<CheepViewModel>();
-        result.AddRange(_cheeps.Where(cheep => cheep.Author == authorname));
+        //result.AddRange(_cheeps.Where(cheep => cheep.Author == authorname));
         result.AddRange(await GetCheepsFromAuthorAsync(authorname));
         
         var authors = await c.GetFollowedByAuthor(authorname);
@@ -113,6 +109,7 @@ public class CheepService : ICheepService
         foreach (Author author in authors) {
             result.AddRange(await GetCheepsFromAuthorAsync(author.Name));
         }
+        
         return result;
     }
 
