@@ -98,7 +98,7 @@ public class SharedFuncs : PageModel {
 
 
         Console.WriteLine("Following ID is " + followedId);
-        _cheepService.FollowAuthor(followedId, User.Identity.Name);
+        await _cheepService.FollowAuthor(followedId, User.Identity.Name);
         return Redirect("/"); // Refresh the current page
     }
     //unfollow functionality

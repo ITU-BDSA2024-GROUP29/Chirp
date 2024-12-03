@@ -72,12 +72,20 @@ public class CheepRepository : ICheepRepository {
 
     public async Task<Author> GetAuthorByName(String authorname){
        // return await  _dbContext.Authors.Where(a => a.Name )
-        return await _dbContext.Authors.Where(a => a.Name.ToLower() == authorname.ToLower()).FirstOrDefaultAsync(); //sometimes give a null reference, not valid longterm
+       if (authorname == null) {
+           throw new ArgumentNullException(nameof(authorname));
+       } 
+       return await _dbContext.Authors.Where(a => a.Name == authorname).FirstOrDefaultAsync(); //sometimes give a null reference, not valid longterm
     }
 
     public async Task AddFollowed(Author user, Author loggedinUser) {
-        if (user.Follows == null) user.Follows = new List<Author>();
         await Task.CompletedTask;
+        if (loggedinUser == null) 
+            throw new ArgumentNullException(nameof(loggedinUser), "The logged-in user cannot be null." + loggedinUser);
+        if (user == null) 
+            throw new ArgumentNullException(nameof(user), "The user to be followed cannot be null.");
+
+        if (loggedinUser.Follows == null) loggedinUser.Follows = new List<Author>();
         if (user.Follows.Contains(user)) return;
         loggedinUser.Follows.Add(user);
     }

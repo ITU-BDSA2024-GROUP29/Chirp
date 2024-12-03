@@ -5,7 +5,6 @@ namespace Chirp.Razor.Pages;
 
 public class UserTimelineModel : SharedFuncs
 {
-    
     private readonly ICheepService _cheepService;
     public List<CheepViewModel> Cheeps { get; set; } = new();
 
