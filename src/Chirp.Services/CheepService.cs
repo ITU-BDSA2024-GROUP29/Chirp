@@ -136,7 +136,7 @@ public class CheepService : ICheepService
 
     public Author GetAuthorByName(String authorname) {
         ICheepRepository c = GetCheepRepository();
-        return c.GetFollowedByAuthor(authorname).Result.FirstOrDefault();
+        return c.GetAuthorByName(authorname).Result;
     }
 
     public List<CheepViewModel> GetPaginatedCheeps(int pageNumber, int pageSize)

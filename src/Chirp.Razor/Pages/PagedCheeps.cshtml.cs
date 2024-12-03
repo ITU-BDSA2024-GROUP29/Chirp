@@ -30,9 +30,8 @@ namespace Chirp.Razor.Pages
             return false;
         }
         
-        public async Task<IActionResult> OnPostFollowAsync(string followedId)
-        {
-
+        public async Task<IActionResult> OnPostFollowAsync(string followedId) {
+            await Task.CompletedTask;
             if (string.IsNullOrEmpty(followedId))
             {
                 return BadRequest("Followed ID is required.");
@@ -44,7 +43,7 @@ namespace Chirp.Razor.Pages
                 return Unauthorized();
             }
 
-            throw new Exception();
+
             Console.WriteLine("Following ID is " + followedId);
             _cheepService.FollowAuthor(followedId, User.Identity.Name);
             return Page(); // Refresh the current page

@@ -25,14 +25,13 @@
                         @if (User.Identity.IsAuthenticated) {
                             <!-- Follow/Unfollow button -->
                             
-                                <form method="post" asp-page-handler="OnPostFollowAsync" style="display:inline;">
+                            <form method="post" asp-page-handler="OnPostFollowAsync" style="display:inline;">
                                 <input type="hidden" name="followedId" value="@cheep.Author"/>
                                 <button type="submit" class="btn btn-@(await Model.IsFollowing(cheep.Author) ? "danger" : "primary") btn-sm">
                                     @(await Model.IsFollowing(cheep.Author) ? "Unfollow" : "Follow")
                                 </button>
                                 @Html.AntiForgeryToken()
-                                </form>
-                            
+                            </form>
                         }
                     </p>
                 </li>
