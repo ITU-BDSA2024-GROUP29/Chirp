@@ -93,7 +93,7 @@ public class CheepService : ICheepService
     public async Task<List<CheepViewModel>> GetCheepsFromAuthorAsync(string author)
     {
         await Task.CompletedTask;
-        return _cheeps.Where(x => x.Author == author).ToList();
+        return _cheeps.Where(x => x.Author.ToLower() == author.ToLower()).ToList();
     }
 
     public async Task<int> GetAuthorCount(){

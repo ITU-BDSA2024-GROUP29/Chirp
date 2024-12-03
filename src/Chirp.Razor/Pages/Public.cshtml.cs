@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Chirp.Razor.Pages;
 
-public class PublicModel : PageModel
+public class PublicModel : SharedFuncs
 {
     private readonly ICheepService _service;
     public List<CheepViewModel> Cheeps { get; set; }
 
-    public PublicModel(ICheepService service)
+    public PublicModel(ICheepService service) : base(service)
     {
         _service = service;
         service.GetCheepsAsync();

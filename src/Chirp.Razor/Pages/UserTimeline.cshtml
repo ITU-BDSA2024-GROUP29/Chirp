@@ -23,10 +23,10 @@
                     <small>&mdash; @cheep.Timestamp</small>
                     
                     @if(User.Identity.IsAuthenticated){
-                        <form method="post" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this cheep?');">
+                        <form method="post" asp-page-handler="Delete" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this cheep?');">
                             @Html.AntiForgeryToken()
-                            <input type="hidden" name="cheepID" asp-page-handler="DeleteCheep" value="@cheep.CheepId" />
-                            <button type="submit" class="delete-button" title="Delete Cheep">Delete</button>
+                            <input type="hidden" name="cheepID" value="@cheep.CheepId" />
+                            <button type="submit" title="Delete Cheep">Delete</button>
                         </form>
                     }
                 </p>
