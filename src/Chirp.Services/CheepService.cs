@@ -128,13 +128,23 @@ public class CheepService : ICheepService
         return GetPaginatedCheeps(pageNumber, pageSize);
     }
 
-    public async Task FollowAuthor(String authorname, String loggedinauthorname) {
-        await Task.CompletedTask;
+    public async Task FollowAuthor(string authorname, string loggedinauthorname) {
+        if (string.IsNullOrWhiteSpace(authorname))
+            throw new ArgumentNullException(nameof(authorname), "Author name cannot be null or whitespace.");
+        if (string.IsNullOrWhiteSpace(loggedinauthorname))
+            throw new ArgumentNullException(nameof(loggedinauthorname), "Logged-in author name cannot be null or whitespace.");
+
         ICheepRepository c = GetCheepRepository();
-        var a = c.GetAuthorByName(authorname).Result;
-        var b = c.GetAuthorByName(loggedinauthorname).Result;
-        await c.AddFollowed(a,b);
-        
+
+        var a = await c.GetAuthorByName(authorname);
+        if (a == null)
+            throw new InvalidOperationException($"Author with name '{authorname}' was not found.");
+
+        var b = await c.GetAuthorByName(loggedinauthorname);
+        if (b == null)
+            throw new InvalidOperationException($"Logged-in author with name '{loggedinauthorname}' was not found.");
+
+        await c.AddFollowed(a, b);
     }
 
     public Author GetAuthorByName(String authorname) {

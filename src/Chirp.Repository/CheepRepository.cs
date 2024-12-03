@@ -72,10 +72,10 @@ public class CheepRepository : ICheepRepository {
 
     public async Task<Author> GetAuthorByName(String authorname){
        // return await  _dbContext.Authors.Where(a => a.Name )
-       if (authorname == null) {
+       if (String.IsNullOrWhiteSpace(authorname)) {
            throw new ArgumentNullException(nameof(authorname));
        } 
-       return await _dbContext.Authors.Where(a => a.Name == authorname).FirstOrDefaultAsync(); //sometimes give a null reference, not valid longterm
+       return await _dbContext.Authors.Where(a => a.Name.ToLower() == authorname.ToLower()).FirstOrDefaultAsync(); //sometimes give a null reference, not valid longterm
     }
 
     public async Task AddFollowed(Author user, Author loggedinUser) {
