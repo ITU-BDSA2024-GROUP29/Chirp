@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using Chirp.Core.DomainModel;
 using Chirp.Repository;
 
@@ -89,7 +90,7 @@ public class CheepService : ICheepService
     public async Task<List<CheepViewModel>> GetCheepsFromAuthorAsync(string author)
     {
         await Task.CompletedTask;
-        return _cheeps.Where(x => x.Author.ToLower() == author.ToLower()).ToList();
+        return _cheeps.Where(x => x.Author == author).ToList();
     }
 
     public async Task<int> GetAuthorCount(){
@@ -101,14 +102,13 @@ public class CheepService : ICheepService
         await Task.CompletedTask;
         
         List<CheepViewModel> result = new List<CheepViewModel>();
-        //result.AddRange(_cheeps.Where(cheep => cheep.Author == authorname));
-        result.AddRange(await GetCheepsFromAuthorAsync(authorname));
         
+        result.AddRange(await GetCheepsFromAuthorAsync(authorname));
         var authors = await c.GetFollowedByAuthor(authorname);
 
-        foreach (Author author in authors) {
+        foreach (var author in authors) {
             result.AddRange(await GetCheepsFromAuthorAsync(author.Name));
-        }
+        }   //TODO add sorting
         
         return result;
     }
@@ -129,22 +129,8 @@ public class CheepService : ICheepService
     }
 
     public async Task FollowAuthor(string authorname, string loggedinauthorname) {
-        if (string.IsNullOrWhiteSpace(authorname))
-            throw new ArgumentNullException(nameof(authorname), "Author name cannot be null or whitespace.");
-        if (string.IsNullOrWhiteSpace(loggedinauthorname))
-            throw new ArgumentNullException(nameof(loggedinauthorname), "Logged-in author name cannot be null or whitespace.");
-
         ICheepRepository c = GetCheepRepository();
-
-        var a = await c.GetAuthorByName(authorname);
-        if (a == null)
-            throw new InvalidOperationException($"Author with name '{authorname}' was not found.");
-
-        var b = await c.GetAuthorByName(loggedinauthorname);
-        if (b == null)
-            throw new InvalidOperationException($"Logged-in author with name '{loggedinauthorname}' was not found.");
-
-        await c.AddFollowed(a, b);
+        await c.FollowAuthor(authorname, loggedinauthorname);
     }
 
     public Author GetAuthorByName(String authorname) {

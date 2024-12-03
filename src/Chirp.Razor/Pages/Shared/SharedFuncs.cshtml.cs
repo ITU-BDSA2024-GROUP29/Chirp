@@ -95,9 +95,7 @@ public class SharedFuncs : PageModel {
         {
             return Unauthorized();
         }
-
-
-        Console.WriteLine("Following ID is " + followedId);
+        
         await _cheepService.FollowAuthor(followedId, User.Identity.Name);
         return Redirect("/"); // Refresh the current page
     }
@@ -117,7 +115,7 @@ public class SharedFuncs : PageModel {
         }
             
         //change to unfollow
-        // _cheepService.FollowAuthor(followedId, User.Identity.Name);
+        await _cheepService.FollowAuthor(followedId, User.Identity.Name);
         return RedirectToPage(); // Refresh the current page
             
     }
