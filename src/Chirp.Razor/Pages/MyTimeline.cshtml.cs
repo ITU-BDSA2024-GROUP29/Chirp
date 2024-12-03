@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Chirp.Razor.Pages;
 
-public class UserTimelineModel : SharedFuncs
+public class MyTimelineModel : SharedFuncs
 {
     private readonly ICheepService _cheepService;
     public List<CheepViewModel> Cheeps { get; set; } = new();
 
-    public UserTimelineModel(ICheepService service) : base(service)
+    public MyTimelineModel(ICheepService service) : base(service)
     {
         _cheepService = service;
     }
@@ -18,7 +18,7 @@ public class UserTimelineModel : SharedFuncs
     {
         // Fetch cheeps for the specified author
         author = HttpContext.GetRouteValue("author")?.ToString();
-        Cheeps = await _cheepService.GetCheepsFromAuthorAsync(author);
+        Cheeps = await _cheepService.GetOwnCheepsAsync(author);
         return Page();
     }
 }
