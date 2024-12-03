@@ -102,8 +102,7 @@ public class CheepService : ICheepService
         result.AddRange(_cheeps.Where(cheep => cheep.Author == authorname));
         result.AddRange(await GetCheepsFromAuthorAsync(authorname));
         
-        List<Author> authors = new List<Author>();
-        authors = await c.GetFollowedByAuthor(authorname);
+        var authors = await c.GetFollowedByAuthor(authorname);
 
         foreach (Author author in authors) {
             result.AddRange(await GetCheepsFromAuthorAsync(author.Name));
