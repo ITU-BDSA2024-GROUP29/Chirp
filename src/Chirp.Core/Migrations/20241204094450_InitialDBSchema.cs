@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Chirp.Core.Migrations
 {
     /// <inheritdoc />
-    public partial class AddIdentitySchema : Migration
+    public partial class InitialDBSchema : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -172,7 +172,7 @@ namespace Chirp.Core.Migrations
                     CheepId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     AuthorId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Text = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
+                    Text = table.Column<string>(type: "TEXT", maxLength: 160, nullable: false),
                     AuthorId1 = table.Column<string>(type: "TEXT", nullable: true),
                     TimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },

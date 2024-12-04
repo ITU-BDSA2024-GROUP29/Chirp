@@ -1,9 +1,5 @@
-
-using System.Runtime.CompilerServices;
 using Chirp.Core.DomainModel;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Runtime.InteropServices.JavaScript;
 
 namespace Chirp.Repository;
 
@@ -73,6 +69,7 @@ public class CheepRepository : ICheepRepository {
     public async Task FollowAuthor(string authorname, string loggedinauthorname) {
         if (string.IsNullOrWhiteSpace(authorname))
             throw new ArgumentNullException(nameof(authorname), "Author name cannot be null or whitespace.");
+            
         if (string.IsNullOrWhiteSpace(loggedinauthorname))
             throw new ArgumentNullException(nameof(loggedinauthorname), "Logged-in author name cannot be null or whitespace.");
         
@@ -87,14 +84,12 @@ public class CheepRepository : ICheepRepository {
         await AddFollowed(a, b);
     }
 
-    public async Task<Author> GetAuthorByName(String authorname){
-        
+    public async Task<Author> GetAuthorByName(String authorname){ 
        // return await  _dbContext.Authors.Where(a => a.Name )
-       if (String.IsNullOrWhiteSpace(authorname)) {
-           throw new ArgumentNullException(nameof(authorname));
-       } 
-       return await _dbContext.Authors.Where(a => a.Name.ToLower() == authorname.ToLower()).FirstOrDefaultAsync(); //sometimes give a null reference, not valid longterm
-       
+        if (String.IsNullOrWhiteSpace(authorname)) {
+            throw new ArgumentNullException(nameof(authorname));
+        } 
+       return await _dbContext.Authors.Where(a => a.Name == authorname).FirstOrDefaultAsync(); //sometimes give a null reference, not valid longterm
     }
 
     public async Task AddFollowed(Author user, Author loggedinUser) {
@@ -122,10 +117,9 @@ public class CheepRepository : ICheepRepository {
     //should return authors followed by author from input (untested, TODO)
     public async Task<List<Author>> GetFollowedByAuthor(String authorname) {
         await Task.CompletedTask;
-        Author author = GetAuthorByName(authorname).Result;
-        return _dbContext.Authors.Where(a => author.Follows.Contains(a)).ToList();
+        Author author = await GetAuthorByName(authorname);
+        return _dbContext.Authors.Where(a => author.Follows.Any()).ToList();
     }
-    
 
     public async Task<bool> DeleteCheepByID(int cheepID)
 {

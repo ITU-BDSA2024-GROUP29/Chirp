@@ -4,8 +4,7 @@
 @inject SignInManager<ApplicationUser> SignInManager 
 @inject UserManager<ApplicationUser> UserManager 
 
-    <ul class="navbar-nav">
-
+    <div class="navigation">
         @if (User.Identity.IsAuthenticated)
         {
             <div>
@@ -21,7 +20,5 @@
                 <a class="nav-link text-dark" href="/Identity/Account/Register">register</a> |
                 <a class="nav-link text-dark" href="/Identity/Account/Login">login</a> |
             </div>
-            
-            
         }
-    </ul>
+    </div>

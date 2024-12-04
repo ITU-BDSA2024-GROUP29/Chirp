@@ -22,7 +22,6 @@ namespace Chirp.Razor.Pages
             }
             return false;
         }
-        
 
         public List<CheepViewModel> Cheeps { get; set; }
         public int CurrentPage { get; set; }

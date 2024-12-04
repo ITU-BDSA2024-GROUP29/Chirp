@@ -26,7 +26,7 @@
                         <small>&mdash; @cheep.Timestamp</small>
                         @if (User.Identity.IsAuthenticated) {
                             <!-- Follow/Unfollow button -->
-                            
+
                             <form method="post" asp-page-handler="Follow" style="display:inline;">
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="followedId" value="@cheep.Author"/>
@@ -34,6 +34,7 @@
                                     @(await Model.IsFollowing(cheep.Author) ? "Unfollow" : "Follow")
                                 </button>
                             </form>
+                            
                         }
                     </p>
                 </li>

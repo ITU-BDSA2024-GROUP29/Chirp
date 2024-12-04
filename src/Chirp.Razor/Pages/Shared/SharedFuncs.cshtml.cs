@@ -74,7 +74,7 @@ public class SharedFuncs : PageModel {
         }
     }
     public async Task<Boolean> IsFollowing(String authorname) {
-        if (await _cheepService.IsUserFollowing(User.Identity.Name,authorname))
+        if (await _cheepService.IsUserFollowing(User.Identity.Name, authorname))
         {
             return true;
         }

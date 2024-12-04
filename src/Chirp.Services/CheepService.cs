@@ -118,7 +118,7 @@ public class CheepService : ICheepService
         ICheepRepository c = GetCheepRepository();
         await Task.CompletedTask;
         Author a = await c.GetAuthorByName(author2);
-
+    
         return c.GetFollowedByAuthor(author1).Result.Contains(a);
     }
     

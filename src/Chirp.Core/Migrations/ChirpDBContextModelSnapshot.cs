@@ -104,7 +104,7 @@ namespace Chirp.Core.Migrations
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasMaxLength(500)
+                        .HasMaxLength(160)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("TimeStamp")
