@@ -84,13 +84,15 @@ public class CheepRepository : ICheepRepository {
         await AddFollowed(a, b);
     }
 
-    public async Task<Author> GetAuthorByName(String authorname){ 
-       // return await  _dbContext.Authors.Where(a => a.Name )
-        if (String.IsNullOrWhiteSpace(authorname)) {
-            throw new ArgumentNullException(nameof(authorname));
-        } 
-       return await _dbContext.Authors.Where(a => a.Name == authorname).FirstOrDefaultAsync(); //sometimes give a null reference, not valid longterm
+    public async Task<Author> GetAuthorByName(String authorname){
+    if (string.IsNullOrWhiteSpace(authorname)) {
+        throw new ArgumentNullException(nameof(authorname));
     }
+    // Use case-insensitive search and handle missing author gracefully
+    return await _dbContext.Authors
+        .Where(a => a.Name.ToLower() == authorname.ToLower())
+        .FirstOrDefaultAsync(); // Return null if not found
+}
 
     public async Task AddFollowed(Author user, Author loggedinUser) {
         await Task.CompletedTask;
@@ -116,10 +118,25 @@ public class CheepRepository : ICheepRepository {
 
     //should return authors followed by author from input (untested, TODO)
     public async Task<List<Author>> GetFollowedByAuthor(String authorname) {
-        await Task.CompletedTask;
-        Author author = await GetAuthorByName(authorname);
-        return _dbContext.Authors.Where(a => author.Follows.Any()).ToList();
-    }
+    if (string.IsNullOrWhiteSpace(authorname))
+        throw new ArgumentNullException(nameof(authorname), "Author name cannot be null or whitespace.");
+
+    var author = await GetAuthorByName(authorname); // Use await instead of .Result
+
+    if (author == null)
+        return new List<Author>(); // Return an empty list if the author is not found
+
+    // Initialize the Follows collection if it is null
+    if (author.Follows == null)
+        author.Follows = new List<Author>();
+
+    // Return the authors followed by the given author
+    return await _dbContext.Authors
+        .Where(a => author.Follows.Contains(a)) // Check if the author follows the other authors
+        .ToListAsync(); // Make the query asynchronous
+}
+
+    
 
     public async Task<bool> DeleteCheepByID(int cheepID)
 {

@@ -27,7 +27,7 @@ public interface ICheepService
     Task<List<CheepViewModel>> GetPaginatedCheepsAsync(int pageNumber, int pageSize = 10);
     Task<int> GetTotalCheepCount();
     Task<List<CheepViewModel>> GetOwnCheepsAsync(string author);
-    Task<Boolean> IsUserFollowing(string author, string author2);
+    Task<bool> IsUserFollowing(string author, string author2);
     Author GetAuthorByName(String authorname);
     Task FollowAuthor(String authorname, String Loggedinauthorname);
     Task<bool> DeleteCheepByID(int cheepID);
@@ -114,7 +114,7 @@ public class CheepService : ICheepService
     }
 
     //does author 1 follow author 2?
-    public async Task<Boolean> IsUserFollowing(string author1, string author2) {
+    public async Task<bool> IsUserFollowing(string author1, string author2) {
         ICheepRepository c = GetCheepRepository();
         await Task.CompletedTask;
         Author a = await c.GetAuthorByName(author2);

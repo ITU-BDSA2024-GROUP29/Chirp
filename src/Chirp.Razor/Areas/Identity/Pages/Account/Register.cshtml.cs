@@ -85,7 +85,7 @@ namespace Chirp.Razor.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [EmailAddress]
+            [StringLength(50, ErrorMessage = "The Username must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
             [Display(Name = "Username")]
             public string Username { get; set; }
 
@@ -123,7 +123,6 @@ namespace Chirp.Razor.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
                 await _userStore.SetUserNameAsync(user, Input.Username, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
