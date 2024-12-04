@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using Chirp.Core.DomainModel;
 using Chirp.Repository;
 
@@ -11,7 +12,7 @@ public record CheepViewModel(string Author, string Message, string Timestamp, in
     }
 }
 
-public record AuthorViewModel(int AuthorId, string Name, string Email, ICollection<Cheep> Cheeps, ICollection<ApplicationUser> Follows) {
+public record AuthorViewModel(int AuthorId, string Name, string Email, ICollection<Cheep> Cheeps, ICollection<Author> Follows) {
     public static implicit operator AuthorViewModel(Type v)
     {
         throw new NotImplementedException();
@@ -28,7 +29,7 @@ public interface ICheepService
     Task<List<CheepViewModel>> GetOwnCheepsAsync(string author);
     Task<Boolean> IsUserFollowing(string author, string author2);
     Author GetAuthorByName(String authorname);
-    void FollowAuthor(String authorname, String Loggedinauthorname);
+    Task FollowAuthor(String authorname, String Loggedinauthorname);
     Task<bool> DeleteCheepByID(int cheepID);
     Task<int>  GetAuthorCount();
 }
@@ -71,11 +72,7 @@ public class CheepService : ICheepService
         ).Reverse().ToList();
         List<Author> loader_Authors = await repository.GetAuthors();
         _authors = loader_Authors.Select(Author => 
-            new AuthorViewModel(Author.AuthorId, Author.Name, Author.Email, Author.Cheeps,Author.Follows )).ToList();
-    }
-
-    public void IsUserFollowing() {
-        throw new NotImplementedException();
+            new AuthorViewModel(Author.AuthorId, Author.Name, Author.Email, Author.Cheeps, Author.Follows )).ToList();
     }
 
     public Task<int> GetTotalCheepCount()
@@ -93,7 +90,7 @@ public class CheepService : ICheepService
     public async Task<List<CheepViewModel>> GetCheepsFromAuthorAsync(string author)
     {
         await Task.CompletedTask;
-        return _cheeps.Where(x => x.Author.ToLower() == author.ToLower()).ToList();
+        return _cheeps.Where(x => x.Author == author).ToList();
     }
 
     public async Task<int> GetAuthorCount(){
@@ -105,15 +102,14 @@ public class CheepService : ICheepService
         await Task.CompletedTask;
         
         List<CheepViewModel> result = new List<CheepViewModel>();
-        result.AddRange(_cheeps.Where(cheep => cheep.Author == authorname));
-        result.AddRange(await GetCheepsFromAuthorAsync(authorname));
         
-        List<Author> authors = new List<Author>();
-        authors = await c.GetFollowedByAuthor(authorname);
+        result.AddRange(await GetCheepsFromAuthorAsync(authorname));
+        var authors = await c.GetFollowedByAuthor(authorname);
 
-        foreach (Author author in authors) {
+        foreach (var author in authors) {
             result.AddRange(await GetCheepsFromAuthorAsync(author.Name));
-        }
+        }   //TODO add sorting
+        
         return result;
     }
 
@@ -132,12 +128,9 @@ public class CheepService : ICheepService
         return GetPaginatedCheeps(pageNumber, pageSize);
     }
 
-    public void FollowAuthor(String authorname, String loggedinauthorname) {
+    public async Task FollowAuthor(string authorname, string loggedinauthorname) {
         ICheepRepository c = GetCheepRepository();
-        var a = c.GetAuthorByName(authorname).Result;
-        var b = c.GetAuthorByName(loggedinauthorname).Result;
-        c.AddFollowed(a,b);
-        
+        await c.FollowAuthor(authorname, loggedinauthorname);
     }
 
     public Author GetAuthorByName(String authorname) {

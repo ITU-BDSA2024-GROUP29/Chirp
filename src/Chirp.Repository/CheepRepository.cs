@@ -69,14 +69,49 @@ public class CheepRepository : ICheepRepository {
     {
         return await GetPaginatedCheeps(pageNumber, pageSize);
     }
+    
+    public async Task FollowAuthor(string authorname, string loggedinauthorname) {
+        if (string.IsNullOrWhiteSpace(authorname))
+            throw new ArgumentNullException(nameof(authorname), "Author name cannot be null or whitespace.");
+        if (string.IsNullOrWhiteSpace(loggedinauthorname))
+            throw new ArgumentNullException(nameof(loggedinauthorname), "Logged-in author name cannot be null or whitespace.");
+        
+        var a = await GetAuthorByName(authorname);
+        if (a == null)
+            throw new InvalidOperationException($"Author with name '{authorname}' was not found.");
 
-    public async Task<Author> GetAuthorByName(String authorname){
-       // return await  _dbContext.Authors.Where(a => a.Name )
-        return await _dbContext.Authors.Where(a => a.Name.ToLower() == authorname.ToLower()).FirstOrDefaultAsync(); //sometimes give a null reference, not valid longterm
+        var b = await GetAuthorByName(loggedinauthorname);
+        if (b == null)
+            throw new InvalidOperationException($"Logged-in author with name '{loggedinauthorname}' was not found.");
+
+        await AddFollowed(a, b);
     }
 
-    public void AddFollowed(Author user, Author loggedinUser) {
-        loggedinUser.Follows.Add(user);
+    public async Task<Author> GetAuthorByName(String authorname){
+        
+       // return await  _dbContext.Authors.Where(a => a.Name )
+       if (String.IsNullOrWhiteSpace(authorname)) {
+           throw new ArgumentNullException(nameof(authorname));
+       } 
+       return await _dbContext.Authors.Where(a => a.Name.ToLower() == authorname.ToLower()).FirstOrDefaultAsync(); //sometimes give a null reference, not valid longterm
+       
+    }
+
+    public async Task AddFollowed(Author user, Author loggedinUser) {
+        await Task.CompletedTask;
+        if (loggedinUser == null) 
+            throw new ArgumentNullException(nameof(loggedinUser), "The logged-in user cannot be null." + loggedinUser);
+        if (user == null) 
+            throw new ArgumentNullException(nameof(user), "The user to be followed cannot be null.");
+
+        if (loggedinUser.Follows == null) loggedinUser.Follows = new List<Author>();
+        if (loggedinUser.Follows.Contains(user)) {
+            loggedinUser.Follows.Remove(user);
+        }
+        else {
+            loggedinUser.Follows.Add(user);
+        }
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task<int> GetTotalAuthorsCount()
@@ -86,12 +121,11 @@ public class CheepRepository : ICheepRepository {
 
     //should return authors followed by author from input (untested, TODO)
     public async Task<List<Author>> GetFollowedByAuthor(String authorname) {
+        await Task.CompletedTask;
         Author author = GetAuthorByName(authorname).Result;
-        if (author == null) {   //remove this when GetAutherByName is completely fixed
-            return new List<Author>();
-        }
-        return await _dbContext.Authors.Where(a => author.Follows.Contains(a)).ToListAsync();
+        return _dbContext.Authors.Where(a => author.Follows.Contains(a)).ToList();
     }
+    
 
     public async Task<bool> DeleteCheepByID(int cheepID)
 {
