@@ -32,6 +32,7 @@ public interface ICheepService
     Task FollowAuthor(String authorname, String Loggedinauthorname);
     Task<bool> DeleteCheepByID(int cheepID);
     Task<int>  GetAuthorCount();
+    int getAuthorCheepCount(string author);
 }
 
 public class CheepService : ICheepService
@@ -162,6 +163,11 @@ public class CheepService : ICheepService
     public async Task<bool> DeleteCheepByID(int cheepID)
     {
         return await repository.DeleteCheepByID(cheepID);
+    }
+
+    public int getAuthorCheepCount(String author)
+    {
+        return _cheeps.Where(cheep => cheep.Author.ToLower() == author.ToLower()).Count();
     }
 
 }
