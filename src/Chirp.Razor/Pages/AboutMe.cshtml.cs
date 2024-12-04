@@ -16,7 +16,7 @@ public class AboutMeModel : SharedFuncs
     public string Name { get; set; }
     public string Email { get; set; }
     public int TotalMessages { get; set; }
-    public ICollection<ApplicationUser> Follows{ get; set; }
+    public ICollection<Author> Follows{ get; set; }
 
     public AboutMeModel(ICheepService service) : base(service)
     {
@@ -36,7 +36,8 @@ public class AboutMeModel : SharedFuncs
         Cheeps = await _cheepService.GetCheepsFromAuthorAsync(author);
         Email = authorObj.Email;
         Name = authorObj.Name;
-        Follows = authorObj.Follows ?? new List<ApplicationUser>();
+
+        Follows = authorObj.Follows ?? new List<Author>();
 
 
         return Page();
@@ -58,7 +59,7 @@ public class AboutMeModel : SharedFuncs
         Cheeps = await _cheepService.GetCheepsFromAuthorAsync(authorName);
         Email = authorObj.Email ?? "No Email is Associated with the Account";
         Name = authorObj.Name;
-        Follows = authorObj.Follows ?? new List<ApplicationUser>();
+        Follows = authorObj.Follows ?? new List<Author>();
 
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -94,7 +95,7 @@ public class AboutMeModel : SharedFuncs
             {
                 foreach (var user in Follows)
                 {
-                    stringBuilder.AppendLine("-" + user.UserName);
+                    stringBuilder.AppendLine("-" + user.Name);
                 }
             }
             else
