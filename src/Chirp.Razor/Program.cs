@@ -24,8 +24,8 @@ namespace Chirp.Razor
             builder.Services.AddAuthentication()
                 .AddGitHub(o =>
                 {
-                    o.ClientId = builder.Configuration["authentication:github:clientId"];
-                    o.ClientSecret = builder.Configuration["authentication:github:clientSecret"];
+                    o.ClientId = builder.Configuration["authentication:github:clientId"] ?? Environment.GetEnvironmentVariable("GITHUBCLIENTID");
+                    o.ClientSecret = builder.Configuration["authentication:github:clientSecret"] ?? Environment.GetEnvironmentVariable("GITHUBCLIENTSECRET");
                     o.CallbackPath = "/signin-github";
                 });
 
