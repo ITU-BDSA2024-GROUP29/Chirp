@@ -88,18 +88,13 @@ public class CheepRepository : ICheepRepository {
     }
 
     public async Task<Author> GetAuthorByName(String authorname){
-        /*
+        
        // return await  _dbContext.Authors.Where(a => a.Name )
        if (String.IsNullOrWhiteSpace(authorname)) {
            throw new ArgumentNullException(nameof(authorname));
        } 
        return await _dbContext.Authors.Where(a => a.Name.ToLower() == authorname.ToLower()).FirstOrDefaultAsync(); //sometimes give a null reference, not valid longterm
-    */
-        var list = await GetAuthors();
-        foreach (var name in list) {
-            if (name.Name == authorname) return name;
-        }
-        return null;
+       
     }
 
     public async Task AddFollowed(Author user, Author loggedinUser) {
