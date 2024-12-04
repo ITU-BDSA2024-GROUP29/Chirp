@@ -14,10 +14,14 @@ public class SharedFuncs : PageModel {
     protected readonly ICheepService _cheepService;
     
     public async Task<IActionResult> OnPostCheepAsync(String Post){
+
+            if(Post.Length > 160){
+                return BadRequest("Cheep Length too long > 160");
+            }
+
             bool newAuthor = false;
             
             var loggedInUserName = User.Identity.Name;
-            
             
             var AuthorLoggedIn = await _cheepService.GetCheepRepository().GetAuthorByName(loggedInUserName);
             Console.WriteLine("loggedInUserName: " + loggedInUserName);
@@ -74,7 +78,7 @@ public class SharedFuncs : PageModel {
         }
     }
     public async Task<Boolean> IsFollowing(String authorname) {
-        if (await _cheepService.IsUserFollowing(User.Identity.Name,authorname))
+        if (await _cheepService.IsUserFollowing(User.Identity.Name, authorname))
         {
             return true;
         }

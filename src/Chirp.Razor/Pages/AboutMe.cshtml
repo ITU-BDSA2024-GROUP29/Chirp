@@ -1,0 +1,41 @@
+﻿@page "/{author}/AboutMe"
+@model Chirp.Razor.Pages.AboutMeModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Chirp!";
+    Layout = "Shared/_Layout";
+    var routeName = HttpContext.GetRouteValue("author");
+}
+
+<div>
+    <h2> About @routeName </h2>
+
+    <h3> Name: @Model.Name </h3>
+    <p>
+        Email: @Model.Email <br>
+        Amount of Messages: @Model.TotalMessages <br>
+    </p>
+    @if (@Model.Follows.Any())
+    {
+        @foreach (var user in Model.Follows)
+            {
+                <li>
+                    <p>
+                            <a href="/@user.Name">@user.Name</a>
+                    </p>
+                </li>
+            }
+    }
+    else{
+        <p> You are currently not following any other users</p>
+    }
+
+    <br>
+    <div style="width: 100%;">
+        <form asp-page-handler="DownloadUserInfo" method="post">
+            <input type="hidden" name="authorName" value="@Model.Name">
+            <button type="submit">DownloadUserInfo</button>
+        </form>
+    </div>
+
+</div>

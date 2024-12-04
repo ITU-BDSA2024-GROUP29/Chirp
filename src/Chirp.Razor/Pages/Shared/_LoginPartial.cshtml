@@ -4,13 +4,13 @@
 @inject SignInManager<ApplicationUser> SignInManager 
 @inject UserManager<ApplicationUser> UserManager 
 
-    <ul class="navbar-nav">
-
+    <div class="navigation">
         @if (User.Identity.IsAuthenticated)
         {
             <div>
                 <a href="/@(User.Identity.Name)/MyTimeline">My timeline</a> |
                 <a href="/">public timeline</a> |
+                <a href="/@(User.Identity.Name)/AboutMe">About me</a> |
                 <a class="nav-link text-dark" href="/Identity/Account/Logout">logout [@(User.Identity.Name)]</a>
             </div>
         }
@@ -21,7 +21,5 @@
                 <a class="nav-link text-dark" href="/Identity/Account/Register">register</a> |
                 <a class="nav-link text-dark" href="/Identity/Account/Login">login</a> |
             </div>
-            
-            
         }
-    </ul>
+    </div>

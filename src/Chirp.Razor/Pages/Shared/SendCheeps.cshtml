@@ -1,4 +1,3 @@
-
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <div class="cheepbox">
@@ -12,7 +11,7 @@
     <h3>What's on your mind @(User.Identity.Name)?</h3>
     <form  method="post" asp-page-handler="Cheep">
         @Html.AntiForgeryToken()
-        <input style="float: left" type="text" name="Post" placeholder="Type your message..." />
+        <input style="float: left" type="text" name="Post" placeholder="Type your message..." maxlength="160" />
         <button type="submit">Share</button>
     </form>
 </div>

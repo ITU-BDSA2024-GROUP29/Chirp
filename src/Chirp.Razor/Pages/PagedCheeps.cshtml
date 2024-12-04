@@ -24,17 +24,21 @@
                         
                         @cheep.Message
                         <small>&mdash; @cheep.Timestamp</small>
-                        @if (User.Identity.IsAuthenticated) {
+                        
                             <!-- Follow/Unfollow button -->
-                            
-                            <form method="post" asp-page-handler="Follow" style="display:inline;">
+
+                            @if (User.Identity.IsAuthenticated){
+
+                                <form method="post" asp-page-handler="Follow" style="display:inline;">
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="followedId" value="@cheep.Author"/>
                                 <button type="submit" class="btn btn-@(await Model.IsFollowing(cheep.Author) ? "danger" : "primary") btn-sm">
                                     @(await Model.IsFollowing(cheep.Author) ? "Unfollow" : "Follow")
                                 </button>
-                            </form>
-                        }
+                                </form>
+                            }
+                            
+                        
                     </p>
                 </li>
             }

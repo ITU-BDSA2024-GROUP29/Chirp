@@ -13,9 +13,11 @@ namespace Chirp.Razor
             var builder = WebApplication.CreateBuilder(args);
 
             // Load database connection via configuration
-            builder.Services.AddDbContext<ChirpDBContext>(options =>
-                options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+            builder.Services.AddDbContext<ChirpDBContext>(options => {
+                options.EnableSensitiveDataLogging();
+                options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+                });
+                
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => 
                 options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ChirpDBContext>();
@@ -29,12 +31,13 @@ namespace Chirp.Razor
                     o.CallbackPath = "/signin-github";
                 });
 
-
             // Add services to the container.
             builder.Services.Core();
             builder.Services.AddRazorPages();
             builder.Services.AddScoped<ICheepRepository, CheepRepository>();
             builder.Services.AddScoped<ICheepService, CheepService>();
+            
+            
 
 
             var app = builder.Build();
