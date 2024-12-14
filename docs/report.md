@@ -1,6 +1,8 @@
 # Chirp
 https://github.com/itu-bdsa/lecture_notes/blob/main/sessions/session_12/README_REPORT.md
 -build status-
+#
+cheat sheet: https://www.markdownguide.org/cheat-sheet/
 
 ## Design and Architecture
 
