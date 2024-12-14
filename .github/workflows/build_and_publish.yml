@@ -86,11 +86,8 @@ jobs:
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
-        with: |
-          tag: ${{ github.ref }}  # Use the tag that triggered the workflow
-          files: |
-            ubuntu-build.zip
-            windows-build.zip
-            macos-build.zip
+        with:
+          tag: ${{ github.ref }} # Use the tag that triggered the workflow
+          files: ubuntu-build.zip, windows-build.zip, macos-build.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
