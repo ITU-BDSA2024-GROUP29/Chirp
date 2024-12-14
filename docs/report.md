@@ -1,4 +1,5 @@
 # Chirp
+
 https://github.com/itu-bdsa/lecture_notes/blob/main/sessions/session_12/README_REPORT.md
 -build status-
 
@@ -14,7 +15,6 @@ https://github.com/itu-bdsa/lecture_notes/blob/main/sessions/session_12/README_R
 
 ### Sequence of functionalities/call through Chirp
 
-
 ## Process
 
 ### Build, test, release and deployment
@@ -25,9 +25,12 @@ https://github.com/itu-bdsa/lecture_notes/blob/main/sessions/session_12/README_R
 
 ### How to run test suite locally
 
-
 ## Ethics
 
 ### License
+
+Chirp is made available under the [MIT License](https://opensource.org/license/mit).
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/licenses/MIT)
 
 ### LLMs, ChatGPT, CoPilot and others
