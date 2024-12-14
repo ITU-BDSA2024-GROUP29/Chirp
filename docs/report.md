@@ -33,3 +33,4 @@ cheat sheet: https://www.markdownguide.org/cheat-sheet/
 ### License
 
 ### LLMs, ChatGPT, CoPilot and others
+ChatGPT, was used during the development of this project, although it was mainly used to troubleshoot and fix errors.
