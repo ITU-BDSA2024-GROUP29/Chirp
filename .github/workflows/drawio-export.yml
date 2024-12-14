@@ -26,7 +26,7 @@ jobs:
       - name: Export draw.io files to AsciiDoc and PNG files
         uses: rlespinasse/drawio-export-action@v2
         with:
-          path: docs/drawiofiles
+          path: docs/diagrams
           format: adoc
           transparent: true
           output: drawio-assets
@@ -34,7 +34,7 @@ jobs:
       - name: Export draw.io files to PNG format
         uses: rlespinasse/drawio-export-action@v2
         with:
-          path: docs/drawiofiles
+          path: docs/diagrams
           format: png
           transparent: true
           output: drawio-assets
