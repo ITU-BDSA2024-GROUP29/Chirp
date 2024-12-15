@@ -10,15 +10,13 @@ numbersections: true
 
 https://github.com/itu-bdsa/lecture_notes/blob/main/sessions/session_12/README_REPORT.md
 -build status-
-![example branch parameter](https://github.com/ITU-BDSA2024-GROUP29/Chirp/blob/f0ac3c1480d9a09a63efd21db17844a254db9f95/.github/workflows/main_bdsagroup29chirpremotedb.yml)
-
 
 cheat sheet: https://www.markdownguide.org/cheat-sheet/
 
 # Design and Architecture
 
 ## Domaim model
-![alt text](/diagrams/drawio-assets/DomainModel-side-1.png)
+![alt text](diagrams/drawio-assets/DomainModel-side-1.png)
 
 ## Architecture - in the small
 
