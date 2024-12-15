@@ -16,7 +16,7 @@ cheat sheet: https://www.markdownguide.org/cheat-sheet/
 # Design and Architecture
 
 ## Domaim model
-![alt text](diagrams/drawio-assets/DomainModel-side-1.png)
+![alt text](./diagrams/drawio-assets/DomainModel-side-1.png)
 
 ## Architecture - in the small
 
