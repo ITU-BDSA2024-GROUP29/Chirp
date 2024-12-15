@@ -34,7 +34,7 @@ jobs:
       - name: Export draw.io files to PNG format
         uses: rlespinasse/drawio-export-action@v2
         with:
-          path: docs
+          path: docs/
           format: png
           transparent: true
           output: images
