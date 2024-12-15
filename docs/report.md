@@ -24,6 +24,7 @@ The Chirp! application has a follow function which is also represented in the Au
 
 
 ## Architecture - in the small
+![alt text](./diagrams/drawio-assets/Architecture-small-Side-1.png)
 
 ## Architecture of deployed application
 
