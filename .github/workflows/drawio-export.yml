@@ -34,10 +34,10 @@ jobs:
       - name: Export draw.io files to PNG format
         uses: rlespinasse/drawio-export-action@v2
         with:
-          path: docs
+          path: docs/diagrams
           format: png
           transparent: true
-          output: images
+          output: drawio-assets
 
       - name: Get author and committer info from HEAD commit
         uses: rlespinasse/git-commit-data-action@v1
