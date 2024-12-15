@@ -1,0 +1,4 @@
+= DomainModel Side-1
+
+image::DomainModel-Side-1.png[Side-1]
+
