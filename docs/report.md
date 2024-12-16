@@ -71,7 +71,7 @@ this layer contains the webpages, database and startup program for Chirp! tests 
 ## 1.3 Architecture of deployed application
 
 ![Client and Server components](./)
-The client component is the client box and Oauth, the server components is everything inside the Azure box. The app box consists of all the html files in the shared folder, this is what the client sees. The app background box, is the services that communicates between the app and client input and the database. The database box is pretty self-explanatory, it contains all the information from the web application. The Identity Core box is where sensitive user information and data is encrypted. ![User Activities unauthorized](./diagrams/drawio-assets/Architecture-side-1.png)
+The client component is the client box and Oauth, the server components is everything inside the Azure box. The app box consists of all the html files in the shared folder, this is what the client sees. The app background box, is the services that communicates between the app and client input and the database. The database box is pretty self-explanatory, it contains all the information from the web application. The Identity Core box is where sensitive user information and data is encrypted. ![Architecture](./diagrams/drawio-assets/Architecture-side-1.png)
 
 
 ## 1.4 User activities
