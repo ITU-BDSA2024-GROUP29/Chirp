@@ -122,7 +122,7 @@ TODO
 
 During the course of this program, the general process for making software starts with issue creation. From here, a separate branch would be created on Git. This branch would serve as the development environment for the issue. When developers working on a given issue deem it finished, a pull request would be submitted, where other members would accept, comment or deny it based on feedback. Upon a successful merge, the issue would be marked as finished and the branch would be deleted. 
 
-In practice issues would be created as mentioned above, but sometimes forgotten, even when working on said issue. This is most likely just due to being unused to working with issues and the small size of the group. Most of the time, there was also no reason to comment or deny a given pull request since perhaps 3/5 group members would 
+In practice issues would be created as mentioned above, but sometimes forgotten, even when working on said issue. This is most likely just due to being unused to working with issues and the small size of the group. Most of the time, there was also no reason to comment or deny a given pull request since perhaps 3/5 group members would work together on a given branch and there would be nothing left to say about the code. Branches would also live a relatively long time in our project due to not being able to finish a certain functionality or bug before the weekend and it would be awkward to merge unfinished code.
 
 
 ##  2.3 Missing Features  
