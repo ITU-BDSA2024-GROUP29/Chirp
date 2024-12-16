@@ -14,10 +14,10 @@ public record CheepViewModel(string Author, string Message, string Timestamp, in
         if (string.IsNullOrWhiteSpace(markdown))
             return string.Empty;
 
-        // Replace bold (**text** or __text__) with <strong>text</strong>
+        // Replace bold (**text**) with <strong>text</strong>
         markdown = System.Text.RegularExpressions.Regex.Replace(markdown, @"\*\*(.+?)\*\*", "<strong>$1</strong>");
 
-        // Replace italic (*text* or _text_) with <em>text</em>
+        // Replace italic (*text*) with <em>text</em>
         markdown = System.Text.RegularExpressions.Regex.Replace(markdown, @"\*(.+?)\*", "<em>$1</em>");
 
         // Replace [link](url) with <a href="url">link</a>
