@@ -44,6 +44,17 @@ The Chirp! application has a follow function which is also represented in the Au
 
 ## How to run test suite locally
 
+To run our test project, follow the list below:
+
+* Have .NET 9.0 in your environment.
+* Go to the project root directory (./CHIRP).
+* Alternatively, go to a specific test directory (./CHIRP/test/ChirpRazor.Tests).
+* Run the "dotnet test" command in your terminal.
+
+In our test project, we cover relevant unit and integration tests for all methods within our application core. See subsection 'Architecture in the Small.'
+"Relevant" tests, in this case, cover important and central methods for our Chirp application. This mainly includes methods used to interact with the database (Send Cheeps, Store Cheeps, etc).
+
+
 # Ethics
 
 ## License
