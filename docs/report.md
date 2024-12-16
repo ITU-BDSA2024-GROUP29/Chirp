@@ -2,16 +2,15 @@
 title: _Chirp!_ Project Report
 subtitle: ITU BDSA 2024 Group `29`
 author:
-<<<<<<< Updated upstream
-  - "Jonas Christian Henriksen <chjh@itu.dk>"
-  - "Adrian Hoff <adho@itu.dk>"
-=======
 - "Jonas Christian Henriksen <chjh@itu.dk>"
 - "Adrian Hoff <adho@itu.dk>"
 - "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
->>>>>>> Stashed changes
 numbersections: true
 ---
+![Test badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/test.yml/badge.svg??event=push)
+![Deploy badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/main_bdsagroup29chirpremotedb.yml/badge.svg??event=push)
+
+
 
 - [Design and Architecture](#design-and-architecture)
   - [Domain model](#domain-model)
@@ -33,8 +32,6 @@ numbersections: true
 
 
 https://github.com/itu-bdsa/lecture_notes/blob/main/sessions/session_12/README_REPORT.md
-![Test badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/test.yml/badge.svg??event=push)
-![Deploy badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/main_bdsagroup29chirpremotedb.yml/badge.svg??event=push)
 
 
 cheat sheet: https://www.markdownguide.org/cheat-sheet/
