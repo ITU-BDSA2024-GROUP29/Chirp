@@ -10,11 +10,11 @@
         <mxCell id="LNXX1sQD1SwC8qZikEQW-1" value="User enters Chirp! webpage" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="120" y="550" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="LNXX1sQD1SwC8qZikEQW-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="LNXX1sQD1SwC8qZikEQW-2" target="LNXX1sQD1SwC8qZikEQW-4">
+        <mxCell id="LNXX1sQD1SwC8qZikEQW-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="LNXX1sQD1SwC8qZikEQW-2" target="LNXX1sQD1SwC8qZikEQW-4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="LNXX1sQD1SwC8qZikEQW-2" value="Redirected to front page" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="340" y="550" width="120" height="50" as="geometry" />
+          <mxGeometry x="294" y="550" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="LNXX1sQD1SwC8qZikEQW-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="LNXX1sQD1SwC8qZikEQW-4" target="LNXX1sQD1SwC8qZikEQW-6">
           <mxGeometry relative="1" as="geometry" />
