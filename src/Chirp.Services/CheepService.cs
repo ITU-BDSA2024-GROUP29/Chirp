@@ -113,8 +113,10 @@ public class CheepService : ICheepService
         
         return result;
     }
-
-    //does author 1 follow author 2?
+    
+    //Checks if an author follows another author.
+    //ordering is: does author1 follow author2?
+    //returns boolean Task
     public async Task<bool> IsUserFollowing(string author1, string author2) {
         ICheepRepository c = GetCheepRepository();
         await Task.CompletedTask;

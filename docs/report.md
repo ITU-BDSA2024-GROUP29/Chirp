@@ -8,7 +8,8 @@ numbersections: true
 ---
 
 https://github.com/itu-bdsa/lecture_notes/blob/main/sessions/session_12/README_REPORT.md
--build status-
+![Test badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/test.yml/badge.svg??event=push)
+![Deploy badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/main_bdsagroup29chirpremotedb.yml/badge.svg??event=push)
 
 cheat sheet: https://www.markdownguide.org/cheat-sheet/
 
@@ -17,15 +18,15 @@ cheat sheet: https://www.markdownguide.org/cheat-sheet/
 ## Domaim model
 
 The Domain model for Chirp! can be seen illustrated as an ER-diagram in the following image:
-
-![alt text](./diagrams/drawio-assets/DomainModel-Side-1.png)
-Our Cheep entity is represents all Cheeps from all users. The entity contains information about the cheeps content, when it was posted and who posted it.
+![Chirp! ER-diagram](./diagrams/drawio-assets/DomainModel-Side-1.png)
+Our Cheep entity represents all Cheeps from all users. The entity contains information about the cheeps content, when it was posted and who posted it.
 The Author entity contains information such as a username and e-mail. The author entity has a relation to the Cheep entity through a list of cheeps inside the author. This is necessary to find all cheeps belonging to a specific user quickly rather than matching a specific user to all cheeps in the database.
 The Chirp! application has a follow function which is also represented in the Author entity. This is made as a relation to itself, an Author can follow and be followed by many other Authors.
 
 ## Architecture - in the small
 
-![alt text](./diagrams/drawio-assets/Architecture-small-Side-1.png)
+Chirps onion architecture can be seen in the next figure below.
+![Onion Architecture](./diagrams/drawio-assets/Architecture-small-Side-1.png)
 
 ## Architecture of deployed application
 
@@ -38,6 +39,16 @@ The Chirp! application has a follow function which is also represented in the Au
 ## Build, test, release and deployment
 
 ## Team work
+
+## Missing Features
+
+### DTOs
+
+### "Forget me" feature
+
+### End-to-end test
+
+###
 
 ## How to make Chirp! work locally
 
