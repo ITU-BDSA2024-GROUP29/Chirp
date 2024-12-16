@@ -17,7 +17,7 @@ cheat sheet: https://www.markdownguide.org/cheat-sheet/
 
 # Design and Architecture
 
-## Domaim model
+## Domain model
 
 The Domain model for Chirp! can be seen illustrated as an ER-diagram in the following image:
 ![Chirp! ER-diagram](./diagrams/drawio-assets/DomainModel-Side-1.png)
@@ -32,18 +32,19 @@ Chirps onion architecture can be seen in the next figure below.
 The onion architecture diagram consists of four layers, the Core, Repository, Service and Razor.
 They are called the same as their respective folders.
 
-* The red "Application Core" is a term we will use to reference the parts that deal with logic and data processing.
+The red "Application Core" is a term we will use to reference the parts that deal with logic and data processing.
 
-* The Core section has our DomainModel, this includes the DBContext, Cheep and Author class. This is also where IdentityCore is implemented.
+The Core section has our DomainModel, this includes the DBContext, Cheep and Author class. This is also where IdentityCore is implemented.
 
-* The Repository and Service layers each contain different logic methods and responsibilities.
+The Repository and Service layers each contain different logic methods and responsibilities.
 
-* The Razor layer is what is generally recognized as the web layer, the folder is just called 'Chirp.Razor'.
+The Razor layer is what is generally recognized as the web layer, the folder is just called 'Chirp.Razor'.
 this layer contains the webpages, database and startup program for Chirp! tests are also illustrated in this layer, although they are in a separate folder.
 
 ## Architecture of deployed application
 
 ## User activities
+![User Activities](./diagrams/drawio-assets/UserJourney-small-Side-1.png)
 
 ## Sequence of functionalities/call through Chirp
 
