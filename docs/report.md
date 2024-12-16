@@ -25,7 +25,8 @@
 	numbering=true
 	autoSave=true
 	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->---
+<!-- /vscode-markdown-toc -->
+---
 title: _Chirp!_ Project Report
 subtitle: ITU BDSA 2024 Group `29`
 author:
