@@ -1,0 +1,4 @@
+= Architecture Side-1
+
+image::Architecture-Side-1.png[Side-1]
+
