@@ -63,7 +63,7 @@ public class CheepService : ICheepService
         }
         return _instance;
     }
-
+    
     private async Task LoadDB()
     {
         List<Cheep> loader = await repository.ReadCheeps();
@@ -131,6 +131,7 @@ public class CheepService : ICheepService
         return GetPaginatedCheeps(pageNumber, pageSize);
     }
 
+    //Allow user to follow another used. 'Loggedinauthorname' is the user that follow 'authorname'
     public async Task FollowAuthor(string authorname, string loggedinauthorname) {
         ICheepRepository c = GetCheepRepository();
         await c.FollowAuthor(authorname, loggedinauthorname);

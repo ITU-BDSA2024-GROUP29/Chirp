@@ -27,7 +27,12 @@ The Chirp! application has a follow function which is also represented in the Au
 
 ## Architecture - in the small
 Chirps onion architecture can be seen in the next figure below.
-![Onion Architecture](./diagrams/drawio-assets/Architecture-small-Side-1.png) 
+![Onion Architecture](./diagrams/drawio-assets/Architecture-small-Side-1.png)
+The onion architecture diagram consists of four layers, the Core, Repository, Service and Razor.
+They are called the same as their respective folders.
+
+The red "Application Core" is a term we will use to reference the parts that deal with logic and data processing.
+
 
 
 ## Architecture of deployed application
@@ -46,7 +51,8 @@ Chirps onion architecture can be seen in the next figure below.
 ### DTOs
 ### "Forget me" feature
 ### End-to-end test
-###
+### Security
+### Bugs
 
 
 ## How to make Chirp! work locally
