@@ -2,22 +2,43 @@
 title: _Chirp!_ Project Report
 subtitle: ITU BDSA 2024 Group `29`
 author:
-  - "Jonas Christian Henriksen <chjh@itu.dk>"
-  - "Adrian Hoff <adho@itu.dk>"
+- "Jonas Christian Henriksen <chjh@itu.dk>"
+- "Adrian Hoff <adho@itu.dk>"
+- "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
 numbersections: true
 ---
+![Test badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/test.yml/badge.svg??event=push)
+![Deploy badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/main_bdsagroup29chirpremotedb.yml/badge.svg??event=push)
+
+
+
+- [Design and Architecture](#design-and-architecture)
+  - [Domain model](#domain-model)
+  - [Domain model](#domain-model-1)
+  - [Architecture - in the small](#architecture---in-the-small)
+  - [Architecture of deployed application](#architecture-of-deployed-application)
+  - [User activities](#user-activities)
+  - [Sequence of functionalities/call through Chirp](#sequence-of-functionalitiescall-through-chirp)
+- [Process](#process)
+  - [Build, test, release and deployment](#build-test-release-and-deployment)
+  - [Team work](#team-work)
+  - [How to make Chirp! work locally](#how-to-make-chirp-work-locally)
+  - [How to run test suite locally](#how-to-run-test-suite-locally)
+- [Ethics](#ethics)
+  - [License](#license)
+  - [LLMs, ChatGPT, CoPilot and others](#llms-chatgpt-copilot-and-others)
+
+
 
 
 https://github.com/itu-bdsa/lecture_notes/blob/main/sessions/session_12/README_REPORT.md
-![Test badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/test.yml/badge.svg??event=push)
-![Deploy badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/main_bdsagroup29chirpremotedb.yml/badge.svg??event=push)
 
 
 cheat sheet: https://www.markdownguide.org/cheat-sheet/
 
 # Design and Architecture
 
-## Domaim model
+## Domain model
 
 The Domain model for Chirp! can be seen illustrated as an ER-diagram in the following image:
 ![Chirp! ER-diagram](./diagrams/drawio-assets/DomainModel-Side-1.png)
@@ -32,18 +53,19 @@ Chirps onion architecture can be seen in the next figure below.
 The onion architecture diagram consists of four layers, the Core, Repository, Service and Razor.
 They are called the same as their respective folders.
 
-* The red "Application Core" is a term we will use to reference the parts that deal with logic and data processing.
+The red "Application Core" is a term we will use to reference the parts that deal with logic and data processing.
 
-* The Core section has our DomainModel, this includes the DBContext, Cheep and Author class. This is also where IdentityCore is implemented.
+The Core section has our DomainModel, this includes the DBContext, Cheep and Author class. This is also where IdentityCore is implemented.
 
-* The Repository and Service layers each contain different logic methods and responsibilities.
+The Repository and Service layers each contain different logic methods and responsibilities.
 
-* The Razor layer is what is generally recognized as the web layer, the folder is just called 'Chirp.Razor'.
+The Razor layer is what is generally recognized as the web layer, the folder is just called 'Chirp.Razor'.
 this layer contains the webpages, database and startup program for Chirp! tests are also illustrated in this layer, although they are in a separate folder.
 
 ## Architecture of deployed application
 
 ## User activities
+![User Activities](./diagrams/drawio-assets/UserJourney-small-Side-1.png)
 
 ## Sequence of functionalities/call through Chirp
 
