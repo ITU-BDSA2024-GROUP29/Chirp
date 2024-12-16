@@ -56,6 +56,9 @@ this layer contains the webpages, database and startup program for Chirp! tests 
 ## Missing Features
 ### DTOs
 ### "Forget me" feature
+
+Our application doesn't have the "Forget Me" feature requested in [Session 11](https://github.com/itu-bdsa/lecture_notes/blob/main/sessions/session_12/README_PROJECT.md) We planned on integrating this feature into your personal timeline, with a button that would delete all information stored on your account and clean up other users' follow lists. This wasn't finished due to time constraints.
+
 ### End-to-end test
 ### Security
 ### Bugs
