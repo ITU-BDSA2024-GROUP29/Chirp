@@ -1,0 +1,26 @@
+name: Advanced Usage
+
+on: push
+
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: create file list
+        id: files_list
+        run: |
+          echo "Rapport" > ./chirp/docs/
+          mkdir -p ./chirp/docs/pandoc
+          # This will also include README.md
+          echo "files=$(printf '%s ' *.md)" >> $GITHUB_ENV
+
+      - uses: docker://pandoc/latex:3.5
+        with:
+          args: --output=./chirp/docs/pandoc/result.pdf ${{ env.files }}
+          
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Rapport
+          path: ./chirp/docs/pandoc
