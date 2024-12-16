@@ -38,18 +38,7 @@ cheat sheet: https://www.markdownguide.org/cheat-sheet/
 
 # Design and Architecture
 
-
 ## Domain model
-=======
-##  <a name='Domain model'></a>Domain model
-## Domain model
-The Domain model for Chirp! can be seen illustrated as an ER-diagram in the following image:
-![alt text](./diagrams/drawio-assets/DomainModel-Side-1.png)
-Our Cheep entity is represents all Cheeps from all users. The entity contains information about the cheeps content, when it was posted and who posted it.
-The Author entity contains information such as a username and e-mail. The author entity has a relation to the Cheep entity through a list of cheeps inside the author. This is necessary to find all cheeps belonging to a specific user quickly rather than matching a specific user to all cheeps in the database.
-The Chirp! application has a follow function which is also represented in the Author entity. This is made as a relation to itself, an Author can follow and be followed by many other Authors. 
->>>>>>> Stashed changes
-
 
 The Domain model for Chirp! can be seen illustrated as an ER-diagram in the following image:
 ![Chirp! ER-diagram](./diagrams/drawio-assets/DomainModel-Side-1.png)
