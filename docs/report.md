@@ -2,10 +2,34 @@
 title: _Chirp!_ Project Report
 subtitle: ITU BDSA 2024 Group `29`
 author:
+<<<<<<< Updated upstream
   - "Jonas Christian Henriksen <chjh@itu.dk>"
   - "Adrian Hoff <adho@itu.dk>"
+=======
+- "Jonas Christian Henriksen <chjh@itu.dk>"
+- "Adrian Hoff <adho@itu.dk>"
+- "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
+>>>>>>> Stashed changes
 numbersections: true
 ---
+
+- [Design and Architecture](#design-and-architecture)
+  - [Domain model](#domain-model)
+  - [Domain model](#domain-model-1)
+  - [Architecture - in the small](#architecture---in-the-small)
+  - [Architecture of deployed application](#architecture-of-deployed-application)
+  - [User activities](#user-activities)
+  - [Sequence of functionalities/call through Chirp](#sequence-of-functionalitiescall-through-chirp)
+- [Process](#process)
+  - [Build, test, release and deployment](#build-test-release-and-deployment)
+  - [Team work](#team-work)
+  - [How to make Chirp! work locally](#how-to-make-chirp-work-locally)
+  - [How to run test suite locally](#how-to-run-test-suite-locally)
+- [Ethics](#ethics)
+  - [License](#license)
+  - [LLMs, ChatGPT, CoPilot and others](#llms-chatgpt-copilot-and-others)
+
+
 
 
 https://github.com/itu-bdsa/lecture_notes/blob/main/sessions/session_12/README_REPORT.md
@@ -17,7 +41,18 @@ cheat sheet: https://www.markdownguide.org/cheat-sheet/
 
 # Design and Architecture
 
+
 ## Domain model
+=======
+##  <a name='Domain model'></a>Domain model
+## Domain model
+The Domain model for Chirp! can be seen illustrated as an ER-diagram in the following image:
+![alt text](./diagrams/drawio-assets/DomainModel-Side-1.png)
+Our Cheep entity is represents all Cheeps from all users. The entity contains information about the cheeps content, when it was posted and who posted it.
+The Author entity contains information such as a username and e-mail. The author entity has a relation to the Cheep entity through a list of cheeps inside the author. This is necessary to find all cheeps belonging to a specific user quickly rather than matching a specific user to all cheeps in the database.
+The Chirp! application has a follow function which is also represented in the Author entity. This is made as a relation to itself, an Author can follow and be followed by many other Authors. 
+>>>>>>> Stashed changes
+
 
 The Domain model for Chirp! can be seen illustrated as an ER-diagram in the following image:
 ![Chirp! ER-diagram](./diagrams/drawio-assets/DomainModel-Side-1.png)
@@ -100,6 +135,18 @@ For database migrations and other Entity Framework tasks, ensure you have the EF
 `dotnet tool install --global dotnet-ef`
 
 ## How to run test suite locally
+
+To run our test project, follow the list below:
+
+* Have [.NET 9 SDK](https://dotnet.microsoft.com/en-us/download)
+ in your environment.
+* Go to the project root directory `./CHIRP`
+* Alternatively, go to a specific test directory `/CHIRP/test/ChirpRazor.Tests`
+* Run the `dotnet test` command in your terminal.
+
+In our test project, we cover relevant unit and integration tests for all methods within our application core. See subsection 'Architecture in the Small'   
+Relevant tests, in this case, cover important and central methods for our Chirp application. This mainly includes methods used to interact with the database (Send Cheeps, Store Cheeps, etc).
+
 
 # Ethics
 
