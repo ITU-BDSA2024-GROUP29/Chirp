@@ -50,33 +50,31 @@ Chirps onion architecture can be seen in the next figure below.
 
 ###
 
-## How to make Chirp! work locally
+## How to Run Chirp! Locally
 
-## How to run test suite locally
-
-To run the chirp application locally, you will need to setup the environment first.
+To run the Chirp application locally, you will first need to set up your environment.
 
 ### Setting up the Chirp application
 
 - Clone the Git repository using `git clone https://github.com/ITU-BDSA2024-GROUP29/Chirp.git`
 - Install dotnet 9 [.NET 9 SDK](https://dotnet.microsoft.com/en-us/download)
 
-### Install the dependencies
+### Install Dependencies
 
 To restore and install the project dependencies, navigate to the project root directory and run: `dotnet restore`
 
-### Set up Application User Secret
+### Setting up Application User Secret
 
-- Go to directory `cd .\src\Chirp.Razor\`
+- Navigateto directory `cd .\src\Chirp.Razor\`
 - `dotnet user-secrets init`
 - `dotnet user-secrets set "authentication:github:clientSecret" "3953dca60cd3ab410fe0649ae2d02c71160eeff1" `
 - `dotnet user-secrets set "authentication:github:clientId" "Ov23liqlfyf9uGVeeLpF" `
 
 ### Starting the Application
 
-- Go to the Directory `cd .\src\Chirp.Razor\ `
-- Run dotnet command `dotnet run`
-- Local IP will appear in the terminal, something like this `http://localhost:5273`
+- Navigate to the Chirp.Razor directory: `cd .\src\Chirp.Razor\ `
+- Run the application with the following command: `dotnet run`
+- You will see the local IP displayed in the terminal, similar to: `http://localhost:5273`
 
 > [!NOTE]
 > The application relies on several dependencies defined in the .csproj file. These include:
@@ -90,11 +88,14 @@ To ensure all dependencies are installed, use: `dotnet restore`
 For database migrations and other Entity Framework tasks, ensure you have the EF CLI installed:
 `dotnet tool install --global dotnet-ef`
 
+## How to run test suite locally
+
 # Ethics
 
 ## License
 
-Chirp is made available under the [MIT License](https://opensource.org/license/mit).
+Chirp is available under the [MIT License](https://opensource.org/license/mit).  
+The application dependencies are also licensed under the [MIT License](https://opensource.org/license/mit).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/licenses/MIT)
 
