@@ -11,16 +11,16 @@ jobs:
       - name: create file list
         id: files_list
         run: |
-          echo "Rapport" > ./chirp/docs/
-          mkdir -p ./chirp/docs/pandoc
+          echo "Report" > ./Chirp/docs/report.md
+          mkdir -p ./Chirp/docs//pandoc
           # This will also include README.md
           echo "files=$(printf '%s ' *.md)" >> $GITHUB_ENV
 
       - uses: docker://pandoc/latex:3.5
         with:
-          args: --output=./chirp/docs/pandoc/result.pdf ${{ env.files }}
+          args: --output=./Chirp/docs//pandoc/result.pdf ${{ env.files }}
           
       - uses: actions/upload-artifact@v4
         with:
-          name: Rapport
-          path: ./chirp/docs/pandoc
+          name: Report
+          path: ./Chirp/docs/pandoc

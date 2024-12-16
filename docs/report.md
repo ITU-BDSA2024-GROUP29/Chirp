@@ -15,7 +15,6 @@ author:
 
 - [Design and Architecture](#design-and-architecture)
   - [Domain model](#domain-model)
-- [The Chirp! application has a follow function which is also represented in the Author entity. This is made as a relation to itself, an Author can follow and be followed by many other Authors.](#the-chirp-application-has-a-follow-function-which-is-also-represented-in-the-author-entity-this-is-made-as-a-relation-to-itself-an-author-can-follow-and-be-followed-by-many-other-authors)
   - [Domain model](#domain-model-1)
   - [Architecture - in the small](#architecture---in-the-small)
   - [Architecture of deployed application](#architecture-of-deployed-application)
@@ -53,7 +52,7 @@ cheat sheet: https://www.markdownguide.org/cheat-sheet/
 
 # 1 Design and Architecture
 
-## 2 Domain model
+## 1.1 Domain model
 
 The Domain model for Chirp! can be seen illustrated as an ER-diagram in the following image:
 ![Chirp! ER-diagram](./diagrams/drawio-assets/DomainModel-Side-1.png)
@@ -61,7 +60,7 @@ Our Cheep entity represents all Cheeps from all users. The entity contains infor
 The Author entity contains information such as a username and e-mail. The author entity has a relation to the Cheep entity through a list of cheeps inside the author. This is necessary to find all cheeps belonging to a specific user quickly rather than matching a specific user to all cheeps in the database.
 The Chirp! application has a follow function which is also represented in the Author entity. This is made as a relation to itself, an Author can follow and be followed by many other Authors.
 
-## 3 Architecture - in the small
+## 1.2 Architecture - in the small
 
 Chirps onion architecture can be seen in the next figure below.
 ![Onion Architecture](./diagrams/drawio-assets/Architecture-small-Side-1.png)
@@ -77,56 +76,59 @@ The Repository and Service layers each contain different logic methods and respo
 The Razor layer is what is generally recognized as the web layer, the folder is just called 'Chirp.Razor'.
 this layer contains the webpages, database and startup program for Chirp! tests are also illustrated in this layer, although they are in a separate folder.
 
-## 4 Architecture of deployed application
+## 1.3 Architecture of deployed application
 
 
-## 5 User activities
+## 1.4 User activities
 ![User Activities unauthorized](./diagrams/drawio-assets/UserJourney-UnAuthorized.png)
 
 ![User Activities unauthorized](./diagrams/drawio-assets/UserJourney-Authorized.png)
 
-## 6 Sequence of functionalities/call through Chirp
+## 1.5 Sequence of functionalities/call through Chirp
 
-# 7 Process
+# 2 Process
 
-##  7.1 Build, test, release and deployment
+##  2.1 Build, test, release and deployment
 ![Build and Deploy](./diagrams/drawio-assets/DomainModel-Page-2.png)
 The build and deploy workflow 
 ![Build and Release](./diagrams/drawio-assets/DomainModel-Page-3.png)
-##  Team work 
+##  2.2 Team work 
 
 
-##   8 Missing Features  
-###  8.1 DTOs
-###  8.2 "Forget me" feature
+##   2.3 Missing Features  
+###  2.3.1 DTOs
+###  2.3.2 "Forget me" feature
 
 Our application doesn't have the "Forget Me" feature requested in [Session 11](https://github.com/itu-bdsa/lecture_notes/blob/main/sessions/session_11/README_PROJECT.md). We planned on integrating this feature into your personal timeline, with a button that would delete all information stored on your account and clean up other users' follow lists. This wasn't finished due to time constraints.
 
-###  8.3 End-to-end test
+###  2.3.3 End-to-end test
 
 We have not made the required End-To-End UI mentioned in [Session 09](https://github.com/itu-bdsa/lecture_notes/blob/main/sessions/session_09/README_PROJECT.md).this is mainly due to problems with running the project from the test directory and not so much with getting Playwright to work. We would have tested certain UI components to ensure functionality, such as verifying that the option to send a cheep only appears when you are logged in, and conducting extensive tests on the functionality of certain UI elements like buttons, etc.
 
-###  8.4 Security
+###  2.3.4 Security
 
 The application has a big security issue. A user is able to add html code to other users browsers, which can lead to bad actors can execute some problematic javascript code on other peoples browsers.
-This security issue exists because of how the markdown syntax is handled. To be able to show e.g. italic text, the program would need to be able to add the `<em>` tags around the text and it uses `@Html.Raw()` to convert it from a string to html code. But this is were the problem comes, since this cheeps are not sanitized 
+This security issue exists because of how the markdown syntax is handled. To be able to show e.g. italic text, the program would need to be able to add the `<em>` tags around the text and it uses `@Html.Raw()` to convert it from a string to html code. But this is were the problem comes, since this cheeps are not sanitized before it gets displayed.
+This is issues only affects the users and are affecting the server, which means that a bad cheep can be removed by a admin.
 
-###  8.5. <a name='Bugs'></a>Bugs
+###  2.3.5 Bugs
+1. 
+We currently have a bug that involves the follow feature and posting cheeps feature. 
 
-##  9 How to Run Chirp! Locally
+##  2.5 How to Run Chirp! Locally
 
 To run the Chirp application locally, you will first need to set up your environment.
 
-### 9.1 Setting up the Chirp application
+### 2.5.1 Setting up the Chirp application
 
 - Clone the Git repository using `git clone https://github.com/ITU-BDSA2024-GROUP29/Chirp.git`
 - Install dotnet 9 [.NET 9 SDK](https://dotnet.microsoft.com/en-us/download)
 
-### 9.2 Install Dependencies
+### 2.5.2 Install Dependencies
 
 To restore and install the project dependencies, navigate to the project root directory and run: `dotnet restore`
 
-### 9.3 Setting up GitHub OAuth
+### 2.5S3 etting up GitHub OAuth
 
 The Chirp application uses GitHub OAuth for authentication. To configure GitHub OAuth:
 
@@ -140,7 +142,7 @@ Once the app is created, note down the Client ID and Client Secret.
 > [!Note] 
 > Important: Keep the Client Secret secure and do not share it publicly.
 
-### 9.4 Setting up Application User Secrets
+### 2.5.4 Setting up Application User Secrets
 
 To securely store and manage the GitHub OAuth credentials:
 
@@ -155,7 +157,7 @@ To securely store and manage the GitHub OAuth credentials:
 
 >[!Note] Replace <your-client-id> and <your-client-secret> with the values obtained from GitHub.
 
-### 9.5 Starting the Application
+###  Starting the Application
 
 - Navigate to the Chirp.Razor directory: `cd .\src\Chirp.Razor\ `
 - Run the application with the following command: `dotnet run`
