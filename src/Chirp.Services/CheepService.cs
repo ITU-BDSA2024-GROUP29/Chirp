@@ -6,11 +6,31 @@ using Chirp.Repository;
 
 public record CheepViewModel(string Author, string Message, string Timestamp, int CheepId)
 {
-    public static implicit operator CheepViewModel(Type v)
+    // Render Markdown to basic HTML manually
+    public string RenderedMessage => ParseMarkdown(Message);
+
+    private static string ParseMarkdown(string markdown)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrWhiteSpace(markdown))
+            return string.Empty;
+
+        // Replace bold (**text**) with <strong>text</strong>
+        markdown = System.Text.RegularExpressions.Regex.Replace(markdown, @"\*\*(.+?)\*\*", "<strong>$1</strong>");
+
+        // Replace italic (*text*) with <em>text</em>
+        markdown = System.Text.RegularExpressions.Regex.Replace(markdown, @"\*(.+?)\*", "<em>$1</em>");
+
+        // Replace [link](url) with <a href="url">link</a>
+        markdown = System.Text.RegularExpressions.Regex.Replace(
+            markdown,
+            @"\[(.+?)\]\((https?://.+?)\)",
+            "<a href=\"$2\">$1</a>"
+        );
+
+        return markdown;
     }
 }
+
 
 public record AuthorViewModel(int AuthorId, string Name, string Email, ICollection<Cheep> Cheeps, ICollection<Author> Follows) {
     public static implicit operator AuthorViewModel(Type v)
