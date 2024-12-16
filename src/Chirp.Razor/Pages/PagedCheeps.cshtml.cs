@@ -75,30 +75,11 @@ namespace Chirp.Razor.Pages
                 cheep.AuthorId = AuthorLoggedIn.AuthorId;
                 cheep.CheepId = await _cheepService.GetTotalCheepCount() + 1;
             }
-            
-            
 
             cheep.Text = Post;
             DateTime time = DateTime.Now;
             cheep.TimeStamp = time;
 
-/*
-
-            Author author = new Author();
-                author.AuthorId = 55;
-                author.Email = "viktoremilandersen@gmail.com";
-                author.Name = "Viktor";
-            Cheep cheep = new Cheep();
-            cheep.Author = author;
-            cheep.AuthorId = author.AuthorId;
-            cheep.CheepId = 998;
-            
-            cheep.Text = "plz virk222";
-            DateTime time = DateTime.Now;
-            cheep.TimeStamp = time;
-
-            
-            */
             await _cheepService.GetCheepRepository().CreateCheepAsync(cheep);
             
             return Redirect("/");

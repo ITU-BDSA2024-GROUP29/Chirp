@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Side-1" id="XJNhgDP5bhegLKv53goI">
-        <mxGraphModel dx="744" dy="401" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="816" dy="312" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -119,7 +119,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="C_WqOaiVl-DI2H7CQQix" name="Build and deploy workflow">
-        <mxGraphModel dx="744" dy="401" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="816" dy="312" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -170,7 +170,7 @@
                 <mxCell id="8erMZWtL6SoVjR-M0S7q-26" value="" style="edgeStyle=none;html=1;" parent="1" source="8erMZWtL6SoVjR-M0S7q-23" target="8erMZWtL6SoVjR-M0S7q-25" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="Tdj6duuSEURtnEhPDbhD-1" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="8erMZWtL6SoVjR-M0S7q-23">
+                <mxCell id="Tdj6duuSEURtnEhPDbhD-1" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="8erMZWtL6SoVjR-M0S7q-23" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="600" y="390" as="targetPoint"/>
                     </mxGeometry>
@@ -193,7 +193,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="GLfJLYXl8CPRA-JmI20n" name="Build and release workflow">
-        <mxGraphModel dx="345" dy="401" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="816" dy="312" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -330,35 +330,35 @@
         </mxGraphModel>
     </diagram>
     <diagram id="hY-0adHjuAbktLRUzRSM" name="Test Workflow">
-        <mxGraphModel dx="345" dy="401" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="816" dy="312" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="Brwn3AhLCkXWiabYzpVF-4" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="Brwn3AhLCkXWiabYzpVF-2" target="Brwn3AhLCkXWiabYzpVF-3">
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-4" value="" style="edgeStyle=none;html=1;" parent="1" source="Brwn3AhLCkXWiabYzpVF-2" target="Brwn3AhLCkXWiabYzpVF-3" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="Brwn3AhLCkXWiabYzpVF-2" value="Test" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-2" value="Test" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="320" y="100" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="Brwn3AhLCkXWiabYzpVF-6" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="Brwn3AhLCkXWiabYzpVF-3" target="Brwn3AhLCkXWiabYzpVF-5">
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-6" value="" style="edgeStyle=none;html=1;" parent="1" source="Brwn3AhLCkXWiabYzpVF-3" target="Brwn3AhLCkXWiabYzpVF-5" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="Brwn3AhLCkXWiabYzpVF-3" value="Checkout Code" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-3" value="Checkout Code" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="320" y="200" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="Brwn3AhLCkXWiabYzpVF-8" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="Brwn3AhLCkXWiabYzpVF-5" target="Brwn3AhLCkXWiabYzpVF-7">
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-8" value="" style="edgeStyle=none;html=1;" parent="1" source="Brwn3AhLCkXWiabYzpVF-5" target="Brwn3AhLCkXWiabYzpVF-7" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="Brwn3AhLCkXWiabYzpVF-5" value="Setup .NET" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-5" value="Setup .NET" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="320" y="300" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="Brwn3AhLCkXWiabYzpVF-10" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="Brwn3AhLCkXWiabYzpVF-7" target="Brwn3AhLCkXWiabYzpVF-9">
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-10" value="" style="edgeStyle=none;html=1;" parent="1" source="Brwn3AhLCkXWiabYzpVF-7" target="Brwn3AhLCkXWiabYzpVF-9" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="Brwn3AhLCkXWiabYzpVF-7" value="Install Dependencies" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-7" value="Install Dependencies" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="320" y="400" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="Brwn3AhLCkXWiabYzpVF-9" value="Dotnet test" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-9" value="Dotnet test" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="320" y="500" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>

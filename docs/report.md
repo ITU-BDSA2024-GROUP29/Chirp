@@ -1,4 +1,4 @@
-
+---
 title: _Chirp!_ Project Report
 subtitle: ITU BDSA 2024 Group `29`
 author:
@@ -70,7 +70,8 @@ this layer contains the webpages, database and startup program for Chirp! tests 
 
 ## 1.3 Architecture of deployed application
 
-![User Activities unauthorized](./diagrams/drawio-assets/Architecture-side-1.png)
+![Client and Server components](./)
+The client component is the client box and Oauth, the server components is everything inside the Azure box. The app box consists of all the html files in the shared folder, this is what the client sees. The app background box, is the services that communicates between the app and client input and the database. The database box is pretty self-explanatory, it contains all the information from the web application. The Identity Core box is where sensitive user information and data is encrypted. ![User Activities unauthorized](./diagrams/drawio-assets/Architecture-side-1.png)
 
 
 ## 1.4 User activities
@@ -108,7 +109,7 @@ The sequence diagram above show the call sequence for when a user wants to get o
 ![Build and Deploy](./diagrams/drawio-assets/DomainModel-Page-2.png)
 The build and deploy workflow builds the project from chirp.razor/Chirp.Razor.csproj uploads it as an artifact. It is then loaded into the deploy phase, where the workflow also logs into the Azure server and then deploys the web application
 ![Build and Release](./diagrams/drawio-assets/DomainModel-Page-3.png)
-This workflow is used to create new releases of the project for both ubuntu, windows and macOS operating systems. It first gets dependensies from dotnet, then it builds, publishes and zips the project for each OS as an artifact. When it creates the release it loads the artifacts and creates a Github release with the tag.
+This workflow is used to create new releases of the project for both ubuntu, windows and macOS operating systems. It first gets dependencies from dotnet, then it builds, publishes and zips the project for each OS as an artifact. When it creates the release it loads the artifacts and creates a Github release with the tag.
 
 ![Test](./diagrams/drawio-assets/DomainModel-Test_Workflow.png)
 The test workflow makes sure that every time someone pushes to main it will run all the tests from, the crTest fo.
@@ -127,7 +128,7 @@ In practice issues would be created as mentioned above, but sometimes forgotten,
 
 ##  2.3 Missing Features  
 ###  2.3.1 Data Transfer Objects (DTOs)
-Chirp! is missing Data Transfer Objects (DTOs) to transfer information between the layers of our onion-structured application. DTOs can reduce the amount of data sent back and forth between layers of the application, and between the server and client. compared to our current solution. This implmentation of DTO's, would definitely increase the efficiency of the application.
+Chirp! is missing Data Transfer Objects (DTOs) to transfer information between the layers of our onion-structured application. DTOs can reduce the amount of data sent back and forth between layers of the application, and between the server and client. compared to our current solution. This implementation of DTO's, would definitely increase the efficiency of the application.
 
 
 ###  2.3.2 "Forget me" feature
