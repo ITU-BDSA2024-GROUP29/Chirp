@@ -195,5 +195,128 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
                 }
             }
         }
+
+        [Fact]
+        public async Task Test_ReturnsRenderedMessage() {
+            using (var connection = new SqliteConnection("Filename=:memory:")) {
+                await connection.OpenAsync();
+                var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
+                using (var context = new ChirpDBContext(builder.Options)) {
+                    await context.Database.EnsureCreatedAsync();
+                    DbInitializer.SeedDatabase(context);
+
+                    CheepRepository cheepRepository = new CheepRepository(context);
+
+
+                    Cheep cheep = new Cheep();
+                    Author author = new Author();
+                    author.AuthorId = 10000;
+                    cheep.Author = author;
+                    cheep.AuthorId = 10000;
+                    cheep.CheepId = 100000;
+                    cheep.Text = "Test";
+                    cheep.TimeStamp = new DateTime(2024,12,16);
+                    await cheepRepository.CreateCheepAsync(cheep);
+
+                    ICheepService service = new CheepService(cheepRepository);
+
+                    List<CheepViewModel> data = await service.GetCheepsAsync();
+
+                    Assert.True(data[0].RenderedMessage == "Test");
+                }
+            }
+        }
+
+        [Fact]
+        public async Task Test_ReturnsRenderedMessageBold() {
+            using (var connection = new SqliteConnection("Filename=:memory:")) {
+                await connection.OpenAsync();
+                var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
+                using (var context = new ChirpDBContext(builder.Options)) {
+                    await context.Database.EnsureCreatedAsync();
+                    DbInitializer.SeedDatabase(context);
+
+                    CheepRepository cheepRepository = new CheepRepository(context);
+
+
+                    Cheep cheep = new Cheep();
+                    Author author = new Author();
+                    author.AuthorId = 10000;
+                    cheep.Author = author;
+                    cheep.AuthorId = 10000;
+                    cheep.CheepId = 100000;
+                    cheep.Text = "**Test**";
+                    cheep.TimeStamp = new DateTime(2024,12,16);
+                    await cheepRepository.CreateCheepAsync(cheep);
+
+                    ICheepService service = new CheepService(cheepRepository);
+
+                    List<CheepViewModel> data = await service.GetCheepsAsync();
+
+                    Assert.True(data[0].RenderedMessage == "<strong>Test</strong>");
+                }
+            }
+        }
+
+        [Fact]
+        public async Task Test_ReturnsRenderedMessageItalic() {
+            using (var connection = new SqliteConnection("Filename=:memory:")) {
+                await connection.OpenAsync();
+                var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
+                using (var context = new ChirpDBContext(builder.Options)) {
+                    await context.Database.EnsureCreatedAsync();
+                    DbInitializer.SeedDatabase(context);
+
+                    CheepRepository cheepRepository = new CheepRepository(context);
+
+
+                    Cheep cheep = new Cheep();
+                    Author author = new Author();
+                    author.AuthorId = 10000;
+                    cheep.Author = author;
+                    cheep.AuthorId = 10000;
+                    cheep.CheepId = 100000;
+                    cheep.Text = "*Test*";
+                    cheep.TimeStamp = new DateTime(2024,12,16);
+                    await cheepRepository.CreateCheepAsync(cheep);
+
+                    ICheepService service = new CheepService(cheepRepository);
+
+                    List<CheepViewModel> data = await service.GetCheepsAsync();
+
+                    Assert.True(data[0].RenderedMessage == "<em>Test</em>");
+                }
+            }
+        }
+        [Fact]
+        public async Task Test_ReturnsRenderedMessageLink() {
+            using (var connection = new SqliteConnection("Filename=:memory:")) {
+                await connection.OpenAsync();
+                var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
+                using (var context = new ChirpDBContext(builder.Options)) {
+                    await context.Database.EnsureCreatedAsync();
+                    DbInitializer.SeedDatabase(context);
+
+                    CheepRepository cheepRepository = new CheepRepository(context);
+
+
+                    Cheep cheep = new Cheep();
+                    Author author = new Author();
+                    author.AuthorId = 10000;
+                    cheep.Author = author;
+                    cheep.AuthorId = 10000;
+                    cheep.CheepId = 100000;
+                    cheep.Text = "[Test Name](https://TestLink)";
+                    cheep.TimeStamp = new DateTime(2024,12,16);
+                    await cheepRepository.CreateCheepAsync(cheep);
+
+                    ICheepService service = new CheepService(cheepRepository);
+
+                    List<CheepViewModel> data = await service.GetCheepsAsync();
+
+                    Assert.True(data[0].RenderedMessage == "<a href=\"https://TestLink\">Test Name</a>");
+                }
+            }
+        }
     }
 }
