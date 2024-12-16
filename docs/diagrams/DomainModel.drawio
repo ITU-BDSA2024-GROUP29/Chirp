@@ -140,14 +140,14 @@
                 <mxCell id="8erMZWtL6SoVjR-M0S7q-9" value="" style="edgeStyle=none;html=1;" parent="1" source="8erMZWtL6SoVjR-M0S7q-6" target="8erMZWtL6SoVjR-M0S7q-8" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="8erMZWtL6SoVjR-M0S7q-6" value="dotnet Build Chirp.Razor/Chirp.Razor.csprj" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="575" y="220" width="170" height="60" as="geometry"/>
+                <mxCell id="8erMZWtL6SoVjR-M0S7q-6" value="Build with Dotnet" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="600" y="220" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="8erMZWtL6SoVjR-M0S7q-21" value="" style="edgeStyle=none;html=1;" parent="1" source="8erMZWtL6SoVjR-M0S7q-8" target="8erMZWtL6SoVjR-M0S7q-20" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="8erMZWtL6SoVjR-M0S7q-8" value="dotnet publish&lt;br&gt;Chirp.Razor/Chirp.Razor.csprj" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="375" y="220" width="170" height="60" as="geometry"/>
+                <mxCell id="8erMZWtL6SoVjR-M0S7q-8" value="dotnet publish" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="220" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="8erMZWtL6SoVjR-M0S7q-11" style="edgeStyle=none;html=1;" parent="1" source="8erMZWtL6SoVjR-M0S7q-10" target="8erMZWtL6SoVjR-M0S7q-4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -155,44 +155,45 @@
                 <mxCell id="8erMZWtL6SoVjR-M0S7q-10" value="Build" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="400" y="80" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="8erMZWtL6SoVjR-M0S7q-19" value="" style="edgeStyle=none;html=1;" parent="1" source="8erMZWtL6SoVjR-M0S7q-13" target="8erMZWtL6SoVjR-M0S7q-18" edge="1">
+                <mxCell id="8erMZWtL6SoVjR-M0S7q-19" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="8erMZWtL6SoVjR-M0S7q-13" target="8erMZWtL6SoVjR-M0S7q-27" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="8erMZWtL6SoVjR-M0S7q-13" value="Deploy" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="400" y="360" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="200" y="360" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="8erMZWtL6SoVjR-M0S7q-24" value="" style="edgeStyle=none;html=1;" parent="1" source="8erMZWtL6SoVjR-M0S7q-18" target="8erMZWtL6SoVjR-M0S7q-23" edge="1">
+                <mxCell id="8erMZWtL6SoVjR-M0S7q-28" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="8erMZWtL6SoVjR-M0S7q-20" target="8erMZWtL6SoVjR-M0S7q-13" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="8erMZWtL6SoVjR-M0S7q-18" value="uses download-artifact" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="600" y="360" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="8erMZWtL6SoVjR-M0S7q-28" value="" style="edgeStyle=none;html=1;" parent="1" source="8erMZWtL6SoVjR-M0S7q-20" target="8erMZWtL6SoVjR-M0S7q-27" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="8erMZWtL6SoVjR-M0S7q-20" value="Upload Artifact&amp;nbsp;&lt;br&gt;from build" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
+                <mxCell id="8erMZWtL6SoVjR-M0S7q-20" value="Upload Artifact&amp;nbsp;&lt;br&gt;for deployment" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="200" y="220" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="8erMZWtL6SoVjR-M0S7q-26" value="" style="edgeStyle=none;html=1;" parent="1" source="8erMZWtL6SoVjR-M0S7q-23" target="8erMZWtL6SoVjR-M0S7q-25" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
+                <mxCell id="Tdj6duuSEURtnEhPDbhD-1" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="8erMZWtL6SoVjR-M0S7q-23">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="600" y="390" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
                 <mxCell id="8erMZWtL6SoVjR-M0S7q-23" value="login to Azure" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="600" y="500" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="600" y="360" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="8erMZWtL6SoVjR-M0S7q-25" value="Deploy to Azure &lt;br&gt;Web App" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="400" y="500" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="600" y="500" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="8erMZWtL6SoVjR-M0S7q-29" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="8erMZWtL6SoVjR-M0S7q-27" target="8erMZWtL6SoVjR-M0S7q-13" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="8erMZWtL6SoVjR-M0S7q-29" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="8erMZWtL6SoVjR-M0S7q-27" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="600" y="390" as="targetPoint"/>
+                    </mxGeometry>
                 </mxCell>
-                <mxCell id="8erMZWtL6SoVjR-M0S7q-27" value="Load Artifact from Build into Deployment" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="200" y="360" width="120" height="60" as="geometry"/>
+                <mxCell id="8erMZWtL6SoVjR-M0S7q-27" value="Download Artifact &lt;br&gt;from Build&amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="360" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram id="GLfJLYXl8CPRA-JmI20n" name="Build and release workflow">
-        <mxGraphModel dx="744" dy="401" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="345" dy="401" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -324,6 +325,41 @@
                 </mxCell>
                 <mxCell id="2akK0q-hfPZbXR7qBB0j-58" value="Create GitHub release" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="165" y="870" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="hY-0adHjuAbktLRUzRSM" name="Test Workflow">
+        <mxGraphModel dx="345" dy="401" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-4" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="Brwn3AhLCkXWiabYzpVF-2" target="Brwn3AhLCkXWiabYzpVF-3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-2" value="Test" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="100" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-6" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="Brwn3AhLCkXWiabYzpVF-3" target="Brwn3AhLCkXWiabYzpVF-5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-3" value="Checkout Code" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="200" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-8" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="Brwn3AhLCkXWiabYzpVF-5" target="Brwn3AhLCkXWiabYzpVF-7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-5" value="Setup .NET" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="300" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-10" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="Brwn3AhLCkXWiabYzpVF-7" target="Brwn3AhLCkXWiabYzpVF-9">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-7" value="Install Dependencies" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="400" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="Brwn3AhLCkXWiabYzpVF-9" value="Dotnet test" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="500" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

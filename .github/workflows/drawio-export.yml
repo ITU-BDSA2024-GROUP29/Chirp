@@ -1,3 +1,4 @@
+# Source code https://github.com/marketplace/actions/draw-io-export-action
 name: Keep draw.io export synchronized
 
 on:
