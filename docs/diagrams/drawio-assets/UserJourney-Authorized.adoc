@@ -1,0 +1,4 @@
+= UserJourney Authorized
+
+image::UserJourney-Authorized.png[Authorized]
+
