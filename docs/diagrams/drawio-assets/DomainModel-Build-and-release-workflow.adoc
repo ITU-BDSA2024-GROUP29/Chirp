@@ -1,0 +1,4 @@
+= DomainModel Build and release workflow
+
+image::DomainModel-Build-and-release-workflow.png[Build and release workflow]
+

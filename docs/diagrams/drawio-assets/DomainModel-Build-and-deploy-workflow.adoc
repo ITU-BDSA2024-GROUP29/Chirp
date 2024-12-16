@@ -1,0 +1,4 @@
+= DomainModel Build and deploy workflow
+
+image::DomainModel-Build-and-deploy-workflow.png[Build and deploy workflow]
+
