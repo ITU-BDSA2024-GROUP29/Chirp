@@ -11,36 +11,23 @@ public record CheepViewModel(string Author, string Message, string Timestamp, in
 
     private static string ParseMarkdown(string markdown)
     {
-        if (string.IsNullOrWhiteSpace(markdown))
-            return string.Empty;
-
-        // Escape HTML special characters to prevent injection
-        markdown = System.Net.WebUtility.HtmlEncode(markdown);
+        if (string.IsNullOrWhiteSpace(markdown)) {return string.Empty;}
 
         // Replace bold (**text**) with <strong>text</strong>
-        markdown = System.Text.RegularExpressions.Regex.Replace(
-            markdown, 
-            @"\*\*(.+?)\*\*", 
-            "<strong>$1</strong>"
-        );
+        markdown = System.Text.RegularExpressions.Regex.Replace(markdown, @"\*\*(.+?)\*\*", "<strong>$1</strong>");
 
         // Replace italic (*text*) with <em>text</em>
-        markdown = System.Text.RegularExpressions.Regex.Replace(
-            markdown, 
-            @"\*(.+?)\*", 
-            "<em>$1</em>"
-        );
+        markdown = System.Text.RegularExpressions.Regex.Replace(markdown, @"\*(.+?)\*", "<em>$1</em>");
 
         // Replace [link](url) with <a href="url">link</a>
         markdown = System.Text.RegularExpressions.Regex.Replace(
             markdown,
             @"\[(.+?)\]\((https?://.+?)\)",
-            "<a href=\"$2\" rel=\"noopener noreferrer\" target=\"_blank\">$1</a>"
+            "<a href=\"$2\">$1</a>"
         );
 
         return markdown;
     }
-
 }
 
 
