@@ -26,7 +26,7 @@ namespace Chirp.Razor.test.ChirpRazor.Tests
 
                 using (var context = new ChirpDBContext(builder.Options))
                 {
-                    
+                    Thread.Sleep(5000); //To Insure no collition with other tests
                     await context.Database.EnsureCreatedAsync();
                     DbInitializer.SeedDatabase(context);
 
@@ -46,7 +46,7 @@ namespace Chirp.Razor.test.ChirpRazor.Tests
                 }
             }
         }
-
+        
         
 
     }
