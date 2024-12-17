@@ -14,6 +14,11 @@ public class MyTimelineModel : SharedFuncs
         _cheepService = service;
     }
 
+    /// <summary>
+    /// Fetch cheeps for a specified author
+    /// </summary>
+    /// <param name="author">The name of the author</param>
+    /// <returns>PageResult</returns>
     public async Task<IActionResult> OnGetAsync(string author)
     {
         // Fetch cheeps for the specified author

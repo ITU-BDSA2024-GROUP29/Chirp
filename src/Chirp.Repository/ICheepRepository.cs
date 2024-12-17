@@ -7,7 +7,6 @@ public interface ICheepRepository {
     Task CreateCheepAsync(Cheep newCheep);
     Task<List<Cheep>> ReadCheeps();
     Task<List<Cheep>> GetPaginatedCheeps(int pageNumber, int pageSize);
-    //Task UpdateCheep(Cheep alteredcheep);
     Task<int> GetTotalCheepCount();
     Task FollowAuthor(string authorname, string loggedinauthorname);
     Task<List<Cheep>> GetTotalCheepsFromAuthorCount(String authorname);
@@ -17,9 +16,5 @@ public interface ICheepRepository {
     Task<List<Author>> GetFollowedByAuthor(String authorname);
     Task AddFollowed(Author user, Author loggedinUser);
     Task<bool> DeleteCheepByID(int cheepID);
-
-
-
-
 
 }

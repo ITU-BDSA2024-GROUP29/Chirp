@@ -23,11 +23,7 @@ public class ChirpDBContext : IdentityDbContext<ApplicationUser> {
         modelBuilder.Entity<Author>()
             .HasIndex(c => c.Name)
             .IsUnique();
-        
-
     }
-
-
 }
 //for the other contributors of this project:
 //if you ever want to make a new migration use:

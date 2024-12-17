@@ -40,17 +40,79 @@ public record AuthorViewModel(int AuthorId, string Name, string Email, ICollecti
 
 public interface ICheepService
 {
+    /// <summary>
+    /// Gets the instace of the cheep database
+    /// </summary>
+    /// <returns>The database connection </returns>
     ICheepRepository GetCheepRepository();
+    /// <summary>
+    /// Gets all Cheeps
+    /// </summary>
+    /// <returns>a list of cheeps </returns>
     Task<List<CheepViewModel>> GetCheepsAsync();
+    /// <summary>
+    /// Get cheeps from specific Author
+    /// </summary>
+    /// <param name="author"> to get cheeps from</param>
+    /// <returns> A list of Cheeps </returns>
     Task<List<CheepViewModel>> GetCheepsFromAuthorAsync(string author);
+    /// <summary>
+    /// Get Cheeps in a Paginated form
+    /// </summary>
+    /// <param name="pageNumber">specific page</param>
+    /// <param name="pageSize">amount of cheeps per page</param>
+    /// <returns>a list of cheeps</returns>
     Task<List<CheepViewModel>> GetPaginatedCheepsAsync(int pageNumber, int pageSize = 10);
+    /// <summary>
+    /// Gets the total count of cheeps
+    /// </summary>
+    /// <returns>int of total cheeps amount</returns>
     Task<int> GetTotalCheepCount();
+    /// <summary>
+    /// Get cheeps from specific Author
+    /// </summary>
+    /// <param name="author"></param>
+    /// <returns></returns>
     Task<List<CheepViewModel>> GetOwnCheepsAsync(string author);
+    /// <summary>
+    /// Checks if author follows other author
+    /// </summary>
+    /// <param name="author"> author to check on</param>
+    /// <param name="author2">author to chech for</param>
+    /// <returns>follow true,</returns>
     Task<bool> IsUserFollowing(string author, string author2);
+    /// <summary>
+    /// Get Author by Name of type string
+    /// </summary>
+    /// <param name="authorname"></param>
+    /// <returns>Author with name or null in none</returns>
     Author GetAuthorByName(String authorname);
+    /// <summary>
+    /// ADD Author of authorname to author of LoggedinAuthorname's followers list.
+    /// </summary>
+    /// <param name="authorname"></param>
+    /// <param name="Loggedinauthorname"></param>
+    /// <returns></returns>
     Task FollowAuthor(String authorname, String Loggedinauthorname);
+    /// <summary>
+    /// Delete cheep with id
+    /// </summary>
+    /// <param name="cheepID"></param>
+    /// <returns>true if complete false if no cheep with id</returns>
     Task<bool> DeleteCheepByID(int cheepID);
+    /// <summary>
+    /// Gets count of Author
+    /// </summary>
+    /// <returns></returns> <summary>
+    /// 
+    /// </summary>
+    /// <returns>int of amount</returns>
     Task<int>  GetAuthorCount();
+    /// <summary>
+    /// Gets count of specific author's cheeps
+    /// </summary>
+    /// <param name="author"></param>
+    /// <returns></returns>
     int getAuthorCheepCount(string author);
 }
 
@@ -128,7 +190,9 @@ public class CheepService : ICheepService
 
         foreach (var author in authors) {
             result.AddRange(await GetCheepsFromAuthorAsync(author.Name));
-        }   //TODO add sorting
+        }   
+
+        
         
         return result;
     }

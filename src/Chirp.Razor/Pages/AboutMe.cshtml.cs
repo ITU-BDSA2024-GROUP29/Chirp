@@ -23,12 +23,20 @@ public class AboutMeModel : SharedFuncs
         _cheepService = service;
     }
 
+    /// <summary>
+    /// Get all information about the author
+    /// </summary>
+    /// <param name="author">Name of the author</param>
+    /// <returns>
+    /// Returns RedirectResult if it isn't the users information.
+    /// Otherwise returns PageResult 
+    /// /// </returns>
     public async Task<IActionResult> OnGetAsync(string author)
     {
 
         if (author != HttpContext.GetRouteValue("author")?.ToString())
         {
-            Redirect("/");
+            return Redirect("/");
         }
 
         Author authorObj = _cheepService.GetAuthorByName(author);
@@ -43,15 +51,19 @@ public class AboutMeModel : SharedFuncs
         return Page();
     }
 
-    public List<CheepViewModel> GeCheeps(String author){
-        return _cheepService.GetCheepsFromAuthorAsync(author).Result;
-    }
-
+    /// <summary>
+    /// Creates a txt file with all information about the user.
+    /// </summary>
+    /// <param name="authorName">Name of author</param>
+    /// <returns>
+    /// Returns RedirectResult if it isn't the users information.
+    /// Otherwise returns PageResult 
+    /// </returns>
     public async Task<IActionResult> OnPostDownloadUserInfoAsync(String authorName){
 
         if (authorName != HttpContext.GetRouteValue("author")?.ToString())
         {
-            Redirect("/");
+            return Redirect("/");
         }
 
         Author authorObj = _cheepService.GetAuthorByName(authorName);

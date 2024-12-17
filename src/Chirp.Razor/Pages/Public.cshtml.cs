@@ -14,10 +14,12 @@ public class PublicModel : SharedFuncs
         service.GetCheepsAsync();
     }
 
+    /// <summary>
+    /// Handles GET requests to the Public page.
+    /// </summary>
+    /// <returns></returns>
     public IActionResult OnGet()
     {
         return Redirect("/cheeps/page/1");
     }
-
-
 }

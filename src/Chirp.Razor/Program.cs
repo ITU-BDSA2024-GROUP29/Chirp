@@ -23,6 +23,7 @@ namespace Chirp.Razor
                 .AddEntityFrameworkStores<ChirpDBContext>();
 
 
+            //Adding the thirdparty Github Oauth to the applications
             builder.Services.AddAuthentication()
                 .AddGitHub(o =>
                 {
@@ -37,9 +38,6 @@ namespace Chirp.Razor
             builder.Services.AddScoped<ICheepRepository, CheepRepository>();
             builder.Services.AddScoped<ICheepService, CheepService>();
             
-            
-
-
             var app = builder.Build();
 
             using (var serviceScope = app.Services.CreateScope())

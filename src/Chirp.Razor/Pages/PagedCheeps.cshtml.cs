@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Chirp.Razor.Pages
 {
-    public class CheepsModel : SharedFuncs {
+    public class CheepsModel : SharedFuncs
+    {
         private ICheepService _cheepService;
 
         public CheepsModel(ICheepService cheepService) : base(cheepService)
@@ -16,17 +17,15 @@ namespace Chirp.Razor.Pages
             _cheepService = cheepService;
         }
 
-        public Boolean CompareUserName(String username1, String username2) {
-            if (username1.Equals(username2)) {
-                return true;
-            }
-            return false;
-        }
-
         public List<CheepViewModel> Cheeps { get; set; }
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
-
+        
+        /// <summary>
+        /// Fetch the cheeps for a page
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <returns>PageResult</returns>
         public async Task<IActionResult> OnGetAsync(int pageNumber)
         {
             const int PageSize = 32; // Number of cheeps per page
@@ -48,43 +47,6 @@ namespace Chirp.Razor.Pages
 
             return Page();
         }
-
-        public async Task<IActionResult> OnPostAsync(String Post){
-            bool newAuthor = false;
-            
-            var loggedInUserName = User.Identity.Name;
-            
-            
-            var AuthorLoggedIn = await _cheepService.GetCheepRepository().GetAuthorByName(loggedInUserName);
-            Console.WriteLine("loggedInUserName: " + loggedInUserName);
-            Console.WriteLine("Authorloggedin: " + AuthorLoggedIn);
-            Cheep cheep = new Cheep();
-            if (AuthorLoggedIn == default || AuthorLoggedIn == null){
-                newAuthor = true;
-                Author author = new Author();
-                author.AuthorId = await _cheepService.GetCheepRepository().GetTotalAuthorsCount() + 1;
-                author.Email = loggedInUserName + "@chirp.dk";
-                author.Name = loggedInUserName;
-                cheep.Author = author;
-                cheep.AuthorId = author.AuthorId;
-                cheep.CheepId = await _cheepService.GetTotalCheepCount() + 1;
-            }
-            else{
-                
-                cheep.Author = AuthorLoggedIn;
-                cheep.AuthorId = AuthorLoggedIn.AuthorId;
-                cheep.CheepId = await _cheepService.GetTotalCheepCount() + 1;
-            }
-
-            cheep.Text = Post;
-            DateTime time = DateTime.Now;
-            cheep.TimeStamp = time;
-
-            await _cheepService.GetCheepRepository().CreateCheepAsync(cheep);
-            
-            return Redirect("/");
-        }
-
     }
 }
 

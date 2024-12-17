@@ -3,6 +3,10 @@ using Chirp.Core.DomainModel;
 
 public static class DbInitializer
 {
+    /// <summary>
+    /// Seeds the database with some data
+    /// </summary>
+    /// <param name="chirpContext"></param>
     public static void SeedDatabase(ChirpDBContext chirpContext)
     {
         if (!(chirpContext.Authors.Any() && chirpContext.Cheeps.Any()))

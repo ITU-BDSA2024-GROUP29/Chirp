@@ -16,19 +16,19 @@
         <ul id="messagelist" class="cheeps">
             @foreach (var cheep in Model.Cheeps)
             {
+
+                <!--  messagelist box-->
                 <li>
                     <p>
                         <strong>
                             <a href="/@cheep.Author">@cheep.Author</a>
                         </strong>
-                        @cheep.Message
                         @Html.Raw(cheep.RenderedMessage)
                         <small>&mdash; @cheep.Timestamp</small>
                         
                             <!-- Follow/Unfollow button -->
 
                             @if (User.Identity.IsAuthenticated){
-
                                 <form method="post" asp-page-handler="Follow" style="display:inline;">
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="followedId" value="@cheep.Author"/>
@@ -37,8 +37,6 @@
                                 </button>
                                 </form>
                             }
-                            
-                        
                     </p>
                 </li>
             }

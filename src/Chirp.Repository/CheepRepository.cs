@@ -10,14 +10,22 @@ public class CheepRepository : ICheepRepository {
         _dbContext = dbContext;
     }
 
+
+    /// <summary>
+    /// Adds Cheeps to the database
+    /// </summary>
+    /// <param name="newCheep"></param>
+    /// <returns>Task for Completion</returns>
     public async Task CreateCheepAsync(Cheep newCheep) {
         var queryResult = await _dbContext.Cheeps.AddAsync(newCheep); // does not write to the database!
         await _dbContext.SaveChangesAsync(); // persist the changes in the database
     }
 
+    /// <summary>
+    /// Gets all of the cheeps from the database
+    /// </summary>
+    /// <returns>all cheeps</returns>
     public async Task<List<Cheep>> ReadCheeps() {
-        // Formulate the query - will be translated to SQL by EF Core
-        //.Include(blog => blog.Posts)
         var query = _dbContext.Cheeps.Include(cheep => cheep.Author);
         
         // Execute the query
@@ -25,12 +33,21 @@ public class CheepRepository : ICheepRepository {
         return result;
     }
 
+    /// <summary>
+    /// Gets all of the Authors.
+    /// </summary>
+    /// <returns>List of Authors</returns>
     public async Task<List<Author>> GetAuthors() {
         var authors = await _dbContext.Authors.ToListAsync();
         return authors;
     }
     
-    // Get paginated cheeps for a specific page and page size
+    /// <summary>
+    /// Get paginated cheeps for a specific page and page size
+    /// </summary>
+    /// <param name="pageNumber"></param>
+    /// <param name="pageSize"></param>
+    /// <returns></returns>
     public async Task<List<Cheep>> GetPaginatedCheeps(int pageNumber, int pageSize = 32)
     {
         return await _dbContext.Cheeps
@@ -41,31 +58,46 @@ public class CheepRepository : ICheepRepository {
             .ToListAsync();
     }
 
-    // Get the total number of cheeps in the database
+    /// <summary>
+    /// Get the count total number of Cheeps in the Database
+    /// </summary>
+    /// <returns> int number of total cheeps </returns>
     public async Task<int> GetTotalCheepCount()
     {
         return await _dbContext.Cheeps.CountAsync();
     }
 
-    // Get the total number of cheeps sent from a specified author
+    /// <summary>
+    /// Get the total number of cheeps sent from a specified author
+    /// </summary>
+    /// <param name="authorname"></param>
+    /// <returns>int number of author cheeps total</returns>
     public async Task<List<Cheep>> GetTotalCheepsFromAuthorCount(String authorname)
     {//DbContext db = var entityTypes = db.Model.getEn
         return await _dbContext.Cheeps.Where(a => a.Author.Name == authorname).ToListAsync();
     }
 
 
-    // Update an existing cheep
+    /// <summary>
+    ///  Update an existing cheep
+    /// </summary>
+    /// <param name="alteredCheep"></param>
+    /// <returns></returns>
     public async Task UpdateCheepAsync(Cheep alteredCheep) {
         _dbContext.Cheeps.Update(alteredCheep);
         await _dbContext.SaveChangesAsync();
     }
-
-    // Interface method: returning paginated cheeps
     async Task<List<Cheep>> ICheepRepository.GetPaginatedCheeps(int pageNumber, int pageSize)
     {
         return await GetPaginatedCheeps(pageNumber, pageSize);
     }
     
+    /// <summary>
+    /// Makes loggedinauthor follow authorname
+    /// </summary>
+    /// <param name="authorname"> To follow </param>
+    /// <param name="loggedinauthorname">That Follows</param>
+    /// <returns> Task when done</returns>
     public async Task FollowAuthor(string authorname, string loggedinauthorname) {
         if (string.IsNullOrWhiteSpace(authorname))
             throw new ArgumentNullException(nameof(authorname), "Author name cannot be null or whitespace.");
@@ -84,6 +116,12 @@ public class CheepRepository : ICheepRepository {
         await AddFollowed(a, b);
     }
 
+    /// <summary>
+    /// Get the author associated by Name string
+    /// </summary>
+    /// <param name="authorname"></param>
+    /// <returns>The author</returns>
+    /// <exception cref="ArgumentNullException"></exception>
     public async Task<Author> GetAuthorByName(String authorname){
     if (string.IsNullOrWhiteSpace(authorname)) {
         throw new ArgumentNullException(nameof(authorname));
@@ -92,8 +130,15 @@ public class CheepRepository : ICheepRepository {
     return await _dbContext.Authors
         .Where(a => a.Name.ToLower() == authorname.ToLower())
         .FirstOrDefaultAsync(); // Return null if not found
-}
+    }
 
+    /// <summary>
+    /// Adds Author to the loggedinuser's author follower list
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="loggedinUser"></param>
+    /// <returns>Task when done</returns>
+    /// <exception cref="ArgumentNullException"></exception>
     public async Task AddFollowed(Author user, Author loggedinUser) {
         await Task.CompletedTask;
         if (loggedinUser == null) 
@@ -111,17 +156,26 @@ public class CheepRepository : ICheepRepository {
         await _dbContext.SaveChangesAsync();
     }
     
+    /// <summary>
+    /// Get Total count of Authors in the database
+    /// </summary>
+    /// <returns>int of total authors</returns>
     public async Task<int> GetTotalAuthorsCount()
     {
         return await _dbContext.Authors.CountAsync();
     }
 
-    //should return authors followed by author from input (untested, TODO)
+    /// <summary>
+    /// Get all following of author
+    /// </summary>
+    /// <param name="authorname"></param>
+    /// <returns> a list of followed authors</returns>
+    /// <exception cref="ArgumentNullException"></exception> <summary>
     public async Task<List<Author>> GetFollowedByAuthor(String authorname) {
     if (string.IsNullOrWhiteSpace(authorname))
         throw new ArgumentNullException(nameof(authorname), "Author name cannot be null or whitespace.");
 
-    var author = await GetAuthorByName(authorname); // Use await instead of .Result
+    var author = await GetAuthorByName(authorname);
 
     if (author == null)
         return new List<Author>(); // Return an empty list if the author is not found
@@ -137,7 +191,11 @@ public class CheepRepository : ICheepRepository {
 }
 
     
-
+    /// <summary>
+    /// Delete Cheep with matching cheepID
+    /// </summary>
+    /// <param name="cheepID"> id of cheep to delete</param>
+    /// <returns>returns true if deleted false if not found</returns>
     public async Task<bool> DeleteCheepByID(int cheepID)
 {
     var cheep = await _dbContext.Cheeps.Where(c => c.CheepId == cheepID).FirstAsync();

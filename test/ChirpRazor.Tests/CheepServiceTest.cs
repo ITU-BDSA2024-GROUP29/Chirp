@@ -5,6 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Chirp.Razor.test.ChirpRazor.Tests {
     public class CheepServiceTest() {
+
+        /*
+        This Test Case makes sure that CheepService takes the correct object "CheepRepository" as an depency injection
+        */
         [Fact]
         public async Task Test_CheepServiceDependencyInjection_NotNull_NotEmpty() {
             using (var connection = new SqliteConnection("Filename=:memory:")) {
@@ -30,6 +34,9 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
             }
         }
 
+        /*
+        This Test, Tests getTotalCheepCount to make sure it returns propper values
+        */
         [Fact]
         public async Task Test_CheepCount_Equal() {
             using (var connection = new SqliteConnection("Filename=:memory:")) {
@@ -55,6 +62,10 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
 
         }
 
+        
+        /*
+        This test, Test the getCheep method i should return a specefic cheep
+        */
         [Fact]
         public async Task Test_GetCheeps_IdenticalCheep() {
             using (var connection = new SqliteConnection("Filename=:memory:")) {
@@ -82,6 +93,10 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
             }
         }
 
+        /*
+        This test, tests our getCheepsByAuthor method, we make sure correct cheeps are returned based on 
+        DBinitilizer
+        */
         [Fact]
         public async Task Test_getCheepsByAuthor_IdenticalCheep() {
             using (var connection = new SqliteConnection("Filename=:memory:")) {
@@ -107,7 +122,10 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
                 }
             }
         }
-
+        
+        /*
+        This Method makes sure our PaginatedPage returns 32_cheeps
+        */
         [Fact]
         public async Task Test_PaginatedPage_32Cheeps() {
             using (var connection = new SqliteConnection("Filename=:memory:")) {
@@ -146,8 +164,11 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
             }
         }
 
+        /*
+        This test, tests getTimelineCheeps we make sure that a specefic cheep shows up
+        */
         [Fact]
-        public async Task Test_GetOwnCheeps() {
+        public async Task Test_GetTimelineCheeps_SpeceficAuthor() {
             using (var connection = new SqliteConnection("Filename=:memory:")) {
                 await connection.OpenAsync();
                 var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
@@ -173,8 +194,11 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
             }
         }
         
+        /*
+        This test, Test the FollowAuthor Method, we expect 2 authors to follow each other 
+        */
         [Fact]
-        public async Task Test_FollowAuthor() {
+        public async Task Test_FollowAuthor_AuthorFollow() {
             using (var connection = new SqliteConnection("Filename=:memory:")) {
                 await connection.OpenAsync();
                 var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
@@ -196,8 +220,12 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
             }
         }
 
+
+        /*
+        This test, Test that our createCheepAsync function, creates a rendered CheepViewModel
+        */
         [Fact]
-        public async Task Test_ReturnsRenderedMessage() {
+        public async Task Test_ReturnsRenderedMessage_RenderedMessageEquals_Test_() {
             using (var connection = new SqliteConnection("Filename=:memory:")) {
                 await connection.OpenAsync();
                 var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
@@ -206,6 +234,7 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
                     DbInitializer.SeedDatabase(context);
 
                     CheepRepository cheepRepository = new CheepRepository(context);
+
 
 
                     Cheep cheep = new Cheep();
@@ -227,8 +256,11 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
             }
         }
 
+        /*
+        This test, Test to make sure our messageRender can render in bold
+        */
         [Fact]
-        public async Task Test_ReturnsRenderedMessageBold() {
+        public async Task Test_ReturnsRenderedMessageBold_RenderedInBold() {
             using (var connection = new SqliteConnection("Filename=:memory:")) {
                 await connection.OpenAsync();
                 var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
@@ -237,7 +269,6 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
                     DbInitializer.SeedDatabase(context);
 
                     CheepRepository cheepRepository = new CheepRepository(context);
-
 
                     Cheep cheep = new Cheep();
                     Author author = new Author();
@@ -250,6 +281,7 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
                     await cheepRepository.CreateCheepAsync(cheep);
 
                     ICheepService service = new CheepService(cheepRepository);
+                    
 
                     List<CheepViewModel> data = await service.GetCheepsAsync();
 
@@ -258,8 +290,11 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
             }
         }
 
+        /*
+        this test, Test to make sure our messageRender can render in Italic
+        */
         [Fact]
-        public async Task Test_ReturnsRenderedMessageItalic() {
+        public async Task Test_ReturnsRenderedMessageItalic_RenderedInItalic() {
             using (var connection = new SqliteConnection("Filename=:memory:")) {
                 await connection.OpenAsync();
                 var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
@@ -267,7 +302,7 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
                     await context.Database.EnsureCreatedAsync();
                     DbInitializer.SeedDatabase(context);
 
-                    CheepRepository cheepRepository = new CheepRepository(context);
+                    CheepRepository cheepRepository = new CheepRepository(context);                    
 
 
                     Cheep cheep = new Cheep();
@@ -288,8 +323,12 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
                 }
             }
         }
+
+        /*
+        this test, Test to make sure our messageRender can render a link
+        */
         [Fact]
-        public async Task Test_ReturnsRenderedMessageLink() {
+        public async Task Test_ReturnsRenderedMessageLink_RenderedToRefLink() {
             using (var connection = new SqliteConnection("Filename=:memory:")) {
                 await connection.OpenAsync();
                 var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
@@ -298,7 +337,6 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
                     DbInitializer.SeedDatabase(context);
 
                     CheepRepository cheepRepository = new CheepRepository(context);
-
 
                     Cheep cheep = new Cheep();
                     Author author = new Author();

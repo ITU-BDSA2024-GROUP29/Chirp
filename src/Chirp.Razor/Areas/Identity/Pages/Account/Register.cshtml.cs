@@ -40,10 +40,10 @@ namespace Chirp.Razor.Areas.Identity.Pages.Account
         {
             _userManager = userManager;
             _userStore = userStore;
-            _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _emailStore = GetEmailStore();
         }
 
         /// <summary>
@@ -163,6 +163,16 @@ namespace Chirp.Razor.Areas.Identity.Pages.Account
             return Page();
         }
 
+    
+        private IUserEmailStore<ApplicationUser> GetEmailStore()
+        {
+            if (!_userManager.SupportsUserEmail)
+            {
+                throw new NotSupportedException("The default UI requires a user store with email support.");
+            }
+            return (IUserEmailStore<ApplicationUser>)_userStore;
+        }
+
         private ApplicationUser CreateUser()
         {
             try
@@ -177,13 +187,5 @@ namespace Chirp.Razor.Areas.Identity.Pages.Account
             }
         }
 
-        private IUserEmailStore<ApplicationUser> GetEmailStore()
-        {
-            if (!_userManager.SupportsUserEmail)
-            {
-                throw new NotSupportedException("The default UI requires a user store with email support.");
-            }
-            return (IUserEmailStore<ApplicationUser>)_userStore;
-        }
     }
 }
