@@ -6,36 +6,38 @@ author:
 - "Magnus Thor Lessing Rolin <thmr@itu.dk>"
 - "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
 - "Rasmus Hassing Huge <rahu@itu.dk>"
+- 
 ---
 ![Test badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/test.yml/badge.svg??event=push)
 ![Deploy badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/main_bdsagroup29chirpremotedb.yml/badge.svg??event=push)
 
 
 
-- [Design and Architecture](#design-and-architecture)
-  - [Domain model](#domain-model)
-  - [Architecture - in the small](#architecture---in-the-small)
-  - [Architecture of deployed application](#architecture-of-deployed-application)
-  - [User activities](#user-activities)
-  - [Sequence of functionalities/call through Chirp](#sequence-of-functionalitiescall-through-chirp)
-- [Process](#process)
-  - [Build, test, release and deployment](#build-test-release-and-deployment)
-  - [Team work](#team-work)
-  - [Missing Features](#missing-features)
-    - [DTOs](#dtos)
-    - ["Forget me" feature](#forget-me-feature)
-    - [End-to-end test](#end-to-end-test)
-    - [Security](#security)
-    - [Bugs](#bugs)
-  - [How to Run Chirp! Locally](#how-to-run-chirp-locally)
-    - [Setting up the Chirp application](#setting-up-the-chirp-application)
-    - [Install Dependencies](#install-dependencies)
-    - [Setting up Application User Secret](#setting-up-application-user-secret)
-    - [Starting the Application](#starting-the-application)
-    - [How to run test suite locally](#how-to-run-test-suite-locally)
-- [Ethics](#ethics)
-  - [License](#license)
-  - [LLMs, ChatGPT, CoPilot and others](#llms-chatgpt-copilot-and-others)
+- [1 Design and Architecture](#1-design-and-architecture)
+  - [1.1 Domain model](#11-domain-model)
+  - [1.2 Architecture - in the small](#12-architecture---in-the-small)
+  - [1.3 Architecture of deployed application](#13-architecture-of-deployed-application)
+  - [1.4 User activities](#14-user-activities)
+  - [1.5 Sequence of functionalities/call through Chirp](#15-sequence-of-functionalitiescall-through-chirp)
+- [2 Process](#2-process)
+  - [2.1 Build, test, release and deployment](#21-build-test-release-and-deployment)
+  - [2.2 Team work](#22-team-work)
+  - [2.3 Missing Features](#23-missing-features)
+    - [2.3.1 Data Transfer Objects (DTOs)](#231-data-transfer-objects-dtos)
+    - [2.3.2 "Forget me" feature](#232-forget-me-feature)
+    - [2.3.3 End-to-end test](#233-end-to-end-test)
+    - [2.3.4 Security](#234-security)
+    - [2.3.5 Bugs](#235-bugs)
+  - [2.4 How to Run Chirp! Locally](#24-how-to-run-chirp-locally)
+    - [2.4.1 Setting up the Chirp application](#241-setting-up-the-chirp-application)
+    - [2.4.2 Install Dependencies](#242-install-dependencies)
+    - [2.4.3 Setting up GitHub OAuth](#243-setting-up-github-oauth)
+    - [2.4.4 Setting up Application User Secrets](#244-setting-up-application-user-secrets)
+    - [2.4.5 Starting the Application](#245-starting-the-application)
+    - [2.4.6 How to run test suite locally](#246-how-to-run-test-suite-locally)
+- [3 Ethics](#3-ethics)
+  - [3.1 License](#31-license)
+  - [3.2 LLMs, ChatGPT, CoPilot and others](#32-llms-chatgpt-copilot-and-others)
 
 
 
@@ -107,11 +109,14 @@ The sequence diagram above show the call sequence for when a user wants to get o
 
 ## 2.1 Build, test, release and deployment
 ![Build and Deploy](./diagrams/drawio-assets/DomainModel-Page-2.png)
+
 The build and deploy workflow builds the project from chirp.razor/Chirp.Razor.csproj uploads it as an artifact. It is then loaded into the deploy phase, where the workflow also logs into the Azure server and then deploys the web application
+
 ![Build and Release](./diagrams/drawio-assets/DomainModel-Page-3.png)
+
 This workflow is used to create new releases of the project for both ubuntu, windows and macOS operating systems. It first gets dependencies from dotnet, then it builds, publishes and zips the project for each OS as an artifact. When it creates the release it loads the artifacts and creates a Github release with the tag.
 
-![Test](./diagrams/drawio-assets/DomainModel-Test_Workflow.png)
+![Test](./diagrams/drawio-assets/DomainModel-Page-4.png)
 The test workflow makes sure that every time someone pushes to main it will run all the tests from, the crTest fo.
 
 ## 2.2 Team work 
