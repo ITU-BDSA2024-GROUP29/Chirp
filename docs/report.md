@@ -129,7 +129,7 @@ This workflow is used to create new releases of the project for both ubuntu, win
 
 ![Test](./diagrams/drawio-assets/DomainModel-Test-Workflow.png)
 
-The test workflow makes sure that every time someone pushes to main it will run all the tests from, the crTest fo.+
+The test workflow makes sure that every time someone pushes to main it will run all the tests from the test folder.
 
 ## 2.2 Team work
 
