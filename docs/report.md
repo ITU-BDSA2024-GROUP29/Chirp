@@ -1,15 +1,16 @@
+## "Chirp! Project Report"
 
-##  "Chirp! Project Report"
-IT University Copenhagen    
-Course: Analysis, Design and Software Architecture 
-Course code "BSANDSA1KU"    
+IT University Copenhagen  
+Course: Analysis, Design and Software Architecture
+Course code "BSANDSA1KU"  
 Group: "29"
 Authors:
-  - "Jonas Christian Henriksen <chjh@itu.dk>"
-  - "Magnus Thor Lessing Rolin <thmr@itu.dk>"
-  - "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
-  - "Rasmus Hassing Huge <rahu@itu.dk>"
-  - "Lukas Vranic <luvr@itu.dk>"         
+
+- "Jonas Christian Henriksen <chjh@itu.dk>"
+- "Magnus Thor Lessing Rolin <thmr@itu.dk>"
+- "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
+- "Rasmus Hassing Huge <rahu@itu.dk>"
+- "Lukas Vranic <luvr@itu.dk>"
 
 Date: 18-12-2024
 
@@ -89,7 +90,7 @@ The diagram above visually represents how an unauthorized user can interact with
 
 The next illustration is of an ordinary user journey for an authorized user.
 
-![User Activities authorized](./diagrams/drawio-assets/UserJourney2-side-1-page-1.png) 
+![User Activities authorized](./diagrams/drawio-assets/UserJourney2-side-1-page-1.png)
 
 This user journey illustrates that a user can follow and un-follow other users and delete cheeps.
 An authorized user can also visit the 'about me' page that displays all the information that the database has about the user. A user can also request this information in a .txt format for download.
@@ -129,17 +130,17 @@ The test workflow makes sure that every time someone pushes to main it will run 
 
 ## 2.2 Team work
 
-TODO
-
-!!!! REMEBER TO ADD PICTURE OF PROJECT BOARD AND WRITE ABOUT NOT FINISHED SSUES !!!!
-
-![TeamWork Diagram](./diagrams/drawio-assets/TeamWork-Page-1.png)  
+![TeamWork Diagram](./diagrams/drawio-assets/TeamWork-Page-1.png)
 
 During the course of this program, the general workflow we used started with issue creation. From here, a separate branch would be created on Git. This branch would serve as the development environment for the issue. When developers working on a given issue deemed it finished, a pull request would be submitted, where other members could accept, comment, or deny it based on feedback. Upon a successful merge, the issue would be marked as finished, and the branch would be deleted.
 
 In practice, however, we experienced some deviations. Issues were often created as mentioned above but sometimes forgotten, even when actively working on the related task. This was most likely due to being unfamiliar with working through issues and the small size of the group. Additionally, there was often no reason to comment or deny a given pull request since perhaps 3 out of 5 group members would work together on a given branch, leaving nothing significant to critique in the code. Branches also tended to live relatively long in our project due to being unable to finish certain functionalities or bugs before the weekend, making it awkward to merge unfinished code.
 
 ## 2.3 Missing Features
+
+The Application at the current stage does not incorporate every single functionality. if we take a look at the project board. We were able to approve and mark all of the "in process" issues as finished. In the following section we will go down in the different requirement that is missing at this stage.
+
+![ProjectBoard](./images/ProjectBoard.png)
 
 ### 2.3.1 Data Transfer Objects (DTOs)
 
