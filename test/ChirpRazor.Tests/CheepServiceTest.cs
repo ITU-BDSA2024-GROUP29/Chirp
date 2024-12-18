@@ -257,6 +257,46 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
         }
 
         /*
+        This test checks that the createCheepAsync function prevents SQL injection by ensuring that malicious inputs are sanitized.
+        */
+        [Fact]
+        public async Task Test_PreventsSqlInjection_AttemptsAreSanitized() {
+            using (var connection = new SqliteConnection("Filename=:memory:")) {
+                await connection.OpenAsync();
+                var builder = new DbContextOptionsBuilder<ChirpDBContext>().UseSqlite(connection);
+                using (var context = new ChirpDBContext(builder.Options)) {
+                    await context.Database.EnsureCreatedAsync();
+                    DbInitializer.SeedDatabase(context);
+
+                    CheepRepository cheepRepository = new CheepRepository(context);
+
+                    // Simulate malicious SQL injection input
+                    Cheep cheep = new Cheep();
+                    Author author = new Author();
+                    author.AuthorId = 10000;
+                    cheep.Author = author;
+                    cheep.AuthorId = 10000;
+                    cheep.CheepId = 100001;
+                    cheep.Text = "Test'; DROP TABLE Cheeps; --";
+                    cheep.TimeStamp = new DateTime(2024, 12, 16);
+
+                    // Attempt to save the malicious input
+                    await cheepRepository.CreateCheepAsync(cheep);
+
+                    ICheepService service = new CheepService(cheepRepository);
+
+                    // Retrieve data and ensure the database is intact and input is sanitized
+                    List<CheepViewModel> data = await service.GetCheepsAsync();
+
+                    // Verify the injected SQL was not executed
+                    Assert.True(data.Any(c => c.RenderedMessage == "Test'; DROP TABLE Cheeps; --"));
+                    Assert.False(data.Any(c => c.RenderedMessage.Contains("DROP TABLE")));
+                }
+            }
+        }
+
+
+        /*
         This test, Test to make sure our messageRender can render in bold
         */
         [Fact]

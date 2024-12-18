@@ -16,12 +16,12 @@ public class SharedFuncs : PageModel
     protected readonly ICheepService _cheepService;
 
     /// <summary>
-    ///  /// This function is called from the sendcheeps.cshtml which is the share cheeps box. 
-        /// It recieves the message written in the box when a user presses share. 
-        /// The function then creates a cheeps with message being from the post.
-        /// The function gets author name from the logging information
-        /// It then checks if the author exists in the database, if they dont, a new author is created
-        /// and the cheep is created using the author, the message and a genereted timestamp.
+    /// This function is called from the sendcheeps.cshtml which is the share cheeps box. 
+    /// It recieves the message written in the box when a user presses share. 
+    /// The function then creates a cheeps with message being from the post.
+    /// The function gets author name from the logging information
+    /// It then checks if the author exists in the database, if they dont, a new author is created
+    /// and the cheep is created using the author, the message and a genereted timestamp.
     /// </summary>
     /// <param name="Post">The cheep message</param>
     /// <returns>A RedirectResult for /[loggedInUserName]</returns>
