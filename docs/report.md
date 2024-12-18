@@ -60,7 +60,7 @@ The Chirp! application has a follow function which is also represented in the Au
 
 Chirps onion architecture can be seen in the next figure below.
 
-![./diagrams/drawio-assets/Architecture-small-Side-1.png](./diagrams/drawio-assets/Architecture-small-Side-1.png){ width=70% }
+![The onion architecture diagram](./diagrams/drawio-assets/Architecture-small-Side-1.png){ width=70% }
 
 The onion architecture diagram consists of four layers, the Core, Repository, Service and Razor.
 They are called the same as their respective folders.
