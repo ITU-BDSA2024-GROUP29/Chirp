@@ -1,15 +1,18 @@
----
-title: "Chirp! Project Report"
-course: "ITU BDSA 2024"
-group: "29"
-author:
+
+##  "Chirp! Project Report"
+IT University Copenhagen    
+Course: Analysis, Design and Software Architecture 
+Course code "BSANDSA1KU"    
+Group: "29"
+Authors:
   - "Jonas Christian Henriksen <chjh@itu.dk>"
   - "Magnus Thor Lessing Rolin <thmr@itu.dk>"
   - "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
   - "Rasmus Hassing Huge <rahu@itu.dk>"
-  - "Lukas Vranic <luvr@itu.dk>"
-date: \today
----
+  - "Lukas Vranic <luvr@itu.dk>"         
+
+Date: 18-12-2024
+
 \newpage
 
 - [1 Design and Architecture](#1-design-and-architecture)
