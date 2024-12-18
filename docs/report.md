@@ -62,6 +62,7 @@ The Chirp! application has a follow function which is also represented in the Au
 ## 1.2 Architecture - in the small
 
 Chirps onion architecture can be seen in the next figure below.
+
 ![Onion Architecture](./diagrams/drawio-assets/Architecture-small-Side-1.png)
 
 The onion architecture diagram consists of four layers, the Core, Repository, Service and Razor.
@@ -92,7 +93,8 @@ The diagram above visually represents how an unauthorized user can interact with
 
 The next illustration is of an ordinary user journey for an authorized user.
 
-![User Activities authorized](./diagrams/drawio-assets/UserJourney-Authorized.png)  
+![User Activities authorized](./diagrams/drawio-assets/UserJourney-Authorized.png) 
+
 This user journey illustrates that a user can follow and un-follow other users and delete cheeps.
 An authorized user can also visit the 'about me' page that displays all the information that the database has about the user. A user can also request this information in a .txt format for download.
 Lastly, they can also log out of the application after which they will be redirected to the login page.
@@ -136,6 +138,7 @@ TODO
 !!!! REMEBER TO ADD PICTURE OF PROJECT BOARD AND WRITE ABOUT NOT FINISHED SSUES !!!!
 
 ![TeamWork Diagram](./diagrams/drawio-assets/TeamWork-Page-1.png)  
+
 During the course of this program, the general workflow we used started with issue creation. From here, a separate branch would be created on Git. This branch would serve as the development environment for the issue. When developers working on a given issue deemed it finished, a pull request would be submitted, where other members could accept, comment, or deny it based on feedback. Upon a successful merge, the issue would be marked as finished, and the branch would be deleted.
 
 In practice, however, we experienced some deviations. Issues were often created as mentioned above but sometimes forgotten, even when actively working on the related task. This was most likely due to being unfamiliar with working through issues and the small size of the group. Additionally, there was often no reason to comment or deny a given pull request since perhaps 3 out of 5 group members would work together on a given branch, leaving nothing significant to critique in the code. Branches also tended to live relatively long in our project due to being unable to finish certain functionalities or bugs before the weekend, making it awkward to merge unfinished code.
