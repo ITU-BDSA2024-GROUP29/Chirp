@@ -136,9 +136,9 @@ The test workflow makes sure that every time someone pushes to main it will run 
 
 ## 2.2 Team work
 
-![TeamWork Diagram](./diagrams/drawio-assets/TeamWork-Page-1.png)
-
 During the course of this program, the general workflow we used started with issue creation. From here, a separate branch would be created on Git. This branch would serve as the development environment for the issue. When developers working on a given issue deemed it finished, a pull request would be submitted, where other members could accept, comment, or deny it based on feedback. Upon a successful merge, the issue would be marked as finished, and the branch would be deleted.
+
+![TeamWork Diagram](./diagrams/drawio-assets/TeamWork-Page-1.png)
 
 In practice, however, we experienced some deviations. Issues were often created as mentioned above but sometimes forgotten, even when actively working on the related task. This was most likely due to being unfamiliar with working through issues and the small size of the group. Additionally, there was often no reason to comment or deny a given pull request since perhaps 3 out of 5 group members would work together on a given branch, leaving nothing significant to critique in the code. Branches also tended to live relatively long in our project due to being unable to finish certain functionalities or bugs before the weekend, making it awkward to merge unfinished code.
 
