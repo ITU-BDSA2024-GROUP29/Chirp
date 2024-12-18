@@ -56,9 +56,7 @@ The Chirp! application has a follow function which is also represented in the Au
 ## 1.2 Architecture - in the small
 
 Chirps onion architecture can be seen in the next figure below.
-
 ![Onion Architecture](./diagrams/drawio-assets/Architecture-small-Side-1.png)
-
 The onion architecture diagram consists of four layers, the Core, Repository, Service and Razor.
 They are called the same as their respective folders.
 
@@ -73,10 +71,7 @@ this layer contains the webpages, database and startup program for Chirp! tests 
 
 ## 1.3 Architecture of deployed application
 
-![Client and Server components](./)
-
-The client component is the client box and Oauth, the server components is everything inside the Azure box. The app box consists of all the html files in the shared folder, this is what the client sees. The app background box, is the services that communicates between the app and client input and the database. The database box is pretty self-explanatory, it contains all the
-information from the web application. The Identity Core box is where sensitive user information and data is encrypted.
+The client component consists of the client box and OAuth, whereas the server component encompasses everything within the Azure box. The app box includes all the HTML files found in the shared folder, which is what the client interacts with. The app background box comprises the services that enable communication between the app, client inputs, and the database. The database box, as the name suggests, is responsible for storing all the data from the web application. Finally, the Identity Core box takes on the crucial role of encrypting sensitive user information and data.
 
 ![Architecture](./diagrams/drawio-assets/Architecture-side-1.png)
 
@@ -90,8 +85,7 @@ The diagram above visually represents how an unauthorized user can interact with
 
 The next illustration is of an ordinary user journey for an authorized user.
 
-![User Activities authorized](./diagrams/drawio-assets/UserJourney-Authorized.png)
-
+![User Activities authorized](./diagrams/drawio-assets/UserJourney-Authorized.png)  
 This user journey illustrates that a user can follow and un-follow other users and delete cheeps.
 An authorized user can also visit the 'about me' page that displays all the information that the database has about the user. A user can also request this information in a .txt format for download.
 Lastly, they can also log out of the application after which they will be redirected to the login page.
@@ -126,7 +120,7 @@ This workflow is used to create new releases of the project for both ubuntu, win
 
 ![Test](./diagrams/drawio-assets/DomainModel-Test-Workflow.png)
 
-The test workflow makes sure that every time someone pushes to main it will run all the tests from the test folder.
+The test workflow makes sure that every time someone pushes to main it will run all the tests from, the crTest fo.+
 
 ## 2.2 Team work
 
@@ -134,7 +128,7 @@ TODO
 
 !!!! REMEBER TO ADD PICTURE OF PROJECT BOARD AND WRITE ABOUT NOT FINISHED SSUES !!!!
 
-![TeamWork Diagram](./diagrams/drawio-assets/TeamWork.png)
+![TeamWork Diagram](./diagrams/drawio-assets/TeamWork-Page-1.png)  
 During the course of this program, the general workflow we used started with issue creation. From here, a separate branch would be created on Git. This branch would serve as the development environment for the issue. When developers working on a given issue deemed it finished, a pull request would be submitted, where other members could accept, comment, or deny it based on feedback. Upon a successful merge, the issue would be marked as finished, and the branch would be deleted.
 
 In practice, however, we experienced some deviations. Issues were often created as mentioned above but sometimes forgotten, even when actively working on the related task. This was most likely due to being unfamiliar with working through issues and the small size of the group. Additionally, there was often no reason to comment or deny a given pull request since perhaps 3 out of 5 group members would work together on a given branch, leaving nothing significant to critique in the code. Branches also tended to live relatively long in our project due to being unable to finish certain functionalities or bugs before the weekend, making it awkward to merge unfinished code.
@@ -182,6 +176,17 @@ To restore and install the project dependencies, navigate to the project root di
 
 ### 2.4.3 Setting up GitHub OAuth
 
+The Chirp application uses GitHub OAuth for authentication. There for we will need to setup some user-secret for accesing the github Oauth. There are two possible ways to setup the User-secret's you will only need ONE of these. Personal OAuth or the current up and running for development.
+
+#### Development Env OAuth
+
+- Go to directory `cd .\src\Chirp.Razor\`
+- `dotnet user-secrets init`
+- `dotnet user-secrets set "authentication:github:clientSecret" "3953dca60cd3ab410fe0649ae2d02c71160eeff1" `
+- `dotnet user-secrets set "authentication:github:clientId" "Ov23liqlfyf9uGVeeLpF" `
+
+#### Personal Github OAuth
+
 The Chirp application uses GitHub OAuth for authentication. To configure GitHub OAuth:
 
 - Go to the GitHub Developer Settings and create a new OAuth App:
@@ -203,7 +208,7 @@ To securely store and manage the GitHub OAuth credentials:
 
 - Set the GitHub OAuth credentials:
 
-`dotnet user-secrets set "authentication:github:clientId" "<your-client-id>"`
+`dotnet user-secrets set "authentication:github:clientId" "<your-client-id>"`  
 `dotnet user-secrets set "authentication:github:clientSecret" "<your-client-secret>"`
 
 > Replace `<your-client-id>` and `<your-client-secret>` with the values obtained from GitHub.
@@ -232,14 +237,14 @@ To run our test project, follow the list below:
 - Go to a specific test directory `cd .\Chirp\test\ChirpRazor.Tests\`
 - Run the `dotnet test` command in your terminal.
 
-In our test project, we cover relevant unit and integration tests for all methods within our application core. See subsection 'Architecture in the Small'
+In our test project, we cover relevant unit and integration tests for all methods within our application core. See subsection 'Architecture in the Small'  
 Relevant tests, in this case, cover important and central methods for our Chirp application. This mainly includes methods used to interact with the database (Send Cheeps, Store Cheeps, etc).
 
 # 3 Ethics
 
 ## 3.1 License
 
-Chirp is available and covered under the [MIT License](https://opensource.org/license/mit).
+Chirp is available and covered under the [MIT License](https://opensource.org/license/mit).  
 The application dependencies are also licensed under the [MIT License](https://opensource.org/license/mit).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/licenses/MIT)
