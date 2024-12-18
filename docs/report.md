@@ -1,18 +1,16 @@
-
-
-## Chirp!\_ Project Report
-
-ITU BDSA 2024 Group `29`
-Authors:
-
-- "Jonas Christian Henriksen <chjh@itu.dk>"
-- "Magnus Thor Lessing Rolin <thmr@itu.dk>"
-- "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
-- "Rasmus Hassing Huge <rahu@itu.dk>"
-- "Lukas Vranic <luvr@itu.dk>"
-
-![Test badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/test.yml/badge.svg??event=push)
-![Deploy badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/main_bdsagroup29chirpremotedb.yml/badge.svg??event=push)
+---
+title: "Chirp! Project Report"
+course: "ITU BDSA 2024"
+group: "29"
+author:
+  - "Jonas Christian Henriksen <chjh@itu.dk>"
+  - "Magnus Thor Lessing Rolin <thmr@itu.dk>"
+  - "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
+  - "Rasmus Hassing Huge <rahu@itu.dk>"
+  - "Lukas Vranic <luvr@itu.dk>"
+date: \today
+---
+\newpage
 
 - [1 Design and Architecture](#1-design-and-architecture)
   - [1.1 Domain model](#11-domain-model)
@@ -42,9 +40,6 @@ Authors:
   - [3.1 License](#31-license)
   - [3.2 LLMs, ChatGPT, CoPilot and others](#32-llms-chatgpt-copilot-and-others)
 
-https://github.com/itu-bdsa/lecture_notes/blob/main/sessions/session_12/README_REPORT.md
-cheat sheet: https://www.markdownguide.org/cheat-sheet/
-
 # 1 Design and Architecture
 
 ## 1.1 Domain model
@@ -60,7 +55,6 @@ The Chirp! application has a follow function which is also represented in the Au
 ## 1.2 Architecture - in the small
 
 Chirps onion architecture can be seen in the next figure below.
-
 
 ![Onion Architecture](./diagrams/drawio-assets/Architecture-small-Side-1.png)
 
