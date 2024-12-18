@@ -91,12 +91,14 @@ public class SharedFuncs : PageModel
 
             return RedirectToPage();
         }
-        catch (Exception e)
+        catch (Exception)
         {
             TempData["ErrorMessage"] = "An error occurred while attempting to delete the cheep.";
             return RedirectToPage("/Error");
         }
     }
+
+
     public async Task<Boolean> IsFollowing(String authorname)
     {
         if (await _cheepService.IsUserFollowing(User.Identity.Name, authorname))
