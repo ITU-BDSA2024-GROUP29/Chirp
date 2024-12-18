@@ -46,7 +46,9 @@ cheat sheet: https://www.markdownguide.org/cheat-sheet/
 ## 1.1 Domain model
 
 The Domain model for Chirp! can be seen illustrated as an ER-diagram in the following image:
+
 ![Chirp! ER-diagram](./diagrams/drawio-assets/DomainModel-Side-1.png)
+
 Our Cheep entity represents all Cheeps from all users. The entity contains information about the cheeps content, when it was posted and who posted it.
 The Author entity contains information such as a username and e-mail. The author entity has a relation to the Cheep entity through a list of cheeps inside the author. This is necessary to find all cheeps belonging to a specific user quickly rather than matching a specific user to all cheeps in the database.
 The Chirp! application has a follow function which is also represented in the Author entity. This is made as a relation to itself, an Author can follow and be followed by many other Authors.
@@ -54,7 +56,9 @@ The Chirp! application has a follow function which is also represented in the Au
 ## 1.2 Architecture - in the small
 
 Chirps onion architecture can be seen in the next figure below.
+
 ![Onion Architecture](./diagrams/drawio-assets/Architecture-small-Side-1.png)
+
 The onion architecture diagram consists of four layers, the Core, Repository, Service and Razor.
 They are called the same as their respective folders.
 
@@ -70,7 +74,11 @@ this layer contains the webpages, database and startup program for Chirp! tests 
 ## 1.3 Architecture of deployed application
 
 ![Client and Server components](./)
-The client component is the client box and Oauth, the server components is everything inside the Azure box. The app box consists of all the html files in the shared folder, this is what the client sees. The app background box, is the services that communicates between the app and client input and the database. The database box is pretty self-explanatory, it contains all the information from the web application. The Identity Core box is where sensitive user information and data is encrypted. ![Architecture](./diagrams/drawio-assets/Architecture-side-1.png)
+
+The client component is the client box and Oauth, the server components is everything inside the Azure box. The app box consists of all the html files in the shared folder, this is what the client sees. The app background box, is the services that communicates between the app and client input and the database. The database box is pretty self-explanatory, it contains all the
+information from the web application. The Identity Core box is where sensitive user information and data is encrypted.
+
+![Architecture](./diagrams/drawio-assets/Architecture-side-1.png)
 
 ## 1.4 User activities
 
@@ -81,7 +89,9 @@ The following section consists of various user activities on the Chirp applicati
 The diagram above visually represents how an unauthorized user can interact with the Chirp application website. Upon entering the site, the user has several options for their next actions. They can sign in or log in if they already have an account. Alternatively, the user can browse the page and view various messages. Additionally, they can click on another user’s name to be directed to that user’s timeline.
 
 The next illustration is of an ordinary user journey for an authorized user.
+
 ![User Activities authorized](./diagrams/drawio-assets/UserJourney-Authorized.png)
+
 This user journey illustrates that a user can follow and un-follow other users and delete cheeps.
 An authorized user can also visit the 'about me' page that displays all the information that the database has about the user. A user can also request this information in a .txt format for download.
 Lastly, they can also log out of the application after which they will be redirected to the login page.
@@ -192,7 +202,7 @@ To securely store and manage the GitHub OAuth credentials:
 
 - Set the GitHub OAuth credentials:
 
-`dotnet user-secrets set "authentication:github:clientId" "<your-client-id>"`  
+`dotnet user-secrets set "authentication:github:clientId" "<your-client-id>"`
 `dotnet user-secrets set "authentication:github:clientSecret" "<your-client-secret>"`
 
 > Replace `<your-client-id>` and `<your-client-secret>` with the values obtained from GitHub.
@@ -221,14 +231,14 @@ To run our test project, follow the list below:
 - Go to a specific test directory `cd .\Chirp\test\ChirpRazor.Tests\`
 - Run the `dotnet test` command in your terminal.
 
-In our test project, we cover relevant unit and integration tests for all methods within our application core. See subsection 'Architecture in the Small'  
+In our test project, we cover relevant unit and integration tests for all methods within our application core. See subsection 'Architecture in the Small'
 Relevant tests, in this case, cover important and central methods for our Chirp application. This mainly includes methods used to interact with the database (Send Cheeps, Store Cheeps, etc).
 
 # 3 Ethics
 
 ## 3.1 License
 
-Chirp is available and covered under the [MIT License](https://opensource.org/license/mit).  
+Chirp is available and covered under the [MIT License](https://opensource.org/license/mit).
 The application dependencies are also licensed under the [MIT License](https://opensource.org/license/mit).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/licenses/MIT)
