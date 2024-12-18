@@ -1,17 +1,15 @@
-
-
-
-
 ---
- ## Chirp!_ Project Report
+
+## Chirp!\_ Project Report
+
 ITU BDSA 2024 Group `29`
 Authors:
-  - "Jonas Christian Henriksen <chjh@itu.dk>"
-  - "Magnus Thor Lessing Rolin <thmr@itu.dk>"
-  - "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
-  - "Rasmus Hassing Huge <rahu@itu.dk>"
-  - "Lukas Vranic <luvr@itu.dk>"
 
+- "Jonas Christian Henriksen <chjh@itu.dk>"
+- "Magnus Thor Lessing Rolin <thmr@itu.dk>"
+- "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
+- "Rasmus Hassing Huge <rahu@itu.dk>"
+- "Lukas Vranic <luvr@itu.dk>"
 
 ![Test badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/test.yml/badge.svg??event=push)
 ![Deploy badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/main_bdsagroup29chirpremotedb.yml/badge.svg??event=push)
@@ -62,6 +60,7 @@ The Chirp! application has a follow function which is also represented in the Au
 ## 1.2 Architecture - in the small
 
 Chirps onion architecture can be seen in the next figure below.
+
 ![Onion Architecture](./diagrams/drawio-assets/Architecture-small-Side-1.png)
 
 The onion architecture diagram consists of four layers, the Core, Repository, Service and Razor.
@@ -92,7 +91,8 @@ The diagram above visually represents how an unauthorized user can interact with
 
 The next illustration is of an ordinary user journey for an authorized user.
 
-![User Activities authorized](./diagrams/drawio-assets/UserJourney-Authorized.png)  
+![User Activities authorized](./diagrams/drawio-assets/UserJourney-Authorized.png)
+
 This user journey illustrates that a user can follow and un-follow other users and delete cheeps.
 An authorized user can also visit the 'about me' page that displays all the information that the database has about the user. A user can also request this information in a .txt format for download.
 Lastly, they can also log out of the application after which they will be redirected to the login page.
