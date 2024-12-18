@@ -248,7 +248,6 @@ To run our test project, follow the list below:
 - Go to a specific test directory `cd .\Chirp\test\ChirpRazor.Tests\`
 - Run the `dotnet test` command in your terminal.
 
-In our test project, we cover relevant unit and integration tests for all methods within our application core. See subsection 'Architecture in the Small'
 Relevant tests, in this case, cover important and central methods for our Chirp application. This mainly includes methods used to interact with the database (Send Cheeps, Store Cheeps, etc).
 
 # 3 Ethics
