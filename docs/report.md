@@ -1,17 +1,14 @@
-# Chirp! Project Report
-
-IT University Copenhagen
-**Course**: Analysis, Design and Software Architecture
-**Course Code**: BSANDSA1KU
-**Group**: 29
-**Authors**:
-- Jonas Christian Henriksen <chjh@itu.dk>
-- Magnus Thor Lessing Rolin <thmr@itu.dk>
-- Viktor Emil Nørskov Andersen <Viea@itu.dk>
-- Rasmus Hassing Huge <rahu@itu.dk>
-- Lukas Vranic <luvr@itu.dk>
-
-**Date**: 18-12-2024
+---
+title: "Chirp! Project Report"
+subtitle: "IT University Copenhagen \n Course: Analysis, Design and Software Architecture \n Course Code: BSANDSA1KU \n Group: 29"
+author:
+  - "Jonas Christian Henriksen <chjh@itu.dk>"
+  - "Magnus Thor Lessing Rolin <thmr@itu.dk>"
+  - "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
+  - "Rasmus Hassing Huge <rahu@itu.dk>"
+  - "Lukas Vranic <luvr@itu.dk>"
+date: 18-12-2024
+---
 
 \newpage
 
@@ -100,6 +97,8 @@ This user journey illustrates that a user can follow and un-follow other users a
 An authorized user can also visit the 'about me' page that displays all the information that the database has about the user. A user can also request this information in a .txt format for download.
 Lastly, they can also log out of the application after which they will be redirected to the login page.
 
+\newpage
+
 ## 1.5 Sequence of functionalities/call through Chirp
 
 This [website](https://medium.com/@joshuaudayagiri/uml-sequence-diagram-5c8d1f0b41d6) was used to get styling for a for the UML sequence diagram.
@@ -115,6 +114,9 @@ The sequence diagram above shows the call sequence for when a user is posting a 
 ![Call UML sequence diagram about me](./diagrams/drawio-assets/FunctionaltitesSequence-Page-3.png)
 
 The sequence diagram above show the call sequence for when a user wants to get of they information store in database.
+
+\newpage
+
 
 # 2 Process
 
