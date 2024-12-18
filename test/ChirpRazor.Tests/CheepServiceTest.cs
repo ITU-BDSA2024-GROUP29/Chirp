@@ -270,7 +270,6 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
 
                     CheepRepository cheepRepository = new CheepRepository(context);
 
-                    // Simulate malicious SQL injection input
                     Cheep cheep = new Cheep();
                     Author author = new Author();
                     author.AuthorId = 10000;
@@ -285,12 +284,10 @@ namespace Chirp.Razor.test.ChirpRazor.Tests {
 
                     ICheepService service = new CheepService(cheepRepository);
 
-                    // Retrieve data and ensure the database is intact and input is sanitized
                     List<CheepViewModel> data = await service.GetCheepsAsync();
 
                     // Verify the injected SQL was not executed
                     Assert.True(data.Any(c => c.RenderedMessage == "Test'; DROP TABLE Cheeps; --"));
-                    Assert.False(data.Any(c => c.RenderedMessage.Contains("DROP TABLE")));
                 }
             }
         }
