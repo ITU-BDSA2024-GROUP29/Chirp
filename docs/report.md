@@ -1,18 +1,17 @@
-## "Chirp! Project Report"
+# Chirp! Project Report
 
-IT University Copenhagen  
-Course: Analysis, Design and Software Architecture
-Course code "BSANDSA1KU"  
-Group: "29"
-Authors:
+IT University Copenhagen
+**Course**: Analysis, Design and Software Architecture
+**Course Code**: BSANDSA1KU
+**Group**: 29
+**Authors**:
+- Jonas Christian Henriksen <chjh@itu.dk>
+- Magnus Thor Lessing Rolin <thmr@itu.dk>
+- Viktor Emil Nørskov Andersen <Viea@itu.dk>
+- Rasmus Hassing Huge <rahu@itu.dk>
+- Lukas Vranic <luvr@itu.dk>
 
-- "Jonas Christian Henriksen <chjh@itu.dk>"
-- "Magnus Thor Lessing Rolin <thmr@itu.dk>"
-- "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
-- "Rasmus Hassing Huge <rahu@itu.dk>"
-- "Lukas Vranic <luvr@itu.dk>"
-
-Date: 18-12-2024
+**Date**: 18-12-2024
 
 \newpage
 
@@ -44,23 +43,27 @@ Date: 18-12-2024
   - [3.1 License](#31-license)
   - [3.2 LLMs, ChatGPT, CoPilot and others](#32-llms-chatgpt-copilot-and-others)
 
+\newpage
+
 # 1 Design and Architecture
 
 ## 1.1 Domain model
 
 The Domain model for Chirp! can be seen illustrated as an ER-diagram in the following image:
 
-![Chirp! ER-diagram](./diagrams/drawio-assets/DomainModel-Side-1.png)
+![Chirp! ER-diagram](./diagrams/drawio-assets/DomainModel-Side-1.png){ width=70% }
 
 Our Cheep entity represents all Cheeps from all users. The entity contains information about the cheeps content, when it was posted and who posted it.
 The Author entity contains information such as a username and e-mail. The author entity has a relation to the Cheep entity through a list of cheeps inside the author. This is necessary to find all cheeps belonging to a specific user quickly rather than matching a specific user to all cheeps in the database.
 The Chirp! application has a follow function which is also represented in the Author entity. This is made as a relation to itself, an Author can follow and be followed by many other Authors.
 
+\newpage
+
 ## 1.2 Architecture - in the small
 
 Chirps onion architecture can be seen in the next figure below.
 
-\includegraphics[width=0.7\textwidth]{./diagrams/drawio-assets/Architecture-small-Side-1.png}
+![./diagrams/drawio-assets/Architecture-small-Side-1.png](./diagrams/drawio-assets/Architecture-small-Side-1.png){ width=70% }
 
 The onion architecture diagram consists of four layers, the Core, Repository, Service and Razor.
 They are called the same as their respective folders.
@@ -78,19 +81,20 @@ this layer contains the webpages, database and startup program for Chirp! tests 
 
 The client component consists of the client box and OAuth, whereas the server component encompasses everything within the Azure box. The app box includes all the HTML files found in the shared folder, which is what the client interacts with. The app background box comprises the services that enable communication between the app, client inputs, and the database. The database box, as the name suggests, is responsible for storing all the data from the web application. Finally, the Identity Core box takes on the crucial role of encrypting sensitive user information and data.
 
-![Architecture](./diagrams/drawio-assets/Architecture-side-1.png)
+![Architecture](./diagrams/drawio-assets/Architecture-Side-1.png){ width=70% }
+
 
 ## 1.4 User activities
 
 The following section consists of various user activities on the Chirp application site. These activities represent typical user scenarios for using the website. The diagrams illustrate the differences between an authorized user and an unauthorized user.
 
-![User Activities unauthorized](./diagrams/drawio-assets/UserJourney-UnAuthorized.png)
+![User Activities unauthorized](./diagrams/drawio-assets/UserJourney-UnAuthorized.png){ width=70% }
 
 The diagram above visually represents how an unauthorized user can interact with the Chirp application website. Upon entering the site, the user has several options for their next actions. They can sign in or log in if they already have an account. Alternatively, the user can browse the page and view various messages. Additionally, they can click on another user’s name to be directed to that user’s timeline.
 
 The next illustration is of an ordinary user journey for an authorized user.
 
-![User Activities authorized](./diagrams/drawio-assets/UserJourney2-side-1-page-1.png)
+![User Activities authorized](./diagrams/drawio-assets/userjourney2-Side-1-Page-1.png){ width=70% }
 
 This user journey illustrates that a user can follow and un-follow other users and delete cheeps.
 An authorized user can also visit the 'about me' page that displays all the information that the database has about the user. A user can also request this information in a .txt format for download.
@@ -215,7 +219,7 @@ To securely store and manage the GitHub OAuth credentials:
 
 - Set the GitHub OAuth credentials:
 
-`dotnet user-secrets set "authentication:github:clientId" "<your-client-id>"`  
+`dotnet user-secrets set "authentication:github:clientId" "<your-client-id>"`
 `dotnet user-secrets set "authentication:github:clientSecret" "<your-client-secret>"`
 
 > Replace `<your-client-id>` and `<your-client-secret>` with the values obtained from GitHub.
@@ -244,14 +248,14 @@ To run our test project, follow the list below:
 - Go to a specific test directory `cd .\Chirp\test\ChirpRazor.Tests\`
 - Run the `dotnet test` command in your terminal.
 
-In our test project, we cover relevant unit and integration tests for all methods within our application core. See subsection 'Architecture in the Small'  
+In our test project, we cover relevant unit and integration tests for all methods within our application core. See subsection 'Architecture in the Small'
 Relevant tests, in this case, cover important and central methods for our Chirp application. This mainly includes methods used to interact with the database (Send Cheeps, Store Cheeps, etc).
 
 # 3 Ethics
 
 ## 3.1 License
 
-Chirp is available and covered under the [MIT License](https://opensource.org/license/mit).  
+Chirp is available and covered under the [MIT License](https://opensource.org/license/mit).
 The application dependencies are also licensed under the [MIT License](https://opensource.org/license/mit).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/licenses/MIT)
