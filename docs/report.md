@@ -86,7 +86,7 @@ The diagram above visually represents how an unauthorized user can interact with
 
 The next illustration is of an ordinary user journey for an authorized user.
 
-![User Activities authorized](./diagrams/drawio-assets/UserJourney-Authorized.png) 
+![User Activities authorized](./diagrams/drawio-assets/UserJourney2-side-1-page-1.png) 
 
 This user journey illustrates that a user can follow and un-follow other users and delete cheeps.
 An authorized user can also visit the 'about me' page that displays all the information that the database has about the user. A user can also request this information in a .txt format for download.
