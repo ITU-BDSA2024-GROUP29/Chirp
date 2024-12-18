@@ -1,17 +1,15 @@
-
-
-
-
 ---
- ## Chirp!_ Project Report
+
+## Chirp!\_ Project Report
+
 ITU BDSA 2024 Group `29`
 Authors:
-  - "Jonas Christian Henriksen <chjh@itu.dk>"
-  - "Magnus Thor Lessing Rolin <thmr@itu.dk>"
-  - "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
-  - "Rasmus Hassing Huge <rahu@itu.dk>"
-  - "Lukas Vranic <luvr@itu.dk>"
 
+- "Jonas Christian Henriksen <chjh@itu.dk>"
+- "Magnus Thor Lessing Rolin <thmr@itu.dk>"
+- "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
+- "Rasmus Hassing Huge <rahu@itu.dk>"
+- "Lukas Vranic <luvr@itu.dk>"
 
 ![Test badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/test.yml/badge.svg??event=push)
 ![Deploy badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/main_bdsagroup29chirpremotedb.yml/badge.svg??event=push)
@@ -62,6 +60,7 @@ The Chirp! application has a follow function which is also represented in the Au
 ## 1.2 Architecture - in the small
 
 Chirps onion architecture can be seen in the next figure below.
+
 
 ![Onion Architecture](./diagrams/drawio-assets/Architecture-small-Side-1.png)
 
