@@ -124,7 +124,7 @@ The build and deploy workflow builds the project from chirp.razor/Chirp.Razor.cs
 
 This workflow is used to create new releases of the project for both ubuntu, windows and macOS operating systems. It first gets dependencies from dotnet, then it builds, publishes and zips the project for each OS as an artifact. When it creates the release it loads the artifacts and creates a Github release with the tag.
 
-![Test](./diagrams/drawio-assets/DomainModel-Page-4.png)
+![Test](./diagrams/drawio-assets/DomainModel-Test-Workflow.png)
 The test workflow makes sure that every time someone pushes to main it will run all the tests from, the crTest fo.
 
 ## 2.2 Team work
