@@ -3,9 +3,9 @@
 
 
 ---
- ## title: _Chirp!_ Project Report
-subtitle: ITU BDSA 2024 Group `29`
-author:
+ ## Chirp!_ Project Report
+ITU BDSA 2024 Group `29`
+Authors:
   - "Jonas Christian Henriksen <chjh@itu.dk>"
   - "Magnus Thor Lessing Rolin <thmr@itu.dk>"
   - "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
@@ -35,6 +35,8 @@ author:
     - [2.4.1 Setting up the Chirp application](#241-setting-up-the-chirp-application)
     - [2.4.2 Install Dependencies](#242-install-dependencies)
     - [2.4.3 Setting up GitHub OAuth](#243-setting-up-github-oauth)
+      - [Development Env OAuth](#development-env-oauth)
+      - [Personal Github OAuth](#personal-github-oauth)
     - [2.4.4 Setting up Application User Secrets](#244-setting-up-application-user-secrets)
     - [2.4.5 Starting the Application](#245-starting-the-application)
     - [2.4.6 How to run test suite locally](#246-how-to-run-test-suite-locally)
