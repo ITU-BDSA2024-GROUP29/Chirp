@@ -1,5 +1,9 @@
+
+
+
+
 ---
-title: _Chirp!_ Project Report
+ ## title: _Chirp!_ Project Report
 subtitle: ITU BDSA 2024 Group `29`
 author:
   - "Jonas Christian Henriksen <chjh@itu.dk>"
@@ -7,7 +11,7 @@ author:
   - "Viktor Emil Nørskov Andersen <Viea@itu.dk>"
   - "Rasmus Hassing Huge <rahu@itu.dk>"
   - "Lukas Vranic <luvr@itu.dk>"
----
+
 
 ![Test badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/test.yml/badge.svg??event=push)
 ![Deploy badge](https://github.com/ITU-BDSA2024-GROUP29/Chirp/actions/workflows/main_bdsagroup29chirpremotedb.yml/badge.svg??event=push)
